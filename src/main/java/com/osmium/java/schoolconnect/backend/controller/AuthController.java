@@ -1,9 +1,13 @@
 package com.osmium.java.schoolconnect.backend.controller;
 
+import com.osmium.java.schoolconnect.backend.service.AuthService;
 import com.osmium.java.schoolconnect.backend.service.impl.UserDao;
 import com.osmium.java.schoolconnect.backend.entity.SysUser;
+import com.osmium.java.schoolconnect.backend.utils.Action;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +20,15 @@ import java.io.PrintWriter;
 
 public class AuthController{
     @Resource
-    UserService service;
+    AuthService authService;
 
 
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value= "/login",method = RequestMethod.POST)
+    private Action login() (@RequestParam("username") String name,
+    @RequestParam("sex") String sex,
+    @RequestParam("grade") String grade,
+    @RequestParam("password") String password) {
         request.setCharacterEncoding("utf-8");
 
         String username = request.getParameter("username");

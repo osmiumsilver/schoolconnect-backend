@@ -1,16 +1,33 @@
 package com.osmium.java.schoolconnect.backend.entity;
 
+import java.util.Date;
 import lombok.Data;
 
 @Data
 public class User {
-    private Integer userNo; // 用户编号
-    private String username; //
-    private String userSex;
-    private byte sAge;
+    private String id;
+
+    private Integer userno;
+
+    private Integer clno;
+
+    private Byte sex;
+
+    private String idnumber;
+
+    private String realname;
+
+    private String email;
+
     private String phone;
+
     private String address;
-    private String id; //独一无二ID
-    private byte role;
-    private byte status;
+
+    private String qq;
+
+    private Byte role;
+
+    private Byte status;
+
+    private Date createtime;
 }

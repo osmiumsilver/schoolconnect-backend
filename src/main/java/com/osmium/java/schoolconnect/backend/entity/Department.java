@@ -4,8 +4,11 @@ import lombok.Data;
 
 @Data
 public class Department {
-    private Integer departmentNo; // 部门编号
-    private String departmentName; // 部门名称
-    private String departmentManager; // 负责人
+    private Integer dno;
 
+    private String dname;
+
+    private Integer dmanagerno;
+
+    private String dmanagername;
 }

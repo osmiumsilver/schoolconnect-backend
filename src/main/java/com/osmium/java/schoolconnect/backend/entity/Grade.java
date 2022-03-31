@@ -3,12 +3,12 @@ package com.osmium.java.schoolconnect.backend.entity;
 import lombok.Data;
 
 @Data
+public class Grade {
+    private String id;
 
-public class Grade extends Course {
+    private Integer userno;
 
-    private Integer courseNo;//课程号
-    private String courseName;//课程名称
-    private float grade;//成绩
+    private Byte grade;
 
-
+    private Integer courseno;
 }

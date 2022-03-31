@@ -15,11 +15,11 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-@ComponentScan("com.osmium.java.sima.controller")
+@ComponentScan("com.osmium.java.schoolconnect.backend.controller")
 @Configuration
 @EnableWebMvc
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MVCConfiguration implements WebMvcConfigurer {
+public class ThymeleafConfiguration implements WebMvcConfigurer {
 
     //我们需要使用ThymeleafViewResolver作为视图解析器，并解析我们的HTML页面
     @Bean

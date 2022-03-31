@@ -4,7 +4,7 @@
     <option name="connectionInfoList">
       <list>
         <ConnectionInfo>
-          <option name="database" value="stuinfo" />
+          <option name="database" value="schoolconnect" />
           <option name="description" value="" />
           <option name="driverClass" value="" />
           <option name="driverLibrary" value="" />
@@ -14,7 +14,7 @@
           <option name="name" value="localhost" />
           <option name="port" value="3306" />
           <option name="url" value="" />
-          <option name="userName" value="user" />
+          <option name="userName" value="root" />
         </ConnectionInfo>
       </list>
     </option>
@@ -40,6 +40,7 @@
         <entry key="JAVA_CLIENT_PACKAGE">
           <value>
             <list>
+              <option value="com.osmium.java.schoolconnect.backend.mapper" />
               <option value="cn.edu.jit.wdnv.java.sims.mapper" />
               <option value="mapper" />
             </list>
@@ -48,6 +49,7 @@
         <entry key="JAVA_MODEL_PACKAGE">
           <value>
             <list>
+              <option value="com.osmium.java.schoolconnect.backend.entity" />
               <option value="cn.edu.jit.wdnv.java.sims.beans" />
               <option value="cn.edu.jit.wdnv.java.sims.model" />
               <option value="model" />
@@ -87,14 +89,14 @@
         </option>
         <option name="javaClientConfig">
           <JavaClientGeneratorConfiguration>
-            <option name="configurationType" value="XMLMAPPER" />
-            <option name="targetPackage" value="cn.edu.jit.wdnv.java.sims.mapper" />
+            <option name="configurationType" value="ANNOTATEDMAPPER" />
+            <option name="targetPackage" value="com.osmium.java.schoolconnect.backend.mapper" />
             <option name="targetProject" value="$PROJECT_DIR$/src/main/java" />
           </JavaClientGeneratorConfiguration>
         </option>
         <option name="javaModelConfig">
           <JavaModelGeneratorConfiguration>
-            <option name="targetPackage" value="cn.edu.jit.wdnv.java.sims.beans" />
+            <option name="targetPackage" value="com.osmium.java.schoolconnect.backend.entity" />
             <option name="targetProject" value="$PROJECT_DIR$/src/main/java" />
           </JavaModelGeneratorConfiguration>
         </option>
@@ -106,10 +108,41 @@
         <option name="selectedTables">
           <list>
             <TableInfo>
-              <option name="database" value="stuinfo" />
+              <option name="database" value="schoolconnect" />
               <option name="domainName" value="Class" />
-              <option name="tableComment" value="" />
+              <option name="keyColumn" value="" />
+              <option name="tableComment" value="班级表" />
               <option name="tableName" value="class" />
+            </TableInfo>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Course" />
+              <option name="tableComment" value="课程表" />
+              <option name="tableName" value="course" />
+            </TableInfo>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Department" />
+              <option name="tableComment" value="部门表" />
+              <option name="tableName" value="department" />
+            </TableInfo>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Grade" />
+              <option name="tableComment" value="课程数据" />
+              <option name="tableName" value="grade" />
+            </TableInfo>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Sysuser" />
+              <option name="tableComment" value="" />
+              <option name="tableName" value="sysuser" />
+            </TableInfo>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="User" />
+              <option name="tableComment" value="信息" />
+              <option name="tableName" value="user" />
             </TableInfo>
           </list>
         </option>
@@ -120,11 +153,71 @@
           </SqlMapGeneratorConfiguration>
         </option>
         <option name="targetRuntime" value="MyBatis3Simple" />
-        <option name="trimStrings" value="false" />
       </GeneratorParamWrapper>
     </option>
     <option name="tableInfoMap">
       <map>
+        <entry key="schoolconnect#class">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Class" />
+              <option name="keyColumn" value="" />
+              <option name="tableComment" value="班级表" />
+              <option name="tableName" value="class" />
+            </TableInfo>
+          </value>
+        </entry>
+        <entry key="schoolconnect#course">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Course" />
+              <option name="tableComment" value="课程表" />
+              <option name="tableName" value="course" />
+            </TableInfo>
+          </value>
+        </entry>
+        <entry key="schoolconnect#department">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Department" />
+              <option name="tableComment" value="部门表" />
+              <option name="tableName" value="department" />
+            </TableInfo>
+          </value>
+        </entry>
+        <entry key="schoolconnect#grade">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Grade" />
+              <option name="tableComment" value="课程数据" />
+              <option name="tableName" value="grade" />
+            </TableInfo>
+          </value>
+        </entry>
+        <entry key="schoolconnect#sysuser">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="Sysuser" />
+              <option name="tableComment" value="" />
+              <option name="tableName" value="sysuser" />
+            </TableInfo>
+          </value>
+        </entry>
+        <entry key="schoolconnect#user">
+          <value>
+            <TableInfo>
+              <option name="database" value="schoolconnect" />
+              <option name="domainName" value="User" />
+              <option name="tableComment" value="信息" />
+              <option name="tableName" value="user" />
+            </TableInfo>
+          </value>
+        </entry>
         <entry key="stuinfo#class">
           <value>
             <TableInfo>

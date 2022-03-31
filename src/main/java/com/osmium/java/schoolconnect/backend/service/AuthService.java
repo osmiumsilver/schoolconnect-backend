@@ -10,6 +10,6 @@ import javax.servlet.http.HttpSession;
  * @apinote
  */
 public interface AuthService {
-    void register(String name, String sex, String grade, String password);
+    void register(Integer ,String name, String password);
     SysUser login(HttpSession session);;
 }

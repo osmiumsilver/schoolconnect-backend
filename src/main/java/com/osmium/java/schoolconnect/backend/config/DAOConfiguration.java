@@ -15,16 +15,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @ComponentScans({
-        @ComponentScan("com.osmium.java.sima.service"),
+        @ComponentScan("com.osmium.java.schoolconnect.backend.service"),
 })
 @MapperScan("com.osmium.java.sima.mapper")
 @Configuration
 @EnableTransactionManagement
-public class RootConfiguration {
+public class DAOConfiguration {
     @Bean
     public DataSource dataSource(){
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/stuinfo");
+        dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/schoolconnect?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("user");
         dataSource.setPassword("12345678");
