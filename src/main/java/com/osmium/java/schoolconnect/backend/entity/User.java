@@ -1,15 +1,20 @@
 package com.osmium.java.schoolconnect.backend.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
+@TableName("user")
 public class User {
     private String id;
 
     private Integer userno;
 
     private Integer clno;
+
+    private Integer password;
 
     private Byte sex;
 
