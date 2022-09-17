@@ -4,9 +4,7 @@ package com.osmium.java.schoolconnect.backend.controller;
 import com.osmium.java.schoolconnect.backend.entity.*;
 import com.osmium.java.schoolconnect.backend.entity.Class;
 import com.osmium.java.schoolconnect.backend.service.impl.*;
-import com.osmium.java.sima.entity.*;
 
-import com.osmium.java.sima.service.impl.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,19 +19,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("api/admin")
+@RequestMapping("/api/admin")
 public class AdminController{
 
-    @Resource
 
 
 
     /*-------------------------------- 用户 -----------------------------------*/
     //查询所有用户
+    @Resource
     @RequestMapping(value="addbook",method = RequestMethod.POST)
-    protected void queryAllUser{
+    protected void queryAllUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-        UserDao userDao = new UserDao();
 
         ArrayList<SysUser> results = userDao.query_all_user();
         PrintWriter out = response.getWriter();

@@ -14,10 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@ComponentScans({
-        @ComponentScan("com.osmium.java.schoolconnect.backend.service"),
+@ComponentScans({@ComponentScan("com.osmium.java.schoolconnect.backend.service"),
 })
-@MapperScan("com.osmium.java.sima.mapper")
+@MapperScan("com.osmium.java.schoolconnect.mapper")
 @Configuration
 @EnableTransactionManagement
 public class DAOConfiguration {
