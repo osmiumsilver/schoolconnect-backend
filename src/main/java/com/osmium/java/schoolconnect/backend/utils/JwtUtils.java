@@ -2,7 +2,8 @@ package com.osmium.java.schoolconnect.backend.utils;
 
 import com.osmium.java.schoolconnect.backend.entity.User;
 import com.osmium.java.schoolconnect.backend.service.UserService;
-import io.jsonwebtoken.*;
+import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.Map;
   *@Author ZL
   *@Date Created in 2022/9/16 23:33
  **/
-public class JwtUitls {
+public class JwtUtils {
 
     @Autowired
     private static UserService userService;
