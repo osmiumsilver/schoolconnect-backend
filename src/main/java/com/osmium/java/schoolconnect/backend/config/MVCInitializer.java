@@ -11,7 +11,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * @apinote
  */
 @Configuration
-public class MVCInitializer  extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MVCInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

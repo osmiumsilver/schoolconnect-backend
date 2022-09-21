@@ -3,9 +3,9 @@ package com.osmium.java.schoolconnect.backend.utils;
 
 public enum FailCode implements IFailResult {
 
-    UNKNOW("9999", "未知错误"),
+    UNKNOWN("9999", "未知错误"),
 
-    SYS_UNKNOW("1001", "未知错误"),
+    SYS_UNKNOWN("1001", "未知错误"),
     SYS_REQ_TOO_FAST("1002", "请求太快"),
     SYS_FAIL_TOO_MANY("1003", "失败次数太多"),
     SYS_CONCURRENT_REJECT("1005", "请求过多"),

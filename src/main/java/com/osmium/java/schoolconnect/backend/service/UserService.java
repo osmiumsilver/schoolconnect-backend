@@ -1,7 +1,7 @@
 package com.osmium.java.schoolconnect.backend.service;
 
-import com.github.yulichang.base.MPJBaseService;
 import com.osmium.java.schoolconnect.backend.entity.User;
+import com.github.yulichang.base.MPJBaseService;
 
 /**
  * @author

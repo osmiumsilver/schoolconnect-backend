@@ -30,7 +30,7 @@ public class Result<T> implements Serializable {
     @Override
     public boolean equals(Object another) {
         if (another == null || !(another instanceof Result)) return false;
-        return Objects.equals(this.code, ((Result) another).code);
+        return Objects.equals(this.code, ((Result<?>) another).code);
     }
 
     @JsonIgnore
@@ -38,11 +38,11 @@ public class Result<T> implements Serializable {
         return StringUtils.equals(this.code, CODE_SUCCESS);
     }
 
-    public static <T> Result<T> success() {
+    public static <T> Result success() {
         return SUCCESS;
     }
 
-    public static <T> Result<T> success(T data) {
+    public static <T> Result success(T data) {
         return new Result(CODE_SUCCESS, SUCCESS_MESSAGE, data);
     }
 

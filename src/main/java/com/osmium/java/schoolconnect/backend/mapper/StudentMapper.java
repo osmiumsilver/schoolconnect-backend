@@ -1,6 +1,7 @@
 package com.osmium.java.schoolconnect.backend.mapper;
 
 import com.osmium.java.schoolconnect.backend.entity.User;
+
 import java.util.List;
 
 public interface StudentMapper {

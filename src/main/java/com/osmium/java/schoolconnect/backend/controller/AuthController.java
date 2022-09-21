@@ -4,17 +4,18 @@ import com.osmium.java.schoolconnect.backend.entity.User;
 import com.osmium.java.schoolconnect.backend.service.UserService;
 import com.osmium.java.schoolconnect.backend.utils.Result;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import javax.annotation.Resource;
+
+@RestController
 @RequestMapping("/api/auth")
 
 public class AuthController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @ApiOperation(value = "用户登录", notes = "用户登录")

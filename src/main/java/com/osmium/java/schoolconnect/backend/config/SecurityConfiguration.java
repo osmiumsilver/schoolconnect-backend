@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Resource
-    SysUserMapper sysUserMapper;
+    UserMapper UserMapper;
     @Resource
     AuthService authService;
     @Resource

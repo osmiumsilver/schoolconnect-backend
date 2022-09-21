@@ -1,7 +1,7 @@
 package com.osmium.java.schoolconnect.backend.filter;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.osmium.java.schoolconnect.backend.utils.JwtUitls;
+import com.osmium.java.schoolconnect.backend.utils.JwtUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +29,7 @@ public class tokenFilter implements Filter {
                 String token = ((HttpServletRequest) servletRequest).getHeader("token");
                 if (StringUtils.isNotBlank(token)) {
                     //token验证结果
-                    int verify = JwtUitls.verify(token);
+                    int verify = JwtUtils.verify(token);
                     if (verify != 1) {
                         //验证失败
                         if (verify == 2) {

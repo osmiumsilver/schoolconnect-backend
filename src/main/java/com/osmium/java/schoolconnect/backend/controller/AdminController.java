@@ -4,10 +4,12 @@ package com.osmium.java.schoolconnect.backend.controller;
 import com.osmium.java.schoolconnect.backend.entity.*;
 import com.osmium.java.schoolconnect.backend.entity.Class;
 import com.osmium.java.schoolconnect.backend.service.impl.*;
+import com.osmium.java.schoolconnect.backend.entity.*;
+import com.osmium.java.schoolconnect.backend.service.impl.*;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import javax.annotation.Resource;
@@ -18,108 +20,32 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/admin")
 public class AdminController{
-
-
-
 
     /*-------------------------------- 用户 -----------------------------------*/
     //查询所有用户
     @Resource
-    @RequestMapping(value="addbook",method = RequestMethod.POST)
-    protected void queryAllUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
-
-        ArrayList<SysUser> results = userDao.query_all_user();
-        PrintWriter out = response.getWriter();
-        //输出结果
-        if (results != null) {
-            out.write("<div class='all'>");
-            out.write("<div><span>用户名</span><span>密码</span><span>权限级别</span></div>");
-            for (SysUser i : results) {
-                out.write("<div>");
-                out.write("<span>" + i.getUsername() + "</span>");
-                out.write("<span>" + i.getPassword() + "</span>");
-                out.write("<span>" + i.getLevel() + "</span>");
-                out.write("</div>");
-            }
-            out.write("</div>");
-        }
-
-        out.flush();
-        out.close();
-    }
-
+    @RequestMapping (value="addUser", method = RequestMethod.POST)
     //插入用户
-    protected void insert_user(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String level = request.getParameter("level");
+    protected void addUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        int status = new UserDao().insert_user(username, Encryptor.MD5Encrypt(password), level);
-        String info;
-        PrintWriter out = response.getWriter();
-        if (status == 1) {
-            info = "用户插入成功！";
-        } else {
-            info = "错误：用户插入失败！";
-        }
-        out.write("<div class='error'>");
-        out.write("<div>" + info + "</div>");
-        out.write("</div>");
-        out.flush();
-        out.close();
     }
 
     //删除用户
-    protected void delete_user(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
-        String username = request.getParameter("username");
+    protected void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        int status = new UserDao().delete_user(username);
-        String info;
-        PrintWriter out = response.getWriter();
-        if (status == 1) {
-            info = "成功删除名为" + username + "用户！";
-        } else {
-            info = "错误：删除用户失败！";
-        }
-        out.write("<div class='error'>");
-        out.write("<div>" + info + "</div>");
-        out.write("</div>");
-        out.flush();
-        out.close();
     }
 
     //修改用户
-    protected void alter_user(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
-        String username = request.getParameter("username");
-        String after_username = request.getParameter("after_username");
-        String after_password = request.getParameter("after_password");
-        String after_level = request.getParameter("after_level");
+    protected void alterUserInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        int status = new UserDao().alter_user(username, after_username, Encryptor.MD5Encrypt(after_password), after_level);
-        String info;
-        PrintWriter out = response.getWriter();
-        if (status == 1) {
-            info = "名为" + username + "用户信息修改成功！";
-        } else {
-            info = "错误：修改用户失败!";
-        }
-        out.write("<div class='error'>");
-        out.write("<div>" + info + "</div>");
-        out.write("</div>");
-        out.flush();
-        out.close();
     }
 
     /*-------------------------------- 院系-----------------------------------*/
     // 查询所有院系
-    protected void query_all_department(HttpServletResponse response)
+    protected void addDepartment(HttpServletResponse response)
             throws IOException {
         response.setContentType("text/html;charset=utf-8");
 

@@ -6,7 +6,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionManager;
@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@ComponentScans({@ComponentScan("com.osmium.java.schoolconnect.backend.service"),
-})
+@ComponentScan("com.osmium.java.schoolconnect.backend.service")
 @MapperScan("com.osmium.java.schoolconnect.mapper")
 @Configuration
 @EnableTransactionManagement

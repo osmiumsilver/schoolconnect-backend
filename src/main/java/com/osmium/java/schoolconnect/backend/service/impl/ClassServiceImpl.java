@@ -2,7 +2,6 @@ package com.osmium.java.schoolconnect.backend.service.impl;
 
 import com.osmium.java.schoolconnect.backend.mapper.ClassMapper;
 import com.osmium.java.schoolconnect.backend.service.ClassService;
-import com.osmium.java.schoolconnect.backend.entity.Class;
 
 
 import javax.annotation.Resource;
@@ -14,7 +13,7 @@ public class ClassServiceImpl implements ClassService {
     ClassMapper Class;
 
     @Override
-    public List<Class> queryAllClass() {
+    public List<com.osmium.java.schoolconnect.backend.entity.Class> queryAllClass() {
         return Class.queryAllClass();
 
     }
