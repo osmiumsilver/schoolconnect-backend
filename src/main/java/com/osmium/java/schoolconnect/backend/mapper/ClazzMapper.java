@@ -1,12 +1,12 @@
 package com.osmium.java.schoolconnect.backend.mapper;
 
-import com.osmium.java.schoolconnect.backend.entity.Class;
+import com.osmium.java.schoolconnect.backend.entity.Clazz;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
-public interface ClassMapper {
+public interface ClazzMapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
@@ -27,7 +27,7 @@ public interface ClassMapper {
         "#{dno,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{tno,jdbcType=INTEGER}, ",
         "#{iname,jdbcType=VARCHAR}, #{ino,jdbcType=INTEGER})"
     })
-    int insert(Class row);
+    int insert(Clazz row);
 
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -47,7 +47,7 @@ public interface ClassMapper {
         @Result(column="iname", property="iname", jdbcType=JdbcType.VARCHAR),
         @Result(column="ino", property="ino", jdbcType=JdbcType.INTEGER)
     })
-    Class selectByPrimaryKey(Integer clno);
+    Clazz selectByPrimaryKey(Integer clno);
 
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -66,7 +66,7 @@ public interface ClassMapper {
         @Result(column="iname", property="iname", jdbcType=JdbcType.VARCHAR),
         @Result(column="ino", property="ino", jdbcType=JdbcType.INTEGER)
     })
-    List<Class> selectAll();
+    List<Clazz> selectAll();
 
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -81,12 +81,12 @@ public interface ClassMapper {
           "ino = #{ino,jdbcType=INTEGER}",
         "where clno = #{clno,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(Class row);
+    int updateByPrimaryKey(Clazz row);
 
 
 
 @Select("select * from class order by clno")
-    List<Class> queryAllClass();
+    List<Clazz> queryAllClass();
 
     @Delete("delete from class where clno= #{clno}")
     void deleteClass(Integer clno);

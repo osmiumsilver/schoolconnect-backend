@@ -1,8 +1,7 @@
 package com.osmium.java.schoolconnect.backend.config;
 
-import com.osmium.java.schoolconnect.backend.entity.SysUser;
 import com.osmium.java.schoolconnect.backend.mapper.UserMapper;
-import com.osmium.java.schoolconnect.backend.service.AuthService;
+import com.osmium.java.schoolconnect.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,9 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Resource
-    UserMapper UserMapper;
+    UserMapper userMapper;
     @Resource
-    AuthService authService;
+    UserService authService;
     @Resource
     PersistentTokenRepository repository;
 
@@ -82,7 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         HttpSession session = httpServletRequest.getSession();
-        SysUser user = sysUserMapper.getPasswordByUsername(authentication.getName());
+        User user = UserMapper.getPasswordByUsername(authentication.getName());
         session.setAttribute("user", user);
         if(user.getRole().equals("admin")){
             httpServletResponse.sendRedirect("/bookmanager/page/admin/index");

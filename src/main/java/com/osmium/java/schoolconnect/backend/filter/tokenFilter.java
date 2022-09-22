@@ -19,7 +19,7 @@ public class tokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String url = ((HttpServletRequest) servletRequest).getRequestURI();
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<>();
         if (url != null) {
             //登录请求直接放行
             if ("/login".equals(url)) {
@@ -38,7 +38,7 @@ public class tokenFilter implements Filter {
                             map.put("errorMsg", "用户信息验证失败");
 
                         }
-                    } else if (verify == 1) {
+                    } else {
                         //验证成功，放行
                         filterChain.doFilter(servletRequest, servletResponse);
                     }

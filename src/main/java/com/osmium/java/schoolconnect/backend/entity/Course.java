@@ -1,24 +1,24 @@
 package com.osmium.java.schoolconnect.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 @Data
+@TableName("course")
 public class Course {
-    private Integer courseno;
-
-    private String coursename;
-
-    private Byte courseduration;
-
-    private Byte coursetype;
-
-    private String coursedesc;
-
-    private String courseplace;
-
-    private Byte coursestatus;
-
-    private String courseteacher;
-
-    private Byte coursecredits;
+    private @Id @GeneratedValue long id; // 随机生成id
+    private @Id Integer courseNo; //课程号
+    private String courseName; //课程名称
+    private Byte courseDuration; //课程时长
+    private Byte courseType; //课程类型
+    private String courseDesc; //课程介绍
+    private String coursePlace; //课程地点
+    private Byte courseStatus; //课程状态
+    private String courseTeacher; //课程老师
+    private Byte courseCredits; //课程学分
 }

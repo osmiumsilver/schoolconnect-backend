@@ -1,6 +1,7 @@
 package com.osmium.java.schoolconnect.backend.controller;
 
 import com.osmium.java.schoolconnect.backend.service.ClassService;
+import com.osmium.java.schoolconnect.backend.utils.Result;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ public class ClassController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录")
     @RequestMapping(value = "addClass", method = RequestMethod.POST)
-    public Action addClass(@RequestParam("className") String className,
+    public Result addClass(@RequestParam("className") String className){
         return null;
+    }
 
 }

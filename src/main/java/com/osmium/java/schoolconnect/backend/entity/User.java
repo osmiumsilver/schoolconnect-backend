@@ -14,10 +14,10 @@ import lombok.Data;
 @TableName("user")
 public class User {
     private @Id @GeneratedValue long id; //系统唯一id
-    private long employeeId; //员工 学生编号
+    private @Id long employeeId; //员工、学生编号
     private String name; //姓名
     private String nickname; //昵称
-    private Integer password;
+    private String password;
     private Byte sex; //表示性别
     private String residenceId; //身份证号码等证件号
     private String email; //邮箱

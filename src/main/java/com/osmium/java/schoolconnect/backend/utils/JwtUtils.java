@@ -2,10 +2,12 @@ package com.osmium.java.schoolconnect.backend.utils;
 
 import com.osmium.java.schoolconnect.backend.entity.User;
 import com.osmium.java.schoolconnect.backend.service.UserService;
-import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 
+
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +19,8 @@ import java.util.Map;
  **/
 public class JwtUtils {
 
-    @Autowired
-    private static UserService userService;
+    @Resource
+    private UserService userService;
     /**
      * 过期时间20分钟
      */
@@ -50,6 +52,7 @@ public class JwtUtils {
                 .setSubject(userName)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, KEY);
+
         return builder.compact();
     }
 
@@ -69,7 +72,7 @@ public class JwtUtils {
         }
         //从token中获取用户id，查询该Id的用户是否存在，存在则token验证通过
         String id = claims.getId();
-        User user = userService.getByIdDeep(id);
+        User user = UserService.getByIdDeep(id);
         if (user != null) {
             return 1;
         } else {

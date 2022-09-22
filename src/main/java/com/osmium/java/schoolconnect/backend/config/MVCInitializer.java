@@ -1,6 +1,7 @@
 package com.osmium.java.schoolconnect.backend.config;
 
 import com.sun.org.apache.xerces.internal.parsers.SecurityConfiguration;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -20,9 +21,10 @@ public class MVCInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{ThymeleafConfiguration.class};
+        return new Class[0];
     }
 
+    @NotNull
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
