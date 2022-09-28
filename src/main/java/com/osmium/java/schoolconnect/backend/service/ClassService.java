@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2022/3/29
  * @apinote
  */
-public interface ClassService extends JpaRepository<Clazz,Long> {
+public interface ClassService{
 
 }
 

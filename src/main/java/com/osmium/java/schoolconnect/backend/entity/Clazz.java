@@ -12,8 +12,8 @@ import javax.persistence.Id;
 @TableName("class")
 public class Clazz {
     private @Id @GeneratedValue long id; //随机生成id
-    private @Id Integer classNo; //课程
-    private String className; //课程名称
+    private @Id Integer classNo; //班级编号
+    private String className; //班级名称
     private Integer departmentNo; //部门编号
     private String departmentName; //部门名称
     private Integer teacherNo; //班主任编号

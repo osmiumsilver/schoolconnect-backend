@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @MapperScan("com.osmium.java.schoolconnect.mapper")
 @Configuration
 @EnableTransactionManagement
-public class DAOConfiguration {
+public class PersistenceConfiguration {
     @Bean
     public DataSource dataSource(){
         HikariDataSource dataSource = new HikariDataSource();

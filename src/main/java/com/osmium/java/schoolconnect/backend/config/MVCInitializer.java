@@ -1,32 +1,32 @@
 package com.osmium.java.schoolconnect.backend.config;
 
-import com.sun.org.apache.xerces.internal.parsers.SecurityConfiguration;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 /**
- * @author
- * @date 2022/3/29
- * @apinote
+ * @Author
+ * @Date 2022/9/27
+ * @Description
  */
-@Configuration
-public class MVCInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+
+public class MVCInitializer implements WebApplicationInitializer {
 
     @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{DAOConfiguration.class, SecurityConfiguration.class};
-    }
+    public void onStartup(ServletContext container) throws ServletException {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.scan("com.osmium.java.schoolconnect.backend");
+        container.addListener(new ContextLoaderListener(context));
 
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[0];
-    }
-
-    @NotNull
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
+        ServletRegistration.Dynamic dispatcher =
+                container.addServlet("mvc", new DispatcherServlet(context));
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
     }
 }

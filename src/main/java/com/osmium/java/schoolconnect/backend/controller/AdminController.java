@@ -3,9 +3,7 @@ package com.osmium.java.schoolconnect.backend.controller;
 
 import com.osmium.java.schoolconnect.backend.entity.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.annotation.Resource;
@@ -21,41 +19,53 @@ import java.util.List;
 public class AdminController{
 
     /*-------------------------------- 用户 -----------------------------------*/
-    @Resource
-    @RequestMapping (value="addUser", method = RequestMethod.POST)
+    @PostMapping("user/add")
     //插入用户
     protected void addUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     }
 
     //删除用户
+    @DeleteMapping("user/delete")
     protected void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     }
 
     //修改用户
+    @PutMapping("user/update")
     protected void alterUserInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     }
 
     /*-------------------------------- 院系-----------------------------------*/
+
+    //查询院系
+    @GetMapping("department/find")
+    protected void findDepartment(HttpServletResponse response)
+            throws IOException {
+
+    }
+
+
+    // 添加院系
+    @PostMapping("department/add")
     protected void addDepartment(HttpServletResponse response)
             throws IOException {
     }
 
-    // 插入院系
-    protected void insert_department(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
 
-    }
+
+
 
     // 删除院系
-    protected void delete_department(HttpServletRequest request, HttpServletResponse response)
+   @DeleteMapping("department/delete")
+    protected void deleteDepartment(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
     }
 
     // 修改院系
-    protected void alter_department(HttpServletRequest request, HttpServletResponse response)
+    @PutMapping("department/update")
+    protected void alterDepartment(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
     }
