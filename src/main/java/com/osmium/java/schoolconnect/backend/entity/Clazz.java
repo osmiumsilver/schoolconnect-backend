@@ -4,14 +4,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 @Data
 @TableName("class")
 public class Clazz {
-    private @Id @GeneratedValue long id; //随机生成id
     private @Id Integer classNo; //班级编号
     private String className; //班级名称
     private Integer departmentNo; //部门编号
