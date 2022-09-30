@@ -4,10 +4,11 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_ADDRESS}/${MYSQL_DATABASE:springboot_demo}
-    username: ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
+    hikari:
+      dataSourceClassName: org.mariadb.jdbc.MariaDbDataSource
+      jdbcUrl: jdbc:mysql://mint.szv2.nodes.wdksl.com:3306/schoolconnect?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: user
+      password: 1234j
   mvc:
     view:
       suffix: .html

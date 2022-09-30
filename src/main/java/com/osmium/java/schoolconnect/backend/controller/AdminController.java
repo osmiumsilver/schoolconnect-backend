@@ -1,18 +1,11 @@
 package com.osmium.java.schoolconnect.backend.controller;
 
 
-import com.osmium.java.schoolconnect.backend.entity.*;
-
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")

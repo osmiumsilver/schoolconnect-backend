@@ -1,8 +1,8 @@
 package com.osmium.java.schoolconnect.backend.utils;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
-import org.thymeleaf.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,19 +1,16 @@
 package com.osmium.java.schoolconnect.backend.entity;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import nonapi.io.github.classgraph.json.Id;
+
+import java.util.Date;
 
 
-@Entity
 @Data
 @TableName("user")
 public class User {
-    private @Id @GeneratedValue long id; //系统唯一id
+    private @Id long id; //系统唯一id
     private @Id long employeeId; //员工、学生编号
     private String name; //姓名
     private String nickname; //昵称

@@ -1,11 +1,9 @@
 package com.osmium.java.schoolconnect.backend;
 
-import com.osmium.java.schoolconnect.backend.config.PersistenceConfiguration;
 import com.osmium.java.schoolconnect.backend.config.WebConfig;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 /**
@@ -14,14 +12,13 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
  * @Description
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 @ContextConfiguration(
-        classes = {WebConfig.class, PersistenceConfiguration.class},loader = AnnotationConfigContextLoader.class)
-
-public class SpringContextIntegrationTest
+        classes = {WebConfig.class},loader = AnnotationConfigContextLoader.class)
+class SpringContextIntegrationTest
 {
     @Test
-    public void contextLoads()
+    void contextLoads()
     {}
 
 }

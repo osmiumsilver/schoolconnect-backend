@@ -2,11 +2,8 @@ package com.osmium.java.schoolconnect.backend.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import nonapi.io.github.classgraph.json.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 @Data
 @TableName("department")
 public class Department {

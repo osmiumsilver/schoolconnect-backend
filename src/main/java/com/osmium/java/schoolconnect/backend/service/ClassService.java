@@ -1,15 +1,16 @@
 package com.osmium.java.schoolconnect.backend.service;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.osmium.java.schoolconnect.backend.entity.Clazz;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 
 /**
  * @author
  * @date 2022/3/29
  * @apinote
  */
-public interface ClassService{
+public interface ClassService extends BaseMapper<Clazz> {
 
 }
 

@@ -2,10 +2,8 @@ package com.osmium.java.schoolconnect.backend.utils;
 
 import com.osmium.java.schoolconnect.backend.entity.User;
 import com.osmium.java.schoolconnect.backend.service.UserService;
-
-
+import com.osmium.java.schoolconnect.backend.service.impl.UserServiceImpl;
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -62,7 +60,7 @@ public class JwtUtils {
      * @param token 请求头中携带的token
      * @return token验证结果  2-token过期；1-token认证通过；0-token认证失败
      */
-    public static int verify(String token) {
+    public int verify(String token) {
         Claims claims = null;
         try {
             //token过期后，会抛出ExpiredJwtException 异常，通过这个来判定token过期，
@@ -72,11 +70,11 @@ public class JwtUtils {
         }
         //从token中获取用户id，查询该Id的用户是否存在，存在则token验证通过
         String id = claims.getId();
-        User user = UserService.getByIdDeep(id);
-        if (user != null) {
+        if (UserService.getByIdDeep(id) != null) {
             return 1;
         } else {
             return 0;
         }
+        return 0;
     }
 }

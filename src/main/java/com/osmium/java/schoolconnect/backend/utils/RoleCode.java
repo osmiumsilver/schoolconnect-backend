@@ -9,4 +9,9 @@ public enum RoleCode {
     TEACHER("1", "教师"),
     STUDENT("2", "学生"),
     ADMINISTRAIVE("3", "MASTER"),
+    ;
+
+    RoleCode(String code, String role) {
+
+    }
 }
