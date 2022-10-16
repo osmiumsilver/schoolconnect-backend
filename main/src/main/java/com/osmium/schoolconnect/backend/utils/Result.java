@@ -3,15 +3,14 @@ package com.osmium.schoolconnect.backend.utils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Objects;
 
+@Data
 @ToString
 public class Result<T> implements Serializable {
-    public static final String CODE_SUCCESS = "0000";
-    public static final String SUCCESS_MESSAGE = "success";
 
     private static final long serialVersionUID = 4418416282894231647L;
     @ApiModelProperty(value = "提示代码")
@@ -29,74 +28,32 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
-    private static final Result SUCCESS = new ConstantResult(CODE_SUCCESS, SUCCESS_MESSAGE);
-
-    @Override
-    public boolean equals(Object another) {
-        if (another == null || !(another instanceof Result)) return false;
-        return Objects.equals(this.code, ((Result<?>) another).code);
-    }
-
-    @JsonIgnore
-    public boolean isSuccess() {
-        return StringUtils.equals(this.code, CODE_SUCCESS);
-    }
-
-    public static <T> Result success() {
-        return SUCCESS;
-    }
-
-    public static <T> Result success(T data) {
-        return new Result(CODE_SUCCESS, SUCCESS_MESSAGE, data);
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public void setData(T data) {
+   public Result(T data)
+   {
+       this.code = ResultCode.SUCCESS.getCode();
+       this.msg = ResultCode.SUCCESS.getMessage();
+       this.data = data;
+   }
+    protected Result(StatusCode status,T data) {
+        this.code = status.getCode();
+        this.msg =status.getMessage();
         this.data = data;
     }
 
-    /**
-     * 作为常量，不允许改变值
-     */
-    private static class ConstantResult extends Result {
-        private static final long serialVersionUID = 1L;
-
-        public ConstantResult(String errcode, String msg) {
-            super(errcode, msg, null);
-        }
-
-        @Override
-        public void setCode(String code) {
-            throw new IllegalArgumentException();
-        }
-
-        @Override
-        public void setMsg(String msg) {
-            throw new IllegalArgumentException();
-        }
-
-        @Override
-        public void setData(Object data) {
-            throw new IllegalArgumentException();
-        }
+    protected Result(StatusCode status)
+    {
+        this.code = status.getCode();
+        this.msg = status.getMessage();
+        this.data = null;
     }
+    @JsonIgnore
+    public boolean isSuccess() {
+        return StringUtils.equals(this.code, ResultCode.SUCCESS.getCode());
+    }
+
+    public String success() {
+        return ResultCode.SUCCESS.getCode();
+    }
+
+
 }

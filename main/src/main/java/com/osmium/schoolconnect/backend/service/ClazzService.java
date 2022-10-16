@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2022/3/29
  * @apinote
  */
-@Service
+
 public interface ClazzService extends IService<Clazz> {
     /**
      * 查询班级

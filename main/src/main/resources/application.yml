@@ -2,6 +2,9 @@ server:
   port: 80
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
+    lazy-initialization: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mint.szv2.nodes.wdksl.com:3306/schoolconnect?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
@@ -13,7 +16,6 @@ spring:
       maximum-pool-size: 20
       max-lifetime: 120000
       connection-timeout: 30000
-      dataSourceClassName: org.mariadb.jdbc.MariaDbDataSource
 
 
 mybatis:

@@ -1,10 +1,13 @@
 package com.osmium.schoolconnect.backend.utils;
 
 
-public enum FailCode implements IFailResult {
+import lombok.Getter;
+
+@Getter
+public enum ResultCode implements StatusCode {
 
     UNKNOWN("9999", "未知错误"),
-
+    SUCCESS("1000","请求成功"),
     SYS_UNKNOWN("1001", "未知错误"),
     SYS_REQ_TOO_FAST("1002", "请求太快"),
     SYS_FAIL_TOO_MANY("1003", "失败次数太多"),
@@ -96,39 +99,16 @@ public enum FailCode implements IFailResult {
 
     private String code;
     private String msg;
-    private Result rs;
 
-    FailCode(String code, String msg) {
+    ResultCode(String code, String msg) {
         this.code = code;
         this.msg = msg;
-        rs = new Result(code, msg, null);
     }
 
-    public String getMsg() {
-        return msg;
-    }
 
-    public Result result(String msg) {
-        this.msg = msg;
-        return this.result(this.code, this.msg, null);
-    }
-
-    public Result result(Exception e) {
-        this.msg = e.getClass() + ":" + e.getMessage();
-        return this.result(this.code, this.msg, null);
-    }
 
     @Override
-    public Result result() {
-        return this.rs;
-    }
-
-    @Override
-    public <T> Result<T> resultData(T data) {
-        return this.result(this.code, this.msg, data);
-    }
-
-    public static <T> Result<T> result(Result rs) {
-        return rs;
+    public String getMessage() {
+        return null;
     }
 }
