@@ -16,7 +16,7 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clno 班级主键
      * @return 班级
      */
-    public Clazz selectClassByClno(String clno);
+    Clazz selectClassByClno(String clno);
 
 
 
@@ -26,7 +26,7 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clazz 班级
      * @return 班级集合
      */
-    public List<Clazz> selectClassList(Clazz clazz);
+    List<Clazz> selectClassList(Clazz clazz);
 
 
 
@@ -36,7 +36,7 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clazz 班级
      * @return 结果
      */
-    public int insertClass(Clazz clazz);
+    int insertClass(Clazz clazz);
 
 
 
@@ -46,7 +46,7 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clazz 班级
      * @return 结果
      */
-    public int updateClass(Clazz clazz);
+    int updateClass(Clazz clazz);
 
     /**
      * 删除班级
@@ -54,7 +54,7 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clno 班级主键
      * @return 结果
      */
-    public int deleteClassByClno(String clno);
+    int deleteClassByClno(String clno);
 
     /**
      * 批量删除班级
@@ -62,5 +62,5 @@ public interface ClazzMapper extends BaseMapper<Clazz>  {
      * @param clnos 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteClassByClnos(String[] clnos);
+    int deleteClassByClnos(String[] clnos);
 }

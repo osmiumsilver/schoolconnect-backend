@@ -97,8 +97,8 @@ public enum ResultCode implements StatusCode {
 
     DISCOUNT_EXHAUSTED("2201", "优惠已用尽~");
 
-    private String code;
-    private String msg;
+    private final String code;
+    private final String msg;
 
     ResultCode(String code, String msg) {
         this.code = code;

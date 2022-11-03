@@ -20,7 +20,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clno 班级主键
      * @return 班级
      */
-    public Clazz selectClassByClno(String clno);
+    Clazz selectClassByClno(String clno);
 
     /**
      * 查询班级列表
@@ -28,7 +28,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clazz 班级
      * @return 班级集合
      */
-    public List<Clazz> selectClassList(Clazz clazz);
+    List<Clazz> selectClassList(Clazz clazz);
 
     /**
      * 新增班级
@@ -36,7 +36,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clazz 班级
      * @return 结果
      */
-    public int insertClass(Clazz clazz);
+    int insertClass(Clazz clazz);
 
     /**
      * 修改班级
@@ -44,7 +44,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clazz 班级
      * @return 结果
      */
-    public int updateClass(Clazz clazz);
+    int updateClass(Clazz clazz);
 
     /**
      * 批量删除班级
@@ -52,7 +52,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clnos 需要删除的班级主键集合
      * @return 结果
      */
-    public int deleteClassByClnos(String clnos);
+    int deleteClassByClnos(String clnos);
 
     /**
      * 删除班级信息
@@ -60,7 +60,7 @@ public interface ClazzService extends IService<Clazz> {
      * @param clno 班级主键
      * @return 结果
      */
-    public int deleteClassByClno(String clno);
+    int deleteClassByClno(String clno);
 }
 
 

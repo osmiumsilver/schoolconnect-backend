@@ -19,7 +19,7 @@
 	<name>schoolconnect-backend</name>
 	<description>SchoolConnect Backend</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 

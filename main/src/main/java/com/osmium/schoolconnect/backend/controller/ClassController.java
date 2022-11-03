@@ -1,6 +1,5 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.service.ClazzService;
 import com.osmium.schoolconnect.backend.utils.Result;
