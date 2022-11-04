@@ -14,8 +14,8 @@ import java.util.Collection;
  * @Date 2022/11/2
  * @Description
  */
-@Builder
-public record Login(String id, String username, String password)  implements UserDetails {
+
+public record Login(String id, String username, String password) implements UserDetails {
 
     @JsonIgnore
     @Override
@@ -28,7 +28,8 @@ public record Login(String id, String username, String password)  implements Use
     public String getPassword() {
         return password;
     }
-@JsonIgnore
+
+    @JsonIgnore
     @Override
     public String getUsername() {
         return username;
