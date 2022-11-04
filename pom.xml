@@ -6,12 +6,13 @@
     <modules>
         <module>auth</module>
 		<module>main</module>
+		<module>bootstrap</module>
 	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.5</version>
-		<!--  <relativePath/> lookup parent from repository -->
+		<relativePath/> <!--		lookup parent from repository -->
 	</parent>
 	<groupId>com.osmium.schoolconnect</groupId>
 	<artifactId>backend</artifactId>
@@ -23,21 +24,5 @@
 	</properties>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
