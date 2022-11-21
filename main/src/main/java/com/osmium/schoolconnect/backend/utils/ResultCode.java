@@ -94,7 +94,7 @@ public enum ResultCode implements StatusCode {
     TICKET_SHOW_EXPIRED("2101", "场次信息过期，请重新获取场次信息~"),
     TICKET_SHOW_SEAT_EXPIRED("2102", "请更新实时座位图~"),
     TICKET_HALL_SEAT_EXPIRED("2103", "请更新影厅物理座位图~"),
-
+    NULL_POINT("5000","NullPointerException"),
     DISCOUNT_EXHAUSTED("2201", "优惠已用尽~");
 
     private final String code;
@@ -105,10 +105,4 @@ public enum ResultCode implements StatusCode {
         this.msg = msg;
     }
 
-
-
-    @Override
-    public String getMessage() {
-        return null;
-    }
 }

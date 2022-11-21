@@ -1,12 +1,13 @@
 package com.osmium.schoolconnect.backend.utils;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Map;
+
 
 @Data
 @ToString
@@ -20,40 +21,31 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "返回数据")
     private T data;
 
-    protected Result() {/*for util method*/}
 
-    protected Result(String code, String msg, T data) {
+    private Result() {//外接只可以调用统一返回类的方法，不可以直接创建，影刺构造器私有
+    }
+
+    private Result(String code, String msg, T data){
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-   public Result(T data)
+   public Result(T data) //通用返回成功
    {
        this.code = ResultCode.SUCCESS.getCode();
-       this.msg = ResultCode.SUCCESS.getMessage();
+       this.msg = ResultCode.SUCCESS.getMsg();
        this.data = data;
    }
-    protected Result(StatusCode status,T data) {
-        this.code = status.getCode();
-        this.msg =status.getMessage();
-        this.data = data;
+    // 自定义返回数据
+    public Result data(T map) {
+        this.setData(map);
+        return this;
     }
 
-    protected Result(StatusCode status)
-    {
-        this.code = status.getCode();
-        this.msg = status.getMessage();
-        this.data = null;
-    }
-    @JsonIgnore
-    public boolean isSuccess() {
-        return StringUtils.equals(this.code, ResultCode.SUCCESS.getCode());
-    }
 
-    public String success() {
-        return ResultCode.SUCCESS.getCode();
-    }
+
+
 
 
 }

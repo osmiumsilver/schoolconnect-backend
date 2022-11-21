@@ -8,10 +8,12 @@ package com.osmium.schoolconnect.backend.utils;
 public enum RoleCode {
     TEACHER("1", "教师"),
     STUDENT("2", "学生"),
-    ADMINISTRAIVE("3", "MASTER"),
-    ;
+    ADMINISTRATIVE("3", "超级管理员");
 
+    private final String code;
+    private final String role;
     RoleCode(String code, String role) {
-
+        this.code = code;
+        this.role = role;
     }
 }
