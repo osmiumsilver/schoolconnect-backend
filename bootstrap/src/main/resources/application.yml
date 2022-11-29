@@ -1,7 +1,10 @@
 server:
   port: 80
 
+
 spring:
+  profiles:
+    active: auth
   main:
     allow-bean-definition-overriding: true
     lazy-initialization: true
@@ -16,7 +19,6 @@ spring:
       maximum-pool-size: 20
       max-lifetime: 120000
       connection-timeout: 30000
-
-
-mybatis:
-  mapper-locations: classpath*:mapper/*Mapper.xml
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

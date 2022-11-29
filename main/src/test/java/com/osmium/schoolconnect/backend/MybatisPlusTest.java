@@ -4,16 +4,12 @@ package com.osmium.schoolconnect.backend;
 import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.entity.Course;
 import com.osmium.schoolconnect.backend.entity.Employee;
-import com.osmium.schoolconnect.backend.entity.User;
 import com.osmium.schoolconnect.backend.mapper.ClazzMapper;
-
 import com.osmium.schoolconnect.backend.mapper.CourseMapper;
 import com.osmium.schoolconnect.backend.mapper.EmployeeMapper;
-import com.osmium.schoolconnect.backend.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
-@Mapper
+
 public interface GradeMapper extends BaseMapper<Grade> {
     /**
      * @mbg.generated generated automatically, do not modify!
