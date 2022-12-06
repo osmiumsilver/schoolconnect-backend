@@ -6,14 +6,13 @@ package com.osmium.schoolconnect.backend.utils;
  * @Description 角色代码
  */
 public enum RoleCode {
-    TEACHER("1", "教师"),
-    STUDENT("2", "学生"),
-    ADMINISTRATIVE("3", "超级管理员");
+    SUPER("0","超级管理员"),
+    ADMINISTRATIVE("1", "教职工"),
+    TEACHER("2", "教师"),
+    STUDENT("3", "学生"),
+    OTHER("4","其他"),
+    GUEST("5","来宾");
 
-    private final String code;
-    private final String role;
     RoleCode(String code, String role) {
-        this.code = code;
-        this.role = role;
     }
 }

@@ -10,7 +10,6 @@ import java.util.Date;
 @Data
 @TableName("sysuser")
 public class User {
-    private @Id long id; //系统唯一id
     private @Id long employeeId; //员工、学生编号
     private String name; //姓名
     private String nickname; //昵称

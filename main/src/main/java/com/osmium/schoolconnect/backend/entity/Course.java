@@ -7,7 +7,7 @@ import nonapi.io.github.classgraph.json.Id;
 @Data
 @TableName("course")
 public class Course {
-    private @Id Integer courseNo; //课程ID
+    private @Id String courseNo; //课程ID
     private String courseName; //课程名称
     private Byte courseDuration; //课程时长
     private Byte courseType; //课程类型

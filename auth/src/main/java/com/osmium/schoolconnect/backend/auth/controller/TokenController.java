@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  * @Description
  */
 @RestController
-@RequestMapping("/api")
 public class TokenController {
 
     @Autowired

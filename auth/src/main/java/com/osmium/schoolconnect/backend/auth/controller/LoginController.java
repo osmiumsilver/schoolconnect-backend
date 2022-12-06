@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  */
 @RestController
-@RequestMapping("/api")
 @Slf4j
 @Validated
 public class LoginController {

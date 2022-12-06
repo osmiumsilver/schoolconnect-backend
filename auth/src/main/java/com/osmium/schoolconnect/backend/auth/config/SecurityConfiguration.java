@@ -51,12 +51,12 @@ public class SecurityConfiguration{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(authz -> authz
                 //.requestMatchers("**").permitAll()
-                .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/api/token").permitAll()
+                .requestMatchers("/login").permitAll()
+                        .requestMatchers("/token").permitAll()
 
                 //.antMatchers("/api/class/**").hasRole("USER")
                 .anyRequest().authenticated())
-                .csrf(csrf->csrf.ignoringRequestMatchers("/api/token"))
+                .csrf(csrf->csrf.ignoringRequestMatchers("/token"))
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 //.addFilter(new JwtAuthenticationFilter(authenticationManager()))
