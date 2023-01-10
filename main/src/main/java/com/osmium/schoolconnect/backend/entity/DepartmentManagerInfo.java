@@ -10,9 +10,10 @@ import lombok.Data;
  * @Description
  */
 @Data
-@TableName("t_course")
-public class Course {
-    @TableId("employee_id")
-    private String employeeId;//参加的人员编号
-    private String courseNo; //课程编号
+@TableName("t_department_manager_info")
+
+public class DepartmentManagerInfo {
+@TableId("department_no")
+    private String departmentNo;
+    private String managerNo; //部门负责人编号
 }

@@ -23,6 +23,7 @@ public class TokenController {
 
     @Autowired
     JwtEncoder encoder;
+
     @PostMapping("/token")
     public String token(Authentication authentication){
         Instant now = Instant.now();

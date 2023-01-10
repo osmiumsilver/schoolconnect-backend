@@ -12,10 +12,5 @@ public class Clazz  {
     private String className; //班级名称
     private String departmentNo; //部门编号
     //private String departmentName; //部门名称
-    private String teacherNo; //班主任编号
-    //private String teacherName; //班主任姓名
-    private String instructorNo; //辅导员编号
-    //private String instructorName; //辅导员姓名
-    private byte classStatus; //班级状态 //
-    private String schoolId;
+    private byte classStatus; //班级状态 0默认 1毕业
 }

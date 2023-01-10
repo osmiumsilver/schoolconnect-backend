@@ -1,5 +1,6 @@
 package com.osmium.schoolconnect.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import nonapi.io.github.classgraph.json.Id;
@@ -12,9 +13,12 @@ import java.util.Date;
  * @Description
  */
 @Data
-@TableName("employee")
+@TableName("t_employee")
 public class Employee {
-    private @Id long employeeId; //员工、学生编号
+    @TableId("employee_id")
+    private @Id String employeeId; //员工、学生编号
+    //private String userId;// 系统生成 唯一识别ID
+    private String pictureUrl; // 个人照片URL
     private String name; //姓名
     private String classNo; // 所在班级编号
     private Byte sex; //表示性别 0:男 1:女 2:其他 3:秘密

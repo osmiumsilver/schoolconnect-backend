@@ -5,6 +5,14 @@ logging:
     org.springframework.security: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
 
+spring:
+  security:
+    oauth2:
+      
+      resourceserver:
+        jwt:
+          issuer-uri: https://auth.prod.schoolconnect.wdksl.com/issuer
+
 
 jwt:
   private.key: classpath:app.key

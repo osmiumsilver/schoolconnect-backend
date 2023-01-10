@@ -1,56 +1,28 @@
 package com.osmium.schoolconnect.backend.auth.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import nonapi.io.github.classgraph.json.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 
 /**
- * @Author
+ * @Author abel
  * @Date 2022/11/2
- * @Description
+ * @Description 登录记录类
  */
 
-public record Login(String id, String username, String password) implements UserDetails {
+@Data
+@TableName("t_login")
+public class Login{
+    private String username;
+    private String password;
+    @TableId("user_id")
+    private String userId;
 
-    @JsonIgnore
-    @Override
-    public Collection<GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
-    }
 
-    @JsonIgnore
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @JsonIgnore
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

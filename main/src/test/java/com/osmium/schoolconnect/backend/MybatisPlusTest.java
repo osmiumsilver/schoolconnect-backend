@@ -2,7 +2,7 @@ package com.osmium.schoolconnect.backend;
 
 
 import com.osmium.schoolconnect.backend.entity.Clazz;
-import com.osmium.schoolconnect.backend.entity.Course;
+import com.osmium.schoolconnect.backend.entity.CourseInfo;
 import com.osmium.schoolconnect.backend.entity.Employee;
 import com.osmium.schoolconnect.backend.mapper.ClazzMapper;
 import com.osmium.schoolconnect.backend.mapper.CourseMapper;
@@ -38,7 +38,7 @@ public class MybatisPlusTest {
         clazzList.forEach(System.out::println);
 
 
-        List<Course> courseList = courseMapper.selectList(null);
+        List<CourseInfo> courseList = courseMapper.selectList(null);
         courseList.forEach(System.out::println);
 
         List<Employee> employeeList = employeeMapper.selectList(null);
