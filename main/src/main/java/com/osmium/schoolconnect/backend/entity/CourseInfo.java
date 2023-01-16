@@ -5,9 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import nonapi.io.github.classgraph.json.Id;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Data
 @TableName("t_course_info")
-public class CourseInfo {
+public class CourseInfo implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @TableId("course_no")
     private @Id String courseNo; //课程ID
     private String courseName; //课程名称
@@ -17,7 +22,7 @@ public class CourseInfo {
     private String coursePlace; //课程地点
     private Byte courseStatus; //课程状态 0正常，1:结束
     private String courseTeacher; //课程老师
-    private Byte courseCredits; //课程学分
+    private Double courseCredits; //课程学分
     private String courseTextbook; // 课程书本
     private String courseOutline;// 课程大纲
 }

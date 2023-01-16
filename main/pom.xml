@@ -12,7 +12,15 @@
     <artifactId>main</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-<!--    <repositories>-->
+<dependencies>
+    <dependency>
+        <groupId>com.osmium.schoolconnect.backend</groupId>
+        <artifactId>auth</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+    <!--    <repositories>-->
 <!--        <repository>-->
 <!--            <id>ossrh</id>-->
 <!--            <name>OSS Snapshot repository</name>-->

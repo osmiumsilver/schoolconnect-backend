@@ -3,10 +3,13 @@ server:
   servlet:
     context-path: /api
 
+springdoc:
+  paths-to-match: /api
+
+
 spring:
   cache:
     type: redis
-
   profiles:
     active: auth
   main:
