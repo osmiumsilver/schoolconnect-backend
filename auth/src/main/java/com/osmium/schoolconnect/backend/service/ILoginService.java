@@ -10,5 +10,5 @@ import com.osmium.schoolconnect.backend.entity.Login;
  */
 
 public interface ILoginService extends IService<Login> {
-    //Login findByUsername(String username);
+    Login login(String username, String password);
 }

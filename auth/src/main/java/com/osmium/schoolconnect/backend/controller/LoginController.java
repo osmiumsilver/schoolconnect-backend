@@ -1,28 +1,30 @@
 package com.osmium.schoolconnect.backend.controller;
 
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.validation.annotation.Validated;
+import com.osmium.schoolconnect.backend.entity.Login;
+import com.osmium.schoolconnect.backend.service.ILoginService;
+import com.osmium.schoolconnect.backend.service.impl.LoginServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author
- * @Date 2022/11/1
+ * @Date 2023/2/3
  * @Description
  */
 @RestController
-//@Slf4j
-//@Validated
 @RequestMapping("/auth")
 public class LoginController {
 
-@GetMapping("/login")
-    public String authenticateLogin(Authentication authentication)
-{
-    return "Hello ! " + authentication.getName();
-}
-}
 
+    @Resource
+    private ILoginService loginService;
+
+    @PostMapping("/login")
+    public Login login(String username, String password, String timestamp)
+    {
+        return loginService.login(username,password);
+    }
+}

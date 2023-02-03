@@ -1,15 +1,17 @@
 server:
-  port: 8080
-  servlet:
-    context-path: /api
+#  port: 8080
+  port: 80
+  undertow:
+    buffer-size: 1024
+    direct-buffers: true
 
 springdoc:
-  paths-to-match: /api
+  paths-to-match: /apidoc
 
 
 spring:
-  cache:
-    type: redis
+#  cache:
+#    type: redis
   profiles:
     active: auth
   main:
@@ -26,10 +28,11 @@ spring:
       maximum-pool-size: 20
       max-lifetime: 120000
       connection-timeout: 30000
-  data:
-    redis:
-      host: mint.szv2.nodes.wdksl.com
-      port: 6379
+#  data:
+#    redis:
+#      host: mint.szv2.nodes.wdksl.com
+#      port: 6379
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+

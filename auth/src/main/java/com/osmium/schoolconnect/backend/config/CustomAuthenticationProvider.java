@@ -19,19 +19,9 @@ import java.util.ArrayList;
     @Override
     public Authentication authenticate(Authentication authentication) {
 
-        String name = authentication.getName();
+        String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-
-	        /*
-	        if (shouldAuthenticateAgainstThirdPartySystem()) {
-	        use the credentials
-	        and authenticate against the third-party system
-	        } else {
-	            return null;
-	        }
-	        */
-
-        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
     }
 
 
