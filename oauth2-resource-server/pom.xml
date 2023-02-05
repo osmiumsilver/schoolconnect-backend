@@ -11,16 +11,7 @@
     <artifactId>oauth2-resource-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>oauth2-resource-server</name>
-    <description>OAuth2 resource server</description>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-
-
-    </dependencies>
-
+    <description>OAuth2 Resource Server for SchoolConnect</description>
     <build>
         <plugins>
             <plugin>

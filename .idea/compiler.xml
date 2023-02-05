@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="main" />
         <module name="oauth2-resource-server" />
+        <module name="common" />
         <module name="auth" />
       </profile>
     </annotationProcessing>
@@ -21,6 +22,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auth" options="-parameters" />
       <module name="bootstrap" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="main" options="-parameters" />
       <module name="oauth2-resource-server" options="-parameters" />
       <module name="oauth2resourceserver" options="-parameters" />
