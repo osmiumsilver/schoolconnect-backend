@@ -52,12 +52,12 @@ public class OpenAPIConfig {
     @Bean
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("SpringShop API")
-                        .description("Spring shop sample application")
+                .info(new Info().title("SchoolConnect Backend API")
+                        .description("校园服务台后端 API 说明")
                         .version("v0.0.1")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("SpringShop Wiki Documentation")
-                        .url("https://springshop.wiki.github.org/docs"));
+                        .description("校园服务台 官方网站")
+                        .url("https://schoolconnect.abelyao.cn/"));
     }
 }

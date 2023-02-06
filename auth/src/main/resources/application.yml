@@ -1,8 +1,8 @@
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
 #    org.springframework.boot.autoconfigure: DEBUG
 
 
@@ -18,11 +18,10 @@ wechat-mini-program:
   secret: 453f0f9d1cacb46f5bde7d23ad88b7fa
 
 
-jwt:
-  private.key: classpath:app.key
-  public.key: classpath:app.pub
 
 spring:
   profiles:
     #    active:
-    include: dev
+    include: common
+server:
+  port: 80

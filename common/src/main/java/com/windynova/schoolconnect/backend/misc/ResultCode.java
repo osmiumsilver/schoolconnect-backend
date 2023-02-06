@@ -49,18 +49,22 @@ public enum ResultCode implements StatusCode {
     PARAM_PARSE_ERR("1108", "参数解析错误"),
     PARAM_HEADER_REQUIRED("1109", "请求Header不能为空"),
 
-    AUTH_NOLOGIN("1201", "未登录"),
-    AUTH_INVALID("1202", "请求不合法"),
+    AUTH_NOLOGIN("1201", "无授权凭证"),
+    AUTH_INVALID("1202", "授权请求不合法"),
     //    AUTH_401("1203", "未授权"),
 //    AUTH_403("1204", "权限不足"),
-    AUTH_LOGIN_FAIL("1205", "登录失败"),
+    AUTH_LOGIN_FAIL("1205", "授权失败"),
     AUTH_LOGIN_USER_PWD_ERR("1206", "用户名或密码错误"),
+    AUTH_PWD_ERR("1215", "用户名或密码错误"),
     AUTH_USER_DISABLED("1207", "用户被禁用"),
     AUTH_USER_EXPIRE("1208", "用户过期"),
     AUTH_USER_RESET_PWD("1209", "用户密码需要重置"),
     AUTH_LOGOUT_ERR("1210", "登出失败"),
     AUTH_TOKEN_INVALID("1211", "登录过期或无效"),
     AUTH_USER_LOCKED("1212", "用户被锁定"),
+
+    AUTH_UNKNOWN_ERROR("1213","授权后台异常"),
+    AUTH_NO_SUCH_USER("1214","查无此人"),
 
     DATA_ERR("1301", "数据错误"),
     DATA_CHECK("1302", "数据校验失败"),
@@ -87,6 +91,7 @@ public enum ResultCode implements StatusCode {
     DB_SQL_ERR("1501", "数据库SQL执行错误"),
     DB_OPT_LOCK("1502", "乐观锁失败"),
     DB_INTEGRITY_CONSTRAINT("1503", "违反数据库约束(唯一,非空等)"),
+    DB_SQL_SYNTAX_ERR("1504", "SQL语句有误"),
 
     CODE_EXCEPTION("1601", "服务异常"),
     CODE_NPE("1603", "服务异常-NPE"),

@@ -8,13 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="main" />
-        <module name="oauth2-resource-server" />
         <module name="common" />
         <module name="auth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bootstrap" target="17" />
+      <module name="oauth2-resource-server" target="17" />
       <module name="oauth2resourceserver" target="17" />
     </bytecodeTargetLevel>
   </component>

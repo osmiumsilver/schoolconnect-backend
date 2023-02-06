@@ -2,6 +2,7 @@ package com.osmium.schoolconnect.backend.auth.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serial;
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @Description
  */
 @Data
+@AllArgsConstructor
 @TableName("t_openid")
 public class OpenID implements Serializable {
     @Serial
