@@ -1,0 +1,8 @@
+spring:
+#    profiles:
+#  #    #    active: 不要用active 这样只会用这里的profile
+#      include: common
+  config: # 超级新的写法
+    import: classpath:application-common.yml
+server:
+  port: 8081

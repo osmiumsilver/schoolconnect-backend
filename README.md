@@ -2,7 +2,7 @@
 
 用现代的技术栈 编写一个学校信息管理系统
 
-Java 17 + Spring Boot 3.0.2 + Spring Security 6.0.1 + Jwt EasyAuth™️
+Java 17 + Spring Boot 3.0.2 + Spring Security 6.0.1 + Spring Security OAuth2 Resource Server +Jwt EasyAuth™️ (by Nimbus JOSE + JWT)
 
 做这个项目的主要目的是尝试使用最新的技术，最新的语法，最少的代码
 

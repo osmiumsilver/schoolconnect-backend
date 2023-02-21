@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SchoolConnect Develop Database" uuid="55ef10bc-8363-4f02-ba08-51e11c557e57">
+    <data-source source="LOCAL" name="SchoolConnect Development Database (Direct Connection)" uuid="55ef10bc-8363-4f02-ba08-51e11c557e57">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://10.147.59.95:13306</jdbc-url>
+      <jdbc-url>jdbc:mariadb://192.168.59.105:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="SchoolConnect Development Redis (Direct Connection)" uuid="35cd5b15-fc82-449b-b5b1-d79105a246a0">
+      <driver-ref>redis</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>jdbc.RedisDriver</jdbc-driver>
+      <jdbc-url>jdbc:redis://192.168.59.111:6379/</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

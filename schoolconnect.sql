@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 172.17.0.1
--- Generation Time: Jan 10, 2023 at 12:42 PM
+-- Generation Time: Feb 14, 2023 at 11:46 AM
 -- Server version: 10.9.3-MariaDB-1:10.9.3+maria~ubu2204
 -- PHP Version: 8.0.23
 
@@ -61,9 +61,31 @@ CREATE TABLE `t_class_manager_info` (
 --
 
 INSERT INTO `t_class_manager_info` (`class_no`, `employee_id`, `role`, `status`) VALUES
+('0111111', '000000000004', 0, 0),
 ('0111111', '000000000004', 1, 0),
 ('1678041', '000000000002', 0, 0),
-('1678041', '000000000004', 1, 1);
+('1678041', '000000000004', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_class_schedule`
+--
+
+CREATE TABLE `t_class_schedule` (
+  `user_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '学生id',
+  `course_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '课程id',
+  `weeks` tinyint(1) DEFAULT NULL COMMENT '星期',
+  `lessons` tinyint(1) DEFAULT NULL COMMENT '节次'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='课程表表';
+
+--
+-- Dumping data for table `t_class_schedule`
+--
+
+INSERT INTO `t_class_schedule` (`user_id`, `course_id`, `weeks`, `lessons`) VALUES
+('2113504069', '9002602020', 1, 7),
+('2113504069', '9002602021', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -138,43 +160,6 @@ CREATE TABLE `t_department_manager_info` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_employee`
---
-
-CREATE TABLE `t_employee` (
-  `employee_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '人员工号',
-  `picture_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图片url',
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '姓名',
-  `class_no` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所在班级编号',
-  `sex` tinyint(4) DEFAULT NULL COMMENT '性别 0:M 1:F 2:O',
-  `residence_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '身份证号',
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
-  `phone` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机',
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '地址',
-  `second_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '第二联系方式',
-  `role` tinyint(4) NOT NULL DEFAULT 4 COMMENT '用户身份 0:超级 1:教职工/管理层 2:教师 3:学生 4:其他',
-  `status` tinyint(4) NOT NULL DEFAULT 3 COMMENT '用户状态 0:在校 1:离校 2 开除 3:其他',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `school_id` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='人员信息表';
-
---
--- Dumping data for table `t_employee`
---
-
-INSERT INTO `t_employee` (`employee_id`, `picture_url`, `name`, `class_no`, `sex`, `residence_id`, `email`, `phone`, `address`, `second_contact`, `role`, `status`, `create_time`, `school_id`) VALUES
-('000000000001', NULL, '校长姚', NULL, 0, '32050319680212032X', 'dean@school.com', '13798765932', '江苏省苏州市姑苏区平江路1号', 'weicvivwvb', 1, 0, '2022-12-05 15:34:34', 1),
-('000000000002', NULL, '老师李', NULL, 1, '32050119730814618X', 't@school.com', '18894691145', '江苏省苏州市姑苏区平江路1号', 'nfiaufvgff', 2, 0, '2022-12-05 15:36:09', 1),
-('000000000003', NULL, '超管', NULL, 0, '32528u502735023582', 'super@school.com', '312983461294', '江苏省苏州市姑苏区平江路1号', NULL, 0, 0, '2022-12-05 15:36:46', 1),
-('000000000004', NULL, '辅导员林', NULL, 1, '320501194189471029', 'lin@school.com', '124it1i24yo', '江苏省苏州市姑苏区平江路1号', 'fhfuwebfwefwechat', 1, 0, '2022-12-06 20:21:37', 1),
-('000000000005', NULL, 'A老师', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 3, NULL, 1),
-('000000000006', NULL, 'B老师', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 3, NULL, 1),
-('2113504069', NULL, '姚博乾', NULL, 0, '320503200000000000', 'osmium@hotmail.com', '13810000000', '江苏省苏州市姑苏区平江路1号', '12312312313123131', 3, 0, '2022-12-05 15:32:46', 1),
-('2200004001', NULL, '张三', NULL, 0, '320503200000012028', 'hello@example.com', '13813838438', '江苏省苏州市姑苏区平江路1号', '3444444332', 1, 1, '2022-09-28 13:07:36', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `t_grade`
 --
 
@@ -182,15 +167,17 @@ CREATE TABLE `t_grade` (
   `id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'generated id',
   `user_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '学生编号',
   `course_no` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '课程编号',
-  `grade` float DEFAULT NULL COMMENT '成绩'
+  `grade` float DEFAULT NULL COMMENT '成绩',
+  `semester` tinyint(6) DEFAULT NULL COMMENT '学年',
+  `import_date` date DEFAULT NULL COMMENT '导入日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='成绩表';
 
 --
 -- Dumping data for table `t_grade`
 --
 
-INSERT INTO `t_grade` (`id`, `user_id`, `course_no`, `grade`) VALUES
-('da9ff370-7473-11ed-8b4b-000c29d0688e', '2113504069', '9002602020', 100);
+INSERT INTO `t_grade` (`id`, `user_id`, `course_no`, `grade`, `semester`, `import_date`) VALUES
+('da9ff370-7473-11ed-8b4b-000c29d0688e', '2113504069', '9002602020', 100, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,10 +186,23 @@ INSERT INTO `t_grade` (`id`, `user_id`, `course_no`, `grade`) VALUES
 --
 
 CREATE TABLE `t_login` (
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '连接人员表的唯一id'
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='登录信息表';
+
+--
+-- Dumping data for table `t_login`
+--
+
+INSERT INTO `t_login` (`username`, `password`) VALUES
+('000000000001', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('000000000002', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('000000000003', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('000000000004', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('000000000005', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('000000000006', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy'),
+('2113504069', '$2a$10$4uJOmfARoJgFKZTL2rAlT.g70Bh2yGNY/33GXKh7jW1gyH.1BPoM6'),
+('2200004001', '$2a$10$Nu62XKUcdbK.5s.fyQymZeg4Ex4lf1jKEi.aeSgiEeNUH8af.UYvy');
 
 -- --------------------------------------------------------
 
@@ -212,8 +212,15 @@ CREATE TABLE `t_login` (
 
 CREATE TABLE `t_openid` (
   `openid` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '微信id',
-  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户ID'
+  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `t_openid`
+--
+
+INSERT INTO `t_openid` (`openid`, `user_id`) VALUES
+('o0RXO4kWcWqZXruPk0h7iA2ktJmw', '2113504069');
 
 -- --------------------------------------------------------
 
@@ -237,26 +244,40 @@ INSERT INTO `t_school` (`school_id`, `school_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_sys_user`
+-- Table structure for table `t_user`
 --
 
-CREATE TABLE `t_sys_user` (
-  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'GENERATED ID',
-  `employee_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '学校人员对应的工号',
-  `realname` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '真实姓名',
-  `nickname` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '昵称',
-  `sex` tinyint(4) DEFAULT NULL,
-  `residence_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` tinyint(4) NOT NULL COMMENT '0:本校 1:非本校',
-  `create_time` datetime DEFAULT NULL,
-  `last_login_time` datetime DEFAULT NULL,
-  `last_login_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_login_location` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar_url` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统用户表';
+CREATE TABLE `t_user` (
+  `employee_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '人员工号',
+  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '生成唯一ID',
+  `picture_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图片url',
+  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '姓名',
+  `class_no` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所在班级编号',
+  `sex` tinyint(4) DEFAULT NULL COMMENT '性别 0:M 1:F 2:O',
+  `residence_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '身份证号',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
+  `phone` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机',
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '地址',
+  `second_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '第二联系方式',
+  `role` tinyint(4) NOT NULL DEFAULT 4 COMMENT '用户身份 0:超级 1:教职工/管理层 2:教师 3:学生 4:其他',
+  `status` tinyint(4) NOT NULL DEFAULT 3 COMMENT '用户状态 0:在校 1:离校 2 开除 3:其他',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `school_id` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+
+--
+-- Dumping data for table `t_user`
+--
+
+INSERT INTO `t_user` (`employee_id`, `user_id`, `picture_url`, `name`, `class_no`, `sex`, `residence_id`, `email`, `phone`, `address`, `second_contact`, `role`, `status`, `create_time`, `school_id`) VALUES
+('000000000001', '5ecc867f3297c5e10898980f823490e6', NULL, '校长姚', NULL, 0, '32050319680212032X', 'dean@school.com', '13798765932', '江苏省苏州市姑苏区平江路1号', 'weicvivwvb', 1, 0, '2022-12-05 15:34:34', 1),
+('000000000002', '62c8b9a03b55defae9f74ff18ee7a2ac', NULL, '老师李', NULL, 1, '32050119730814618X', 't@school.com', '18894691145', '江苏省苏州市姑苏区平江路1号', 'nfiaufvgff', 2, 0, '2022-12-05 15:36:09', 1),
+('000000000003', '253c3a81f642bfe6fe0a5729a5514b0b', NULL, '超管', NULL, 0, '32528u502735023582', 'super@school.com', '312983461294', '江苏省苏州市姑苏区平江路1号', NULL, 0, 0, '2022-12-05 15:36:46', 1),
+('000000000004', 'd162a354a4d7790466778afecdb2ce54', NULL, '辅导员林', NULL, 1, '320501194189471029', 'lin@school.com', '124it1i24yo', '江苏省苏州市姑苏区平江路1号', 'fhfuwebfwefwechat', 1, 0, '2022-12-06 20:21:37', 1),
+('000000000005', '4d8e37166077fbe7ceaf48015cdc30e6', NULL, 'A老师', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 3, NULL, 1),
+('000000000006', '4aa4bf2f9a07d9f326bb9e856172aa5e', NULL, 'B老师', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 3, NULL, 1),
+('2113504069', 'b94b0711e9206aa82f0cc56c57c2364c', NULL, '姚博乾', '1678042', 0, '320503200000000000', 'osmium@hotmail.com', '13810000000', '江苏省苏州市姑苏区平江路1号', '12312312313123131', 3, 0, '2022-12-05 15:32:46', 1),
+('2200004001', '3e3d5384a7507e305eff68ea64286be9', NULL, '张三', '1678042', 0, '320503200000012028', 'hello@example.com', '13813838438', '江苏省苏州市姑苏区平江路1号', '3444444332', 1, 1, '2022-09-28 13:07:36', 1);
 
 --
 -- Indexes for dumped tables
@@ -273,13 +294,15 @@ ALTER TABLE `t_class`
 --
 ALTER TABLE `t_class_manager_info`
   ADD UNIQUE KEY `t_class_manager_info_pk` (`class_no`,`employee_id`,`role`,`status`),
+  ADD UNIQUE KEY `t_class_manager_info_pk2` (`class_no`,`employee_id`,`role`),
   ADD KEY `t_class_manager_info_t_employee_employee_id_fk` (`employee_id`);
 
 --
 -- Indexes for table `t_course`
 --
 ALTER TABLE `t_course`
-  ADD UNIQUE KEY `t_course_pk` (`course_no`,`employee_id`);
+  ADD UNIQUE KEY `t_course_pk` (`course_no`,`employee_id`),
+  ADD UNIQUE KEY `employee_id` (`employee_id`,`course_no`);
 
 --
 -- Indexes for table `t_course_info`
@@ -298,13 +321,7 @@ ALTER TABLE `t_department_info`
 --
 ALTER TABLE `t_department_manager_info`
   ADD UNIQUE KEY `t_department_manager_info_pk` (`department_no`,`manager_no`,`status`),
-  ADD KEY `t_department_manager_info_t_employee_employee_id_fk` (`manager_no`);
-
---
--- Indexes for table `t_employee`
---
-ALTER TABLE `t_employee`
-  ADD PRIMARY KEY (`employee_id`);
+  ADD UNIQUE KEY `t_department_manager_info_pk2` (`manager_no`,`department_no`);
 
 --
 -- Indexes for table `t_grade`
@@ -316,14 +333,14 @@ ALTER TABLE `t_grade`
 -- Indexes for table `t_login`
 --
 ALTER TABLE `t_login`
-  ADD KEY `t_login_t_sysuser_user_id_fk` (`user_id`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `t_openid`
 --
 ALTER TABLE `t_openid`
   ADD PRIMARY KEY (`openid`),
-  ADD KEY `t_openid_t_sysuser_user_id_fk` (`user_id`);
+  ADD KEY `t_openid_t_user_employee_id_fk` (`user_id`);
 
 --
 -- Indexes for table `t_school`
@@ -332,11 +349,10 @@ ALTER TABLE `t_school`
   ADD PRIMARY KEY (`school_id`);
 
 --
--- Indexes for table `t_sys_user`
+-- Indexes for table `t_user`
 --
-ALTER TABLE `t_sys_user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `t_sys_user_t_employee_employee_id_fk` (`employee_id`);
+ALTER TABLE `t_user`
+  ADD PRIMARY KEY (`employee_id`);
 
 --
 -- Constraints for dumped tables
@@ -346,31 +362,19 @@ ALTER TABLE `t_sys_user`
 -- Constraints for table `t_class_manager_info`
 --
 ALTER TABLE `t_class_manager_info`
-  ADD CONSTRAINT `t_class_manager_info_t_employee_employee_id_fk` FOREIGN KEY (`employee_id`) REFERENCES `t_employee` (`employee_id`);
+  ADD CONSTRAINT `t_class_manager_info_t_employee_employee_id_fk` FOREIGN KEY (`employee_id`) REFERENCES `t_user` (`employee_id`);
 
 --
 -- Constraints for table `t_department_manager_info`
 --
 ALTER TABLE `t_department_manager_info`
-  ADD CONSTRAINT `t_department_manager_info_t_employee_employee_id_fk` FOREIGN KEY (`manager_no`) REFERENCES `t_employee` (`employee_id`);
-
---
--- Constraints for table `t_login`
---
-ALTER TABLE `t_login`
-  ADD CONSTRAINT `t_login_t_sysuser_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `t_sys_user` (`user_id`);
+  ADD CONSTRAINT `t_department_manager_info_t_employee_employee_id_fk` FOREIGN KEY (`manager_no`) REFERENCES `t_user` (`employee_id`);
 
 --
 -- Constraints for table `t_openid`
 --
 ALTER TABLE `t_openid`
-  ADD CONSTRAINT `t_openid_t_sysuser_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `t_sys_user` (`user_id`);
-
---
--- Constraints for table `t_sys_user`
---
-ALTER TABLE `t_sys_user`
-  ADD CONSTRAINT `t_sys_user_t_employee_employee_id_fk` FOREIGN KEY (`employee_id`) REFERENCES `t_employee` (`employee_id`);
+  ADD CONSTRAINT `t_openid_t_user_employee_id_fk` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`employee_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

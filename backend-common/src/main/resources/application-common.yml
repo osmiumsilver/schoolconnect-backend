@@ -1,0 +1,69 @@
+# 服务器基本设定
+server:
+  #  port: 80
+  undertow:
+    buffer-size: 1024
+    direct-buffers: true
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: Authorization,X-Total-Count,Link,Access-Control-Allow-Origin,Access-Control-Allow-Credentials
+  # 控制台日子配置
+
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n"
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    root: WARN
+    org.springframework.web: DEBUG
+    org.springframework.security: INFO
+
+
+    # springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.osmium.schoolconnect.backend
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+
+# Spring 配置
+spring:
+  profiles:
+    include: dev
+  #  main:
+  #    allow-bean-definition-overriding: true
+  #    lazy-initialization: true
+  datasource:
+    hikari:
+      minimum-idle: 10
+      idle-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 120000
+      connection-timeout: 30000
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 我得看见SQL 语句啊
+
+# Jwt 加解密
+jwt:
+  cert:
+    key: classpath:app.key
+    pub: classpath:app.pub
+

@@ -1,0 +1,16 @@
+package com.osmium.schoolconnect.backend.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.osmium.schoolconnect.backend.entity.User;
+
+/**
+ * <p>
+ * 系统用户表 服务类
+ * </p>
+ *
+ * @author abel
+ * @since 2023-01-12
+ */
+public interface IUserService extends IService<User> {
+    public  String checkPhoneUnique(User user);
+}

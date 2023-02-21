@@ -1,0 +1,15 @@
+#开发用数据库
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://100.91.129.62:13306/schoolconnect?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: user
+    password: 1234j
+  cache:
+    type: redis
+  data:
+    redis:
+      host: 192.168.59.105
+      port: 6379
+      database: 0
