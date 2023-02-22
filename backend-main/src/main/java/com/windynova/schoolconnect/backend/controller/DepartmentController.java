@@ -35,24 +35,24 @@ public class DepartmentController {
         return Result.success(iDepartmentInfoService.list());
     }
 
-    @DeleteMapping
-    public Result<JSONObject> deleteDepartments(@PathVariable List<DepartmentInfo> departments) {
-        if (iDepartmentInfoService.removeBatchByIds(departments))
+
+    @PostMapping
+    public Result<JSONObject> addDepartments(@RequestBody List<DepartmentInfo> departments) {
+        if(iDepartmentInfoService.saveBatch(departments))
             return Result.success();
-        else return Result.error(ResultCode.TODO);
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
     }
 
     @PutMapping
-    public Result<JSONObject> updateDepartments(@PathVariable List<DepartmentInfo> departments) {
+    public Result<JSONObject> updateDepartments(@RequestBody List<DepartmentInfo> departments) {
         if (iDepartmentInfoService.updateBatchById(departments))
             return Result.success();
-        else return Result.error(ResultCode.TODO);
-    }
-    @PostMapping
-    public Result<JSONObject> addDepartments(@PathVariable List<DepartmentInfo> departments) {
-        if(iDepartmentInfoService.saveBatch(departments))
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
+    }    @DeleteMapping
+    public Result<JSONObject> deleteDepartments(@RequestBody List<DepartmentInfo> departments) {
+        if (iDepartmentInfoService.removeBatchByIds(departments))
             return Result.success();
-        else return Result.error(ResultCode.TODO);
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
     }
 
 }

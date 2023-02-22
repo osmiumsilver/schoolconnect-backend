@@ -1,6 +1,7 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import cn.hutool.json.JSONObject;
+import com.osmium.schoolconnect.backend.entity.Grade;
 import com.osmium.schoolconnect.backend.entity.User;
 import com.osmium.schoolconnect.backend.misc.Result;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
@@ -17,7 +18,7 @@ import java.util.List;
  * @Description
  */
 @RestController
-@RequestMapping("/user/info")
+@RequestMapping("/employee")
 public class UserInfoController {
     private final IUserService iUserService;
     public UserInfoController(IUserService iUserService) {
@@ -28,6 +29,14 @@ public class UserInfoController {
     @GetMapping
     public Result<User> getInfo(@RequestParam String userId) {
         return Result.success(iUserService.getById(userId));
+    }
+
+
+    @PostMapping
+    public Result<JSONObject> setGrade(@RequestBody List<User> grade) {
+       iUserService.saveBatch(grade);
+            return Result.success();
+
     }
 
     @PutMapping

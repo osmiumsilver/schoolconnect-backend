@@ -17,8 +17,6 @@ import java.util.Map;
 @AllArgsConstructor
 @Getter
 public enum AuthorityCode implements GrantedAuthority {
-
-
     ROLE_SUPER(0),
     ROLE_ADMINISTRATIVE(1),
     ROLE_TEACHER(2),
@@ -41,7 +39,7 @@ public enum AuthorityCode implements GrantedAuthority {
         return lookup.get(code);
     }
 
-    @Override
+    @Override //别的类如果要用GrantedAuthority 这个方法是给他们用的
     public String getAuthority() {
         return String.valueOf(lookup.get(AuthorityCode.get(code)));
     }

@@ -29,20 +29,30 @@ public class ClazzScheduleController {
 
 
     @GetMapping
-    public Result<List<ClazzSchedule>> getClazzSchedule(@RequestParam String classNo, @RequestParam String year, @RequestParam String semester)
+    public Result<List<ClazzSchedule>> getClazzScheduleByClazz(@RequestParam String classNo, @RequestParam String year, @RequestParam String semester)
     {
-        QueryWrapper<ClazzSchedule> clazzScheduleQueryWrapper = new QueryWrapper<>();
-        clazzScheduleQueryWrapper.eq("class_no", classNo);
-        clazzScheduleQueryWrapper.like("year", year);
-        clazzScheduleQueryWrapper.like("semester", semester);
-        return Result.success(Collections.singletonList(iClazzScheduleService.getOne(clazzScheduleQueryWrapper)));
+        return Result.success(iClazzScheduleService.listClazzScheduleByClazz(classNo, year, semester));
     }
 
     @PostMapping
     public Result<JSONObject> addToClazzSchedule(@RequestBody  List<ClazzSchedule> clazzSchedule)
     {
-        if(iClazzScheduleService.saveOrUpdateBatch(clazzSchedule))
+        if(iClazzScheduleService.saveBatch(clazzSchedule))
             return Result.success();
-        else return Result.error(ResultCode.DATA_CHECK_SIGN_ERR);
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
+    }
+    @PutMapping
+    public Result<JSONObject> modifyClazzSchedule(@RequestBody  List<ClazzSchedule> clazzSchedule)
+    {
+        if(iClazzScheduleService.updateBatchById(clazzSchedule))
+            return Result.success();
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
+    }
+    @DeleteMapping
+    public Result<JSONObject> deleteClazzSchedule(@RequestBody  List<ClazzSchedule> clazzSchedule)
+    {
+        if(iClazzScheduleService.removeBatchByIds(clazzSchedule))
+            return Result.success();
+        else return Result.error(ResultCode.DATA_MANIPULATION_ERROR);
     }
 }

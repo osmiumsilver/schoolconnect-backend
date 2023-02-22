@@ -1,7 +1,7 @@
 //package com.osmium.schoolconnect.backend.misc;
+//
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import lombok.SneakyThrows;
-//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.core.MethodParameter;
 //import org.springframework.http.MediaType;
 //import org.springframework.http.converter.HttpMessageConverter;
@@ -16,8 +16,12 @@
 // */
 //@RestControllerAdvice
 //public class GlobalResult implements ResponseBodyAdvice<Object> {
-//    @Autowired
-//    private ObjectMapper objectMapper;
+//
+//    private final ObjectMapper objectMapper;
+//
+//    public GlobalResult(ObjectMapper objectMapper) {
+//        this.objectMapper = objectMapper;
+//    }
 //
 //    @Override
 //    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
@@ -32,8 +36,6 @@
 //        }
 //        if (o instanceof ResultCode) {
 //            return o;
-//
-//
 //        }
 //        return Result.success(o);
 //    }

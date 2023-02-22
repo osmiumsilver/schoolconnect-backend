@@ -4,14 +4,17 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Login;
 import com.osmium.schoolconnect.backend.mapper.LoginMapper;
 import com.osmium.schoolconnect.backend.service.ILoginService;
+import jakarta.validation.UnexpectedTypeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,11 +30,15 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
 //@Autowired 不需要这个 直接调用baseMapper即可
 //    QueryWrapper<Login> wrapper;
 
-    @Override
+    @Override //实现Security的load用户名功能
     public UserDetails loadUserByUsername(String username) {
-        Optional<Login>  loginUser = Optional.ofNullable(baseMapper.getUserById(username));
-        Optional<List<GrantedAuthority>> authorities = Optional.of(AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.get().getAuthorities().toString()));
-        return new User(loginUser.get().getUsername(), loginUser.get().getPassword(),authorities.get());
+         Login loginUser = baseMapper.getUserById(username);
+         if(loginUser == null)
+         {
+                 throw new UsernameNotFoundException(username);
+         }
+        Optional<List<GrantedAuthority>> authorities = Optional.of(AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.getAuthorities().toString()));
+        return new User(loginUser.getUsername(), loginUser.getPassword(), authorities.get());
+        }
     }
 
-}

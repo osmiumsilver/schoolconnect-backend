@@ -3,7 +3,6 @@ package com.osmium.schoolconnect.backend.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import com.osmium.schoolconnect.backend.misc.AuthorityCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -14,7 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
 
 
 /**
@@ -36,17 +36,16 @@ public class Login implements Serializable, UserDetails {
     @TableField("login.password")
     @Schema(description = "密码")
     private String password;
-@TableField("user.role")
+    @TableField("user.role")
     @Schema(description = "权限")
     private int authority;
-@TableField("user.status")
-@Schema(description = "账户是否锁定")
+    @TableField("user.status")
+    @Schema(description = "账户是否锁定")
     private int isEnabled;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return Collections.singleton(AuthorityCode.get(getAuthority()));
     }
 
@@ -68,10 +67,11 @@ public class Login implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() { //是否仍然可用
         Boolean enabled = null;
-        switch (getAuthority()) {
-            case 0,1  ->enabled = true;
-            case 2  ->enabled = false;
-        }return Boolean.TRUE.equals(enabled);
+        switch (getIsEnabled()) {
+            case 0, 1 -> enabled = true;
+            case 2 -> enabled = false;
+        }
+        return Boolean.TRUE.equals(enabled);
 
     }
 

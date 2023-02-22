@@ -3,13 +3,16 @@ package com.osmium.schoolconnect.backend.controller;
 
 import cn.hutool.json.JSONObject;
 import com.osmium.schoolconnect.backend.entity.OpenID;
-import com.osmium.schoolconnect.backend.utils.RedisUtils;
 import com.osmium.schoolconnect.backend.misc.Result;
 import com.osmium.schoolconnect.backend.service.IOpenIDService;
+import com.osmium.schoolconnect.backend.utils.RedisUtils;
 import com.osmium.schoolconnect.backend.utils.WeChatBackendUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
@@ -57,7 +60,7 @@ public class WxAuthController {
 
     }
 
-    @PostMapping ("/wxlogout")
+    @PostMapping("/wxlogout")
     public Result<JSONObject> logoutWxLogin(@RequestBody String openId) {
         //if (redisUtils.deleteObject(openId)) {
         //    return Result.success();

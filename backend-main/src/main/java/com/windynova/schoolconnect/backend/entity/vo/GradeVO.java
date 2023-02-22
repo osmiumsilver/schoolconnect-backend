@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("view_name")
+@TableName("v_grade_detail")
 public class GradeVO extends Grade implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

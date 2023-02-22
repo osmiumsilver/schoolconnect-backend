@@ -5,6 +5,7 @@ package com.osmium.schoolconnect.backend.misc;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -110,6 +111,7 @@ public class Result<T> implements Serializable {
      * @param <T>        返回类泛型
      * @return 通用返回Result
      */
+
     public static <T> Result<T> error(ResultCode resultCode) {
         return new Result<>(resultCode);
     }

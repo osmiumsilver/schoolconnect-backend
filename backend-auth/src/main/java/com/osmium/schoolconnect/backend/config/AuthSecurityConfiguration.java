@@ -6,8 +6,9 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.osmium.schoolconnect.backend.misc.FilterChainExceptionHandler;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,17 +25,13 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +53,8 @@ public class AuthSecurityConfiguration {
     @Value("${jwt.cert.key}")
     RSAPrivateKey key;
 
+    @Resource
+    private FilterChainExceptionHandler filterChainExceptionHandler;
    /*
     Completely bypass the filter and we dont use that here.
     */
@@ -68,16 +66,15 @@ public class AuthSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/**", "/error", "/swagger**", "/v3/**").permitAll()
-                        //.requestMatchers("/**").permitAll(
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
+                .addFilterBefore(filterChainExceptionHandler, LogoutFilter.class)
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**")) //CSRF Demo Disable
                 .httpBasic(Customizer.withDefaults()) //Basic方式授权
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptions -> exceptions //Exception 处理
-                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+                        .authenticationEntryPoint(new GlobalAuthenticationHandler.CustomizedAuthenticationEntryPoint())
+                        .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler())
                 );
         return http.build();
     }
@@ -96,7 +93,7 @@ public class AuthSecurityConfiguration {
                 .build();
     }
 
-    //Code for DEMO
+    //Code for DEMO 这个是内存临时的用户
     //@Bean
     //public InMemoryUserDetailsManager userDetailsService(){ //Only for testing purpose
     //    UserDetails user = User.builder()
@@ -112,9 +109,10 @@ public class AuthSecurityConfiguration {
     //    return new InMemoryUserDetailsManager(user,admin);
     //}
 
-    /*
-    Abel
-   JWT It's not about the encryption , but about signing and confirm authenticity. RSA can be used for signing schemes. That's all about it.
+    /**
+     @author Abel
+     @Description JWT It's not about the encryption , but about signing and confirm authenticity. RSA can be used for signing schemes. That's all about it.
+     @Description JWT不在于加密信息，而是保证信息的真实完整
      */
 
     //@Bean
@@ -122,6 +120,10 @@ public class AuthSecurityConfiguration {
     //    return NimbusJwtDecoder.withPublicKey(pub).build();
     //}
 
+    /**
+     * @return 返回签署的Jwk
+     * @author Abel
+     */
     @Bean
     JwtEncoder jwtEncoder() { //Sign with private
         JWK jwk = new RSAKey.Builder(this.pub).privateKey(this.key).build(); //Builder来生成jwk
@@ -140,6 +142,7 @@ public class AuthSecurityConfiguration {
 
     @Value("#{'${cors.exposed-headers}'.split(',')}")
     private List<String> expectedHeaders;
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
@@ -147,11 +150,9 @@ public class AuthSecurityConfiguration {
         config.setAllowedOrigins(allowedOrigins);
         config.setAllowedMethods(allowedMethods);
         config.setAllowedHeaders(allowedHeaders);
-        // 暴露 header 中的其他属性给客户端应用程序
-        config.setExposedHeaders(expectedHeaders);
+        config.setExposedHeaders(expectedHeaders);        // 暴露 header 中的其他属性给客户端应用程序
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration(config));
-        //source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
 

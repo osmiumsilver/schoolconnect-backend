@@ -30,9 +30,13 @@ public class User implements Serializable {
     private String secondContact; //第二联系方式
     private Byte role;  // 0:本校 1:非本校
 
-    @TableField(fill = FieldFill.INSERT)
+    private Byte status; //状态
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime createTime; //创建时间
 
+
+    private int schoolId;//所在学校ID
     @TableField("required_changing")
     private int requiredChanging;//是否需要修改 0为不需要 1为需要 2为审核中
 

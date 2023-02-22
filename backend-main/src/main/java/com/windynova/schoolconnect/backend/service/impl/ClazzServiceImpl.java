@@ -17,10 +17,4 @@ import java.util.List;
 public class ClazzServiceImpl extends ServiceImpl<ClazzMapper, Clazz> implements IClazzService {
 
 
-    @Override
-    public List<Clazz> getClazzManagedByStaff(String employeeId,int classManagerRole) {
-        return baseMapper.getClazzManagedByStaff(employeeId,classManagerRole);
-    }
-
-
 }

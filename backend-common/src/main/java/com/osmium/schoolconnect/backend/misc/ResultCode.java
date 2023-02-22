@@ -1,6 +1,8 @@
 package com.osmium.schoolconnect.backend.misc;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 public enum ResultCode implements StatusCode {
@@ -8,7 +10,7 @@ public enum ResultCode implements StatusCode {
     //GLOBAL
     SUCCESS("200", "请求成功"),
     UNKNOWN("500", "未知错误"),
-    TODO("9999", "TODO ERROR"),
+    RETURN("9999", "返回信息"),
 
     //SYS ERROR
     SYS_FAIL_NULL_POINTER("5001", "系统出错：空指针异常"),
@@ -63,6 +65,7 @@ public enum ResultCode implements StatusCode {
     DATA_RES_EXHAUST("1311", "数据资源已用尽"),
     DATA_REQ_REPEAT("1312", "重复请求~"),
 
+    DATA_MANIPULATION_ERROR("1313","数据操纵错误"),
 
     // REMOTE ERROR
     REMOTE_ERR("1401", "远程接口失败"),
@@ -82,9 +85,9 @@ public enum ResultCode implements StatusCode {
     DB_INTEGRITY_CONSTRAINT("1503", "违反数据库约束(唯一,非空等)"),
     DB_LOST_CONNECTION("1505", "数据库连接失败"),
 
-GRADE_ADD_ERROR("1601","成绩添加失败"),
-    GRADE_MODIFY_ERROR("1602","成绩修改失败"),
-    GRADE_DELETE_ERROR("1602","成绩删除失败");
+    GRADE_ADD_ERROR("1601", "成绩添加失败"),
+    GRADE_MODIFY_ERROR("1602", "成绩修改失败"),
+    GRADE_DELETE_ERROR("1602", "成绩删除失败");
 
 
     private final String code;

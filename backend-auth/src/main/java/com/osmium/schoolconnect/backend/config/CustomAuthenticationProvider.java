@@ -4,12 +4,14 @@ import com.osmium.schoolconnect.backend.service.ILoginService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -22,15 +24,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-
     private final ILoginService iLoginService;
-
-    @Autowired
     public CustomAuthenticationProvider(ILoginService iLoginService) {
         this.iLoginService = iLoginService;
     }
 
-    @Resource //把SHA256加密器从Security装配过来
+    @Resource //把SHA256加密器从容器内给拿过来
     PasswordEncoder passwordEncoder;
 
     @Override
@@ -39,13 +38,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (StringUtils.isEmpty(username)) {
             authentication.setAuthenticated(false);
             throw new BadCredentialsException("未提供账号");
-
         }
-        return createSuccessfulAuthentication(authentication, iLoginService.loadUserByUsername(username));
+        else return createAuthorization(authentication, iLoginService.loadUserByUsername(username));
     }
 
 
-    private Authentication createSuccessfulAuthentication(final Authentication authentication, final UserDetails user) { //user是数据库来的 authentication是我登录时候给出的
+    private Authentication createAuthorization(final Authentication authentication, final UserDetails user) { //user是数据库来的 authentication是我登录时候给出的
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(), authentication.getCredentials(), user.getAuthorities());
         log.trace("数据库中的密码： (Password in my database )" + user.getPassword() + " " + "我穿进去的明文 : " + authentication.getCredentials() + " password encoded : " + passwordEncoder.encode(authentication.getCredentials().toString()));
 

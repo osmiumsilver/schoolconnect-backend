@@ -1,7 +1,10 @@
-#spring:
+server:
+  port: 80
+spring:
+  config: # 又是一个新的写法
+    import: classpath:application-common.yml
 #  security:
 #    oauth2:
-#
 #      resourceserver:
 #        jwt:
 #          issuer-uri: https://auth.prod.schoolconnect.wdksl.com/issuer
@@ -11,12 +14,3 @@ wechat-mini-program:
 
 
 
-spring:
-#  profiles:
-#    #    active: 不要用active 这样只会用这里的profile
-#    include:
-  config: # 超级新的写法
-    import: classpath:application-common.yml
-
-server:
-  port: 80

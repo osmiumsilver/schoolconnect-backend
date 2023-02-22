@@ -3,6 +3,7 @@ package com.osmium.schoolconnect.backend.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.Generated;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,14 +14,12 @@ import java.io.Serializable;
  * @Description
  */
 @Data
-@TableName("t_class_manager_info")
-public class ClazzManagerInfo implements Serializable {
+@TableName("t_course_teacher")
+public class CourseTeacher implements Serializable  {
     @Serial
     private static final long serialVersionUID = 1L;
-    @TableId
-    private Long id; //生成id
-    private String classNo; //班级编号
-    private String employeeId; //管理人员编号
-    private byte role; //0 班主任 1 辅导员
-    private byte status; //0 正常 1 离开
+    @TableId("id")
+    private Long id;
+    private String teacherId;//教师编号
+    private String courseNo; //课程编号
 }

@@ -13,7 +13,6 @@ import java.util.List;
  */
 
 public interface IClazzService extends IService<Clazz> {
-List<Clazz> getClazzManagedByStaff(String employeeId,int classManagerRole);
 
 }
 

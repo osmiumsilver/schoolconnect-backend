@@ -24,10 +24,11 @@ import java.util.LinkedHashMap;
 @Component
 public class WeChatBackendUtils {
 
-    /*
-   @author osmium Abel YAO
-THIS IS SHITTY CODE BECAUSE SPRING DOESNT ALLOW STATIC FIELD INJECTION AND I HAD NO CHOICE !!
-*/
+    /**
+     * @Author osmium Abel YAO
+     * @Description Here ARE SOME EXTRA CODE BECAUSE SPRING DOESN'T ALLOW STATIC FIELD INJECTION AND I HAD NO CHOICE !!
+     * 静态字段注入 我必须得这么做
+     */
 
     private static String appId;
     private static String appSecret;
@@ -51,9 +52,7 @@ THIS IS SHITTY CODE BECAUSE SPRING DOESNT ALLOW STATIC FIELD INJECTION AND I HAD
         //默认参数
         requestUrlParam.put("grant_type", "authorization_code");
         //发送post请求读取调用微信接口获取openid用户唯一标识
-        String result = HttpUtil.get(requestUrl, requestUrlParam);
-        System.out.println(requestUrlParam);
-        return JSONUtil.parseObj(result);
+        return JSONUtil.parseObj(HttpUtil.get(requestUrl, requestUrlParam));
 
     }
 
