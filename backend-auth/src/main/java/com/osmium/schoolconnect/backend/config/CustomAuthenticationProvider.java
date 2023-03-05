@@ -1,5 +1,7 @@
 package com.osmium.schoolconnect.backend.config;
 
+import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +54,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             return token;
         } else {
             token.setAuthenticated(false);
-            throw new BadCredentialsException("密码不正确");
+            throw new APIException(ResultCode.AUTH_LOGIN_USER_PWD_ERR);
 
         }
     }

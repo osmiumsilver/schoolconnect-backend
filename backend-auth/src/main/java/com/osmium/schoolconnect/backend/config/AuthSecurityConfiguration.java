@@ -22,8 +22,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
-import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -68,7 +66,7 @@ public class AuthSecurityConfiguration {
         http.authorizeHttpRequests(authz -> authz
                         .anyRequest().permitAll()
                 )
-                .addFilterBefore(filterChainExceptionHandler, LogoutFilter.class)
+                //.addFilterBefore(filterChainExceptionHandler, LogoutFilter.class)
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**")) //CSRF Demo Disable
                 .httpBasic(Customizer.withDefaults()) //Basic方式授权
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

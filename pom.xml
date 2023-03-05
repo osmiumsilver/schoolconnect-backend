@@ -27,6 +27,8 @@
         <module>backend-main</module>
         <module>backend-oauth2-resource-server</module>
         <module>backend-common</module>
+        <module>backend-admin</module>
+
     </modules>
     <dependencies>
         <dependency>
@@ -52,6 +54,10 @@
         <!--		<artifactId>springfox-boot-starter</artifactId>-->
         <!--		<version>3.0.0</version>-->
         <!--	</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.taobao.arthas</groupId>
             <artifactId>arthas-spring-boot-starter</artifactId>

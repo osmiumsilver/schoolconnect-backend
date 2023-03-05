@@ -23,8 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisUtils
 {
-    public RedisTemplate redisTemplate;
-    public RedisUtils(RedisTemplate redisTemplate) {
+    public final RedisTemplate redisTemplate;
+    private RedisUtils(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

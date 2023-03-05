@@ -8,8 +8,18 @@
         <artifactId>backend-parent</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
-    <packaging>jar</packaging>
-<!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
+    <packaging>pom</packaging>
+    <modules>
+        <module>main-bootstrapper</module>
+        <module>main-campaign</module>
+        <module>main-grade</module>
+        <module>main-schedule</module>
+        <module>main-infrastructure</module>
+        <module>main-course</module>
+        <module>main-user</module>
+        <module>main-messageboard</module>
+    </modules>
+    <!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
     <artifactId>backend-main</artifactId>
 
 <dependencies>

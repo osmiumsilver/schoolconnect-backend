@@ -3,6 +3,8 @@ package com.osmium.schoolconnect.backend.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Login;
 import com.osmium.schoolconnect.backend.mapper.LoginMapper;
+import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
 import jakarta.validation.UnexpectedTypeException;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +37,7 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
          Login loginUser = baseMapper.getUserById(username);
          if(loginUser == null)
          {
-                 throw new UsernameNotFoundException(username);
+                 throw new APIException(ResultCode.AUTH_NO_SUCH_USER);
          }
         Optional<List<GrantedAuthority>> authorities = Optional.of(AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.getAuthorities().toString()));
         return new User(loginUser.getUsername(), loginUser.getPassword(), authorities.get());

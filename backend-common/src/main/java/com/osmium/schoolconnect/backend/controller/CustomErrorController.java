@@ -1,6 +1,6 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.osmium.schoolconnect.backend.config.GlobalResponseExceptionHandler;
+import com.osmium.schoolconnect.backend.misc.GlobalResponseExceptionHandler;
 import com.osmium.schoolconnect.backend.misc.Result;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;

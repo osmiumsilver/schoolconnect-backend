@@ -20,7 +20,7 @@ public class OpenID implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @TableId("openid")
-    private String openId;
+    private String openid;
     private String userId;
 
 

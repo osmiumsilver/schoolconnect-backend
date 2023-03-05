@@ -10,11 +10,14 @@ public enum ResultCode implements StatusCode {
     //GLOBAL
     SUCCESS("200", "请求成功"),
     UNKNOWN("500", "未知错误"),
-    RETURN("9999", "返回信息"),
+    RETURN("999", "返回信息"),
+
+
 
     //SYS ERROR
     SYS_FAIL_NULL_POINTER("5001", "系统出错：空指针异常"),
     SYS_NOT_UNIMPLEMENTED("5002", "暂未实现"),
+    SYS_TIME_CONVERSION_ERROR("5003","时间转换错误"),
 
 
     //USER REQUEST ERROR
@@ -67,6 +70,7 @@ public enum ResultCode implements StatusCode {
 
     DATA_MANIPULATION_ERROR("1313","数据操纵错误"),
 
+
     // REMOTE ERROR
     REMOTE_ERR("1401", "远程接口失败"),
     REMOTE_CONN_TIMEOUT("1402", "远程接口连接超时"),
@@ -80,6 +84,7 @@ public enum ResultCode implements StatusCode {
 
 
     //DATABASE ERROR
+
     DB_SQL_SYNTAX_ERR("1501", "数据库SQL执行错误"),
     DB_OPT_LOCK("1502", "乐观锁失败"),
     DB_INTEGRITY_CONSTRAINT("1503", "违反数据库约束(唯一,非空等)"),
@@ -87,8 +92,9 @@ public enum ResultCode implements StatusCode {
 
     GRADE_ADD_ERROR("1601", "成绩添加失败"),
     GRADE_MODIFY_ERROR("1602", "成绩修改失败"),
-    GRADE_DELETE_ERROR("1602", "成绩删除失败");
+    GRADE_DELETE_ERROR("1602", "成绩删除失败"),
 
+    MYBATIS_ERROR("1701","MyBatis 出错");
 
     private final String code;
     private final String msg;

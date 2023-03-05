@@ -33,7 +33,7 @@ public class GlobalAuthenticationHandler {
         return new CustomizedAuthenticationEntryPoint();
     }
 
-    static class CustomizedAccessDeniedHandler implements AccessDeniedHandler {
+    public static class CustomizedAccessDeniedHandler implements AccessDeniedHandler {
 
         @Override
         public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {

@@ -4,6 +4,10 @@ server:
   undertow:
     buffer-size: 1024
     direct-buffers: true
+  error:
+    include-stacktrace: never
+
+  # Custom CORS Headers
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
@@ -33,7 +37,7 @@ springdoc:
     - group: 'default'
       paths-to-match: '/**'
       packages-to-scan: com.osmium.schoolconnect.backend
-# knife4j的增强配置，不需要增强可以不配
+# Custom Settings for Knife4j
 knife4j:
   enable: true
   setting:
@@ -44,8 +48,8 @@ knife4j:
 spring:
   profiles:
     include: dev
-  #  main:
-  #    allow-bean-definition-overriding: true
+  main:
+    allow-bean-definition-overriding: true
   #    lazy-initialization: true
   datasource:
     hikari:
@@ -55,14 +59,16 @@ spring:
       max-lifetime: 120000
       connection-timeout: 30000
 
+
+
 # MyBatis-Plus配置
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: true # 开启驼峰命名
 
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 我得看见SQL 语句啊
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 我得看见SQL 语句
 
-# Jwt 加解密
+# Jwt 加解密keys
 jwt:
   cert:
     key: classpath:app.key

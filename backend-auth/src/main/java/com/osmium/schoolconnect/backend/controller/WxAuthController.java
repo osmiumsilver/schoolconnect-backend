@@ -52,7 +52,6 @@ public class WxAuthController {
         if (iOpenIDService.getById(openId) == null) {
             saveOpenID(openId);
         }
-
         //if (redisUtils.getCacheObject(openId)!=null) {
         wxLoginResponse.set("user_id", iOpenIDService.getById(openId).getUserId());
         //}
@@ -62,9 +61,11 @@ public class WxAuthController {
 
     @PostMapping("/wxlogout")
     public Result<JSONObject> logoutWxLogin(@RequestBody String openId) {
+
         //if (redisUtils.deleteObject(openId)) {
         //    return Result.success();
         //} else return Result.error(ResultCode.AUTH_LOGOUT_ERR);
+        //TODO DELETE FROM DB
         return null;
     }
 

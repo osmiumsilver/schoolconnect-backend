@@ -5,6 +5,9 @@ package com.osmium.schoolconnect.backend.misc;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.Serial;
@@ -13,7 +16,8 @@ import java.io.Serializable;
 
 @Data
 @ToString
-public class Result<T> implements Serializable {
+//public class Result<T> extends ResponseEntity<T> implements Serializable  {
+    public class Result<T> implements Serializable  {
 
     @Serial
     private static final long serialVersionUID = 4418416282894231647L;
@@ -23,6 +27,8 @@ public class Result<T> implements Serializable {
     private String msg;
     @Schema(description = "返回数据")
     private T data;
+
+
 
 
     /**
@@ -100,6 +106,18 @@ public class Result<T> implements Serializable {
      */
     public static <T> Result<T> error(String code, String msg) {
         return new Result<>(code, msg);
+    }
+
+    /**
+     * 失败,自定义状态码,返回消息,无返回数据
+     *
+     * @param code 自定义状态码
+     * @param msg  自定义返回消息
+     * @param <T>  返回类泛型
+     * @return 通用返回Result
+     */
+    public static <T> Result<T> error(String code, String msg,T data) {
+        return new Result<>(code, msg,data);
     }
 
     /**
