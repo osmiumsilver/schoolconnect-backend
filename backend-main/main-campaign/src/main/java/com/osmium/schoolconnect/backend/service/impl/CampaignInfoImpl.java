@@ -24,9 +24,9 @@ public class CampaignInfoImpl extends ServiceImpl<CampaignInfoMapper, CampaignIn
     }
 
     @Override
-    public List<CampaignInfo> getAllCampaigns() {
+    public List<CampaignInfo> getOngoingCampaigns() {
         QueryWrapper<CampaignInfo> wrapper = new QueryWrapper<>();
-        wrapper.eq("campaign_status",0);
+        wrapper.eq("campaign_status", 0);
         return baseMapper.selectList(wrapper);
     }
 }

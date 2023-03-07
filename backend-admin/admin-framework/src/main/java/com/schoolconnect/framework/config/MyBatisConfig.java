@@ -1,13 +1,8 @@
 package com.schoolconnect.framework.config;
 
-import org.apache.ibatis.io.VFS;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -24,85 +19,62 @@ import java.util.List;
 
 /**
  * Mybatis支持*匹配扫描包
-
  */
 @Configuration
-public class MyBatisConfig
-{
+public class MyBatisConfig {
     @Autowired
     private Environment env;
 
     static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
 
-    public static String setTypeAliasesPackage(String typeAliasesPackage)
-    {
+    public static String setTypeAliasesPackage(String typeAliasesPackage) {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resolver);
         List<String> allResult = new ArrayList<>();
-        try
-        {
-            for (String aliasesPackage : typeAliasesPackage.split(","))
-            {
+        try {
+            for (String aliasesPackage : typeAliasesPackage.split(",")) {
                 List<String> result = new ArrayList<>();
                 aliasesPackage = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
                         + ClassUtils.convertClassNameToResourcePath(aliasesPackage.trim()) + "/" + DEFAULT_RESOURCE_PATTERN;
                 Resource[] resources = resolver.getResources(aliasesPackage);
-                if (resources.length > 0)
-                {
+                if (resources.length > 0) {
                     MetadataReader metadataReader = null;
-                    for (Resource resource : resources)
-                    {
-                        if (resource.isReadable())
-                        {
+                    for (Resource resource : resources) {
+                        if (resource.isReadable()) {
                             metadataReader = metadataReaderFactory.getMetadataReader(resource);
-                            try
-                            {
+                            try {
                                 result.add(Class.forName(metadataReader.getClassMetadata().getClassName()).getPackage().getName());
-                            }
-                            catch (ClassNotFoundException e)
-                            {
+                            } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
                 }
-                if (!result.isEmpty())
-                {
+                if (!result.isEmpty()) {
                     HashSet<String> hashResult = new HashSet<String>(result);
                     allResult.addAll(hashResult);
                 }
             }
-            if (!allResult.isEmpty())
-            {
+            if (!allResult.isEmpty()) {
                 typeAliasesPackage = String.join(",", allResult.toArray(new String[0]));
-            }
-            else
-            {
+            } else {
                 throw new RuntimeException("mybatis typeAliasesPackage 路径扫描错误,参数typeAliasesPackage:" + typeAliasesPackage + "未找到任何包");
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return typeAliasesPackage;
     }
 
-    public Resource[] resolveMapperLocations(String[] mapperLocations)
-    {
+    public Resource[] resolveMapperLocations(String[] mapperLocations) {
         ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
         List<Resource> resources = new ArrayList<>();
-        if (mapperLocations != null)
-        {
-            for (String mapperLocation : mapperLocations)
-            {
-                try
-                {
+        if (mapperLocations != null) {
+            for (String mapperLocation : mapperLocations) {
+                try {
                     Resource[] mappers = resourceResolver.getResources(mapperLocation);
                     resources.addAll(Arrays.asList(mappers));
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     // ignore
                 }
             }

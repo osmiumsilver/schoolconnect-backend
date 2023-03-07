@@ -8,12 +8,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author Abel
- * @Date 2023/3/5
- * @Description 限制访问注解（传入参数必须为自己工号，传入他人工号则为空）
+ * @Author
+ * @Date 2023/3/6
+ * @Description
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize(value = "authentication.name.equals(#userId)")
-public @interface AccessIsolationAnnotation {
+@PreAuthorize(value = "hasAnyAuthority('[ADMINISTRATIVE]','[SUPER]')")
+public @interface AdministrativeAccess {
 }

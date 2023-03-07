@@ -8,9 +8,10 @@ import lombok.Getter;
  * @Description
  */
 @Getter
-public class APIException extends RuntimeException{
+public class APIException extends RuntimeException {
     private final String code;
     private final String msg;
+
     // 手动设置异常
     public APIException(StatusCode statusCode, String message) {
         // message用于用户设置抛出错误详情，例如：当前价格-5，小于0
@@ -27,10 +28,11 @@ public class APIException extends RuntimeException{
         this.code = ResultCode.RETURN.getCode();
         this.msg = ResultCode.RETURN.getMsg();
     }
- public APIException(StatusCode statusCode) {
+
+    public APIException(StatusCode statusCode) {
         super((String) null);
         this.code = statusCode.getCode();
-        this.msg =statusCode.getMsg();
- }
+        this.msg = statusCode.getMsg();
+    }
 
 }

@@ -10,10 +10,10 @@ import java.lang.annotation.Target;
 /**
  * @Author Abel
  * @Date 2023/3/5
- * @Description 教师限制访问注解
+ * @Description 超管权限 SUPER ACCESS 上帝模式哈哈
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize(value = "hasRole('ROLE_TEACHER')" + "and authentication.principal.equals(#userId) ")
-public @interface TeacherOnlyAccessAnnotation {
+@PreAuthorize(value = "hasAnyAuthority('[SUPER]')")
+public @interface SuperAccess {
 }

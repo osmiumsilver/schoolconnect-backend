@@ -1,7 +1,5 @@
 package com.osmium.schoolconnect.backend.misc;
 
-import com.mysql.cj.exceptions.CJCommunicationsException;
-import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import com.osmium.schoolconnect.backend.utils.annotations.NotControllerResponseAdvice;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -45,33 +43,32 @@ public class GlobalResponseExceptionHandler extends ResponseEntityExceptionHandl
 
 
     @ExceptionHandler(AccessDeniedException.class)
-    public Result<String> accessDeniedException(AccessDeniedException e)
-    {
+    public Result<String> accessDeniedException(AccessDeniedException e) {
         log.error(e.getMessage());
         return Result.error(ResultCode.AUTH_NO_PERMISSION);
     }
+
     @ExceptionHandler(DateTimeParseException.class)
     public Result<String> dateTimeParseException(DateTimeParseException e) {
         log.error(e.getMessage());
         return Result.error(ResultCode.SYS_TIME_CONVERSION_ERROR, e.getLocalizedMessage());
     }
 
-    @ExceptionHandler(CJCommunicationsException.class)
-    public Result<String> cJCommunicationsException(CJCommunicationsException exception) {
-        log.error(exception.getMessage());
-        return Result.error(ResultCode.DB_LOST_CONNECTION, exception.getLocalizedMessage());
-    }
+    //@ExceptionHandler(CJCommunicationsException.class)
+    //public Result<String> cJCommunicationsException(CJCommunicationsException exception) {
+    //    log.error(exception.getMessage());
+    //    return Result.error(ResultCode.DB_LOST_CONNECTION, exception.getLocalizedMessage());
+    //}
     @ExceptionHandler(CannotGetJdbcConnectionException.class)
-    public Result<String> cannotGetJdbcConnectionException(CannotGetJdbcConnectionException exception)
-    {
+    public Result<String> cannotGetJdbcConnectionException(CannotGetJdbcConnectionException exception) {
         log.error(exception.getMessage());
-        return Result.error(ResultCode.DB_LOST_CONNECTION, "\n"+exception.getLocalizedMessage());
+        return Result.error(ResultCode.DB_LOST_CONNECTION, "\n" + exception.getLocalizedMessage());
     }
-    @ExceptionHandler(CommunicationsException.class)
-    public Result<String> communicationsException(CommunicationsException exception) {
-        log.error(exception.getMessage());
-        return Result.error(ResultCode.REMOTE_SOCKET_TIMEOUT, "\n" + exception.getLocalizedMessage());
-    }
+    //@ExceptionHandler(CommunicationsException.class)
+    //public Result<String> communicationsException(CommunicationsException exception) {
+    //    log.error(exception.getMessage());
+    //    return Result.error(ResultCode.REMOTE_SOCKET_TIMEOUT, "\n" + exception.getLocalizedMessage());
+    //}
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public Result<String> dataIntegrityViolationException(DataIntegrityViolationException exception) {
@@ -146,6 +143,7 @@ public class GlobalResponseExceptionHandler extends ResponseEntityExceptionHandl
         // log.error(e.getMessage(), e); 由于还没集成日志框架，暂且放着，写上TODO
         return Result.error(e.getCode(), e.getMsg(), e.getMessage());
     }
+
     @ExceptionHandler(Exception.class)
     public Result<String> defaultErrorHandler(HttpServletRequest request, Exception exception) {
         return Result.error(ResultCode.RETURN, request.toString() + "\n" + exception);

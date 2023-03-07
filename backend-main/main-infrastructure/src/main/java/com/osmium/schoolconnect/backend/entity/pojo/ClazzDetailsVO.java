@@ -1,4 +1,4 @@
-package com.osmium.schoolconnect.backend.entity.vo;
+package com.osmium.schoolconnect.backend.entity.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.osmium.schoolconnect.backend.entity.Clazz;
@@ -18,7 +18,6 @@ import java.io.Serializable;
 public class ClazzDetailsVO extends Clazz implements Serializable {
     private String employeeId; //管理人员编号
     private byte role; //0 班主任 1 辅导员
-    private byte status; //0 正常 1 离开
 }
 
 

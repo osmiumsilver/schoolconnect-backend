@@ -3,7 +3,6 @@ package com.osmium.schoolconnect.backend;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Author
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan("com.osmium.schoolconnect.backend.mapper")
 
-public class SchoolConnectAuthApplication{
+public class SchoolConnectAuthApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SchoolConnectAuthApplication.class, args);

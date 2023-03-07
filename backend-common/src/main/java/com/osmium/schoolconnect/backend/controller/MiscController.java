@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MiscController {
 
     @GetMapping("/carousel")
-    public String getCarousel(){
-       return "ok";
+    public String getCarousel() {
+        return "ok";
     }
 }

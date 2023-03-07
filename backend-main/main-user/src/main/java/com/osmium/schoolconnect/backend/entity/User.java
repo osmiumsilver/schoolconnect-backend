@@ -32,7 +32,7 @@ public class User implements Serializable {
     private byte role;  // 0:本校 1:非本校
 
     private byte status; //状态
-@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime createTime; //创建时间
 
@@ -40,5 +40,6 @@ public class User implements Serializable {
     private int schoolId;//所在学校ID
     @TableField("required_changing")
     private byte requiredChanging;//是否需要修改 0为不需要 1为需要 2为审核中
+
 
 }

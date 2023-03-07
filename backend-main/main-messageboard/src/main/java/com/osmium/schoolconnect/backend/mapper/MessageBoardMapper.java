@@ -1,7 +1,6 @@
 package com.osmium.schoolconnect.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.osmium.schoolconnect.backend.controller.MessageBoardController;
 import com.osmium.schoolconnect.backend.entity.MessageBoard;
 
 /**

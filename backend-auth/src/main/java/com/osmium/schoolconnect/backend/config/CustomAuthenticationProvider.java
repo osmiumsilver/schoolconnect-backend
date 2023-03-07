@@ -9,11 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +24,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final ILoginService iLoginService;
+
     public CustomAuthenticationProvider(ILoginService iLoginService) {
         this.iLoginService = iLoginService;
     }
@@ -40,8 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (StringUtils.isEmpty(username)) {
             authentication.setAuthenticated(false);
             throw new BadCredentialsException("未提供账号");
-        }
-        else return createAuthorization(authentication, iLoginService.loadUserByUsername(username));
+        } else return createAuthorization(authentication, iLoginService.loadUserByUsername(username));
     }
 
 

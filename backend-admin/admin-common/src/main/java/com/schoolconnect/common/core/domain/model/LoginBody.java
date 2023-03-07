@@ -1,14 +1,12 @@
 package com.schoolconnect.common.core.domain.model;
 
-import lombok.*;
+import lombok.Data;
 
 /**
  * 用户登录对象
-
  */
 @Data
-public class LoginBody
-{
+public class LoginBody {
     /**
      * 用户名
      */

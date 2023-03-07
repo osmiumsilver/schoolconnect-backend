@@ -1,7 +1,8 @@
-package com.osmium.schoolconnect.backend.controller;
+package com.osmium.schoolconnect.backend.controller.basic;
 
 import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.service.IClazzService;
+import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
  */
 
 @RestController
+@SuperAccess
 @RequestMapping("/class/class")
 public class ClazzController {
     private final IClazzService iClazzService;
@@ -29,7 +31,6 @@ public class ClazzController {
     public List<Clazz> queryAllClazzes() {
         return iClazzService.list();
     }
-
 
 
     @Operation(summary = "添加班级")

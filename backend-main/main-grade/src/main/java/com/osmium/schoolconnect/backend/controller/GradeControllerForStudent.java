@@ -1,11 +1,11 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.osmium.schoolconnect.backend.entity.vo.GradeVO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.service.IGradeService;
-import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolationAnnotation;
-import com.osmium.schoolconnect.backend.utils.annotations.SuperAccessAnnotation;
-import com.osmium.schoolconnect.backend.utils.annotations.TeacherOnlyAccessAnnotation;
+import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
+import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +26,11 @@ public class GradeControllerForStudent {
     public GradeControllerForStudent(IGradeService iGradeService) {
         this.iGradeService = iGradeService;
     }
+
     @Operation(summary = "学生根据学号查询自己成绩")
-    @GetMapping("/getMyGrade")
-    @SuperAccessAnnotation
-    @AccessIsolationAnnotation
-    public List<GradeVO> getGradeById(@RequestParam String userId, @RequestParam(required = false) String year, @RequestParam(required = false) String semester) {
-        return iGradeService.listGradeByUserId(userId, year, semester);
+    @GetMapping("/getmygrade")
+    @AccessIsolation
+    public List<GradeVO> getGradeById(Authentication authentication, @RequestParam(required = false) String year, @RequestParam(required = false) String semester) {
+        return iGradeService.listGradeByUserId(authentication.getName(), year, semester);
     }
 }

@@ -1,4 +1,4 @@
-package com.osmium.schoolconnect.backend.entity.vo;
+package com.osmium.schoolconnect.backend.entity.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @TableName("t_user")
 public class UserInfoRevisionVO {
-    @TableId(value = "id",type = IdType.NONE)
+    @TableId(value = "id", type = IdType.NONE)
     private String id;
     private byte requiredChanging;
 

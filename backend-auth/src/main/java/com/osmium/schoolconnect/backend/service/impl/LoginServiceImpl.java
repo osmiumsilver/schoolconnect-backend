@@ -6,7 +6,6 @@ import com.osmium.schoolconnect.backend.mapper.LoginMapper;
 import com.osmium.schoolconnect.backend.misc.APIException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
-import jakarta.validation.UnexpectedTypeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -16,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,14 +31,13 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
 //    QueryWrapper<Login> wrapper;
 
     @Override //实现Security的load用户名功能
-    public UserDetails loadUserByUsername(String username) {
-         Login loginUser = baseMapper.getUserById(username);
-         if(loginUser == null)
-         {
-                 throw new APIException(ResultCode.AUTH_NO_SUCH_USER);
-         }
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Login loginUser = baseMapper.getUserById(username);
+        if (loginUser == null) {
+            throw new APIException(ResultCode.AUTH_NO_SUCH_USER);
+        }
         Optional<List<GrantedAuthority>> authorities = Optional.of(AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.getAuthorities().toString()));
         return new User(loginUser.getUsername(), loginUser.getPassword(), authorities.get());
-        }
     }
+}
 

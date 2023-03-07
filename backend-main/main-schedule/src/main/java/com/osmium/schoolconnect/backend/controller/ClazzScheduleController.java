@@ -2,6 +2,8 @@ package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.ClazzSchedule;
 import com.osmium.schoolconnect.backend.service.IClazzScheduleService;
+import com.osmium.schoolconnect.backend.utils.annotations.AdministrativeAccess;
+import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,7 @@ public class ClazzScheduleController {
     }
 
     @Operation(summary = "添加课表安排")
+    @AdministrativeAccess
     @PostMapping
     public Boolean addToClazzSchedule(@RequestBody List<ClazzSchedule> clazzSchedule) {
         return iClazzScheduleService.saveBatch(clazzSchedule);
@@ -37,6 +40,7 @@ public class ClazzScheduleController {
     }
 
     @Operation(summary = "修改课表安排")
+    @AdministrativeAccess
     @PutMapping
     public Boolean modifyClazzSchedule(@RequestBody List<ClazzSchedule> clazzSchedule) {
         return iClazzScheduleService.updateBatchById(clazzSchedule);
@@ -44,6 +48,7 @@ public class ClazzScheduleController {
     }
 
     @Operation(summary = "删除课表安排")
+    @AdministrativeAccess
     @DeleteMapping
     public Boolean deleteClazzSchedule(@RequestBody List<ClazzSchedule> clazzSchedule) {
         return iClazzScheduleService.removeBatchByIds(clazzSchedule);

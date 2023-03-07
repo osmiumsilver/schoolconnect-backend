@@ -1,12 +1,10 @@
 package com.osmium.schoolconnect.backend.config;
 
-import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.OpenAPI;
 import org.springdoc.core.models.GroupedOpenApi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,17 +17,16 @@ import org.springframework.context.annotation.Configuration;
 public class OpenAPIConfig {
 
 
-
     //配置了Swagger的Docker的Bean实例
     @Bean
-    public GroupedOpenApi docket(){
+    public GroupedOpenApi docket() {
         return GroupedOpenApi.builder()
                 .group("schoolconnect")
                 .pathsToMatch("/**")
-  //              .apiInfo(apiInfo())
-  //              .enable(true) //配置是否启用Swagger，如果是false，在浏览器将无法访问
-   //             .select()// 通过.select()方法，去配置扫描接口,RequestHandlerSelectors配置如何扫描接口
- //               .apis(RequestHandlerSelectors.basePackage("com.osmium.schoolconnect.backend.controller"))
+                //              .apiInfo(apiInfo())
+                //              .enable(true) //配置是否启用Swagger，如果是false，在浏览器将无法访问
+                //             .select()// 通过.select()方法，去配置扫描接口,RequestHandlerSelectors配置如何扫描接口
+                //               .apis(RequestHandlerSelectors.basePackage("com.osmium.schoolconnect.backend.controller"))
                 .build();
     }
 

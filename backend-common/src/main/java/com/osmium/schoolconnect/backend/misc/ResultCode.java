@@ -1,8 +1,6 @@
 package com.osmium.schoolconnect.backend.misc;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 public enum ResultCode implements StatusCode {
@@ -13,11 +11,10 @@ public enum ResultCode implements StatusCode {
     RETURN("999", "返回信息"),
 
 
-
     //SYS ERROR
     SYS_FAIL_NULL_POINTER("5001", "系统出错：空指针异常"),
     SYS_NOT_UNIMPLEMENTED("5002", "暂未实现"),
-    SYS_TIME_CONVERSION_ERROR("5003","时间转换错误"),
+    SYS_TIME_CONVERSION_ERROR("5003", "时间转换错误"),
 
 
     //USER REQUEST ERROR
@@ -68,7 +65,7 @@ public enum ResultCode implements StatusCode {
     DATA_RES_EXHAUST("1311", "数据资源已用尽"),
     DATA_REQ_REPEAT("1312", "重复请求~"),
 
-    DATA_MANIPULATION_ERROR("1313","数据操纵错误"),
+    DATA_MANIPULATION_ERROR("1313", "数据操纵错误"),
 
 
     // REMOTE ERROR
@@ -94,7 +91,7 @@ public enum ResultCode implements StatusCode {
     GRADE_MODIFY_ERROR("1602", "成绩修改失败"),
     GRADE_DELETE_ERROR("1602", "成绩删除失败"),
 
-    MYBATIS_ERROR("1701","MyBatis 出错");
+    MYBATIS_ERROR("1701", "MyBatis 出错");
 
     private final String code;
     private final String msg;

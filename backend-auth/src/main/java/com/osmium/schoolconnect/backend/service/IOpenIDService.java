@@ -5,7 +5,7 @@ import com.osmium.schoolconnect.backend.entity.OpenID;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author abel

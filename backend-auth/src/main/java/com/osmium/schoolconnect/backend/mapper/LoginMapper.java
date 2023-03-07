@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
  * @Date 2022/12/7
  * @Description
  */
-public interface LoginMapper extends BaseMapper<Login>{
+public interface LoginMapper extends BaseMapper<Login> {
 
     //Login findByUsername(@Param("username") String username);
     //@Select("select * from t_login where username=#{username} and password=#{password}")

@@ -16,13 +16,13 @@ import java.util.List;
  */
 @Service
 public class ClazzScheduleImpl extends ServiceImpl<ClazzScheduleMapper, ClazzSchedule> implements IClazzScheduleService {
-public List<ClazzSchedule> listClazzScheduleByClazz(String classNo,String year,String semester) {
-    QueryWrapper<ClazzSchedule> clazzScheduleQueryWrapper = new QueryWrapper<>();
-    clazzScheduleQueryWrapper.eq("class_no", classNo);
-    clazzScheduleQueryWrapper.like("year", year);
-    clazzScheduleQueryWrapper.like("semester", semester);
-    return baseMapper.selectList(clazzScheduleQueryWrapper);
-}
+    public List<ClazzSchedule> listClazzScheduleByClazz(String classNo, String year, String semester) {
+        QueryWrapper<ClazzSchedule> clazzScheduleQueryWrapper = new QueryWrapper<>();
+        clazzScheduleQueryWrapper.eq("class_no", classNo);
+        clazzScheduleQueryWrapper.like("year", year);
+        clazzScheduleQueryWrapper.like("semester", semester);
+        return baseMapper.selectList(clazzScheduleQueryWrapper);
+    }
 
     @Override
     public List<ClazzSchedule> listScheduleByTeacher(String userId, String year, String semester) {

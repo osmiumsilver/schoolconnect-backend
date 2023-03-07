@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface ClazzScheduleMapper extends BaseMapper<ClazzSchedule> {
 
-    @Select("select t_class_schedule.id,class_no,weeks,lessons,year,semester from t_class_schedule JOIN t_course_teacher ON t_class_schedule.course_no = t_course_teacher.course_no WHERE teacher_id=#{userId} AND year=#{year} AND semester=#{semester}")
+    @Select("select t_class_schedule.* from t_class_schedule JOIN t_course ON t_class_schedule.course_no = t_course.course_no WHERE course_teacher=#{userId} AND year=#{year} AND semester=#{semester}")
     List<ClazzSchedule> listScheduleByTeacher(String userId, String year, String semester);
 }

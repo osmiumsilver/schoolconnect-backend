@@ -7,9 +7,9 @@
         <artifactId>backend-parent</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
-<!--    <groupId>com.osmium.schoolconnect.backend.auth</groupId>-->
+    <!--    <groupId>com.osmium.schoolconnect.backend.auth</groupId>-->
     <artifactId>backend-oauth2-resource-server</artifactId>
-<!--    <name>oauth2-resource-server</name>-->
+    <!--    <name>oauth2-resource-server</name>-->
     <description>OAuth2 Resource Server for SchoolConnect</description>
     <build>
         <plugins>

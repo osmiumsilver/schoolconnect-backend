@@ -8,12 +8,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author Abel
- * @Date 2023/3/5
- * @Description 超管权限 SUPER ACCESS 上帝模式哈哈
+ * @Author
+ * @Date 2023/3/6
+ * @Description
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize(value = "hasRole('ROLE_SUPER')")
-public @interface SuperAccessAnnotation {
+@PreAuthorize(value = "hasRole('ADMINISTRATIVE')")
+public @interface AdministrativeAccessOnly {
 }

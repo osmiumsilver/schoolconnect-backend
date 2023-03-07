@@ -4,11 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WelcomeController
-{
+public class WelcomeController {
     @RequestMapping("/")
-    public String index()
-    {
-       return "ok";
+    public String index() {
+        return "ok";
     }
 }

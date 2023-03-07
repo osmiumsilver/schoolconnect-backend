@@ -2,10 +2,8 @@ package com.schoolconnect.common.constant;
 
 /**
  * 缓存的key 常量
-
  */
-public class CacheConstants
-{
+public class CacheConstants {
     /**
      * 登录用户 redis key
      */

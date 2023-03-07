@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class DepartmentInfo implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    @TableId(value = "department_no",type = IdType.AUTO)
+    @TableId(value = "department_no", type = IdType.AUTO)
     private String departmentNo;
     private String departmentName;
 

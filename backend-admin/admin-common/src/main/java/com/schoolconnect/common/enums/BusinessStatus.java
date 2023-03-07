@@ -1,7 +1,6 @@
 package com.schoolconnect.common.enums;
 
-public enum BusinessStatus
-{
+public enum BusinessStatus {
     SUCCESS,
     FAIL,
 }

@@ -2,7 +2,6 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
-import com.osmium.schoolconnect.backend.entity.CampaignInfo;
 
 /**
  * @Author

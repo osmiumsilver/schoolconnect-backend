@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @Getter
 @ToString
-public enum HTTPStatusCode implements StatusCode{
+public enum HTTPStatusCode implements StatusCode {
     //1xx: Informational
     CONTINUE("100", "Continue"),
     SWITCHING_PROTOCOLS("101", "Switching Protocols"),
@@ -91,10 +91,9 @@ public enum HTTPStatusCode implements StatusCode{
     }
 
 
-
     public static HTTPStatusCode getByCode(String code) {
-        for(HTTPStatusCode status : values()) {
-            if(Objects.equals(status.code, code)) return status;
+        for (HTTPStatusCode status : values()) {
+            if (Objects.equals(status.code, code)) return status;
         }
         throw new IllegalArgumentException("Invalid status code: " + code);
     }

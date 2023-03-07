@@ -20,15 +20,15 @@ public class ClazzSchedule implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId
     private String id;
-    @TableField("class_id")
-    private String classId;
+    private String classNo;
 
-    @TableField("course_no")
     private String courseNo;
 
-    @TableField("weeks")
-    private byte weeks;
 
-    @TableField("lessons")
-    private byte lessons;
+    private byte dayOfWeek;
+
+    private byte period;
+
+    private int year;
+    private byte semester;
 }

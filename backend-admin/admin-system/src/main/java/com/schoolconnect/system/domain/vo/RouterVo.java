@@ -1,18 +1,16 @@
 package com.schoolconnect.system.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.Data;
 
 import java.util.List;
 
 /**
  * 路由配置信息
-
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class RouterVo
-{
+public class RouterVo {
     /**
      * 路由名字
      */

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @TableName("t_campaign_info")
 public class CampaignInfo {
-    @TableId(value = "id",type = IdType.NONE)
+    @TableId(value = "id", type = IdType.NONE)
     private String id;
     private String campaignName;
     private String campaignDescription;

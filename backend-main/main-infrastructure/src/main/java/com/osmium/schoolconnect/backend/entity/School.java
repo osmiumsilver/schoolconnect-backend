@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class School implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-@TableId
+    @TableId
     private String schoolId;
     private String schoolName;
 }

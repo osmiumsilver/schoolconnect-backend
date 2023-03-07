@@ -9,8 +9,7 @@ import org.springframework.security.core.userdetails.User;
  * @Description
  */
 public class UserUtils {
-    public static User getLoginUserName()
-    {
+    public static User getLoginUserName() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
     }
 }

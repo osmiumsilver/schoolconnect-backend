@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @Data
 @TableName("t_message_board")
 public class MessageBoard {
-    @TableId(value = "id",type = IdType.NONE)
+    @TableId(value = "id", type = IdType.NONE)
     private String id;
-private String title;
+    private String title;
     private String body;
 
     private String assignedDepartment;

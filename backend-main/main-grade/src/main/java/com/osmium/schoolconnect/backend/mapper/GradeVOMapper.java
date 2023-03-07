@@ -1,7 +1,7 @@
 package com.osmium.schoolconnect.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.osmium.schoolconnect.backend.entity.vo.GradeVO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 
 /**
  * @Author

@@ -10,6 +10,7 @@ import java.util.List;
  * @Date 2023/3/1
  * @Description
  */
-public interface IMessageBoardService extends IService<MessageBoard>  {
+public interface IMessageBoardService extends IService<MessageBoard> {
 
+    List<MessageBoard> listMessagesSendByMe(String name);
 }

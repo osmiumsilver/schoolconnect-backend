@@ -7,10 +7,10 @@
         <artifactId>backend-parent</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
-<!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
+    <!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
     <artifactId>backend-auth</artifactId>
-<!--    <version>0.0.1-SNAPSHOT</version>-->
-<!--    <name>auth</name>-->
+    <!--    <version>0.0.1-SNAPSHOT</version>-->
+    <!--    <name>auth</name>-->
     <description>Auth Module for SchoolConnect</description>
     <packaging>war</packaging>
     <dependencies>

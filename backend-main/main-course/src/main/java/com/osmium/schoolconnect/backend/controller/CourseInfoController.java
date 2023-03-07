@@ -1,53 +1,40 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import cn.hutool.json.JSONObject;
-import com.osmium.schoolconnect.backend.entity.CourseInfo;
-import com.osmium.schoolconnect.backend.misc.Result;
-import com.osmium.schoolconnect.backend.misc.ResultCode;
-import com.osmium.schoolconnect.backend.service.ICourseInfoService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import org.springframework.web.bind.annotation.*;
+import com.osmium.schoolconnect.backend.entity.Course;
+import com.osmium.schoolconnect.backend.service.ICourseService;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
  * @Author
- * @Date 2023/2/19
+ * @Date 2023/3/7
  * @Description
  */
 @RestController
-@RequestMapping("/course/detail")
+@RequestMapping("/course")
 public class CourseInfoController {
-    private final ICourseInfoService iCourseInfoService;
+    private final ICourseService iCourseService;
 
-    public CourseInfoController(ICourseInfoService iCourseInfoService) {
-        this.iCourseInfoService = iCourseInfoService;
+    public CourseInfoController(ICourseService iCourseService) {
+        this.iCourseService = iCourseService;
     }
 
-    //@GetMapping
-    //public List<CourseInfo> getAllCoursesInfo() {
-    //    return iCourseInfoService.list();
-    //}
-
+    @Operation(summary = "查询该老师所教课程")
     @GetMapping
-    public List<CourseInfo> getCoursesByTeacher(@RequestParam String userId)
-    {
-        return iCourseInfoService.getCoursesByTeacher(userId);
+            ("/by_teacher")
+    public List<Course> listCoursesTaughtByTeacher(@RequestParam String userId) {
+        return iCourseService.listCoursesTaughtByTeacher(userId);
     }
 
-    @PostMapping
-    public Boolean addCoursesInfo(@RequestBody List<CourseInfo> courses) {
-       return iCourseInfoService.saveBatch(courses);
-    }
+    @Operation(summary = "根据课程号获取课程信息")
 
-    @PutMapping
-    public Boolean updateCoursesInfo(@RequestBody List<CourseInfo> courses) {
-       return iCourseInfoService.updateBatchById(courses);
-    }
-
-    @DeleteMapping
-    public Boolean deleteCoursesInfo(@RequestBody List<CourseInfo> courses) {
-        return iCourseInfoService.removeBatchByIds(courses);
-
+    @GetMapping("/by_course")
+    public Course getCourseById(@RequestParam String courseId) {
+        return iCourseService.getById(courseId);
     }
 }

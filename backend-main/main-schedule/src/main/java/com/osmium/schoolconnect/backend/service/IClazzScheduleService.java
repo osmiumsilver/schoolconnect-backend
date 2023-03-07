@@ -12,5 +12,6 @@ import java.util.List;
  */
 public interface IClazzScheduleService extends IService<ClazzSchedule> {
     List<ClazzSchedule> listClazzScheduleByClazz(String classNo, String year, String semester);
-    List<ClazzSchedule> listScheduleByTeacher(String userId,String year,String semester);
+
+    List<ClazzSchedule> listScheduleByTeacher(String userId, String year, String semester);
 }

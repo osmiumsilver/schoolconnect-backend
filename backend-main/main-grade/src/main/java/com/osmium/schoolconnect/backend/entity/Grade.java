@@ -31,6 +31,9 @@ public class Grade implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime importDate; //导入时间
 
+    @TableField("awaiting_revision")
+    private byte awaitingRevision;
+
 }
 
 

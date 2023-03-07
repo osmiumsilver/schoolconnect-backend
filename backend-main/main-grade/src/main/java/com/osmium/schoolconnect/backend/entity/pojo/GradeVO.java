@@ -1,4 +1,4 @@
-package com.osmium.schoolconnect.backend.entity.vo;
+package com.osmium.schoolconnect.backend.entity.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

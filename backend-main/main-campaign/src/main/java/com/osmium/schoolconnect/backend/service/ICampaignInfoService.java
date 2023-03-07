@@ -13,5 +13,5 @@ import java.util.List;
 public interface ICampaignInfoService extends IService<CampaignInfo> {
     List<CampaignInfo> listCampaignsByLauncher(String campaignLauncher);
 
-    List<CampaignInfo> getAllCampaigns();
+    List<CampaignInfo> getOngoingCampaigns();
 }

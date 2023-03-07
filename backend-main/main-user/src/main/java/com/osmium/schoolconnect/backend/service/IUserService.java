@@ -2,7 +2,6 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.User;
-import com.osmium.schoolconnect.backend.entity.vo.UserInfoRevisionVO;
 
 import java.util.List;
 
@@ -17,7 +16,6 @@ import java.util.List;
 public interface IUserService extends IService<User> {
 
     List<User> getEmployeesWaitingToBeReviewedByManagerID(String employeeId);
-
 
 
 }

@@ -2,13 +2,19 @@
 
 用现代的技术栈 编写一个学校信息管理系统
 
-Java 17 + Spring Boot 3.0.2 + Spring Security 6.0.1 + Spring Security OAuth2 Resource Server +Jwt EasyAuth™️ (by Nimbus JOSE + JWT)
+Java 17 + Spring Boot 3.0.2 + Spring Security 6.0.1 w/ OAuth2 Resource Server + Jwt EasyAuth™️ (by Nimbus JOSE + JWT)
 
-做这个项目的主要目的是尝试使用最新的技术，最新的语法，最少的代码
+Undertow Servlet + MyBatis-Plus + HikariCP + Ruoyi-Vue
 
-The main purpose of doing this project is to try to adopt the latest technology and the syntax brought by Java 17 and Spring Boot 3.x, reduce boilerplate code and the complexity as much as possible.
+数据持久化 MariaDB + Redis
+
+做这个项目的主要目的是尝试使用最新的技术与最新的语法，写最少的代码的同时能完成更多工作。
+
+The main purpose of doing this project is to try to adopt the latest technology and the syntax brought by Java 17 and
+Spring Boot 3.x, reduce boilerplate code and the complexity as much as possible.
 
 本系统的主要模块包括：
+
 1. 身份绑定：该小程序获取用户微信名称与头像等相关信息 在初次登录时，通过将微信账户与教工或学生在系统中的身份账户直接绑定，微信直接打开小程序则自动登录，立即使用小程序的各类功能。
 2. 个人信息管理模块：用户可在个人信息页面设置和修改个人的信息，如姓名、电话、地址等。
 3. 学籍管理：该功能可以实现学生查看自己并维护的学籍信息，方便教师以及教务员对学生信息的收集与整理。

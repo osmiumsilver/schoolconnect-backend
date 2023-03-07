@@ -2,6 +2,8 @@ package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.ClazzManagerInfo;
 import com.osmium.schoolconnect.backend.service.IClazzManagerInfoService;
+import com.osmium.schoolconnect.backend.service.IClazzService;
+import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +17,21 @@ import java.util.List;
  */
 
 @RestController
+@SuperAccess
 @RequestMapping("/class/manager")
 public class ClazzManagerController {
     private final IClazzManagerInfoService iClazzManagerInfoService;
+    private final IClazzService iClazzService;
 
-    public ClazzManagerController(IClazzManagerInfoService iClazzManagerInfoService) {
+    public ClazzManagerController(IClazzManagerInfoService iClazzManagerInfoService, IClazzService iClazzService) {
         this.iClazzManagerInfoService = iClazzManagerInfoService;
+        this.iClazzService = iClazzService;
     }
 
-    @Operation(summary = "获取班级下的管理人员")
+    @Operation(summary = "获取班级下的负责人")
     @GetMapping
-    public List<ClazzManagerInfo> getClazzManagersByClazz() {
-        return iClazzManagerInfoService.list();
+    public List<ClazzManagerInfo> getClazzManagersByClazz(@RequestParam List<String> clazzId) {
+        return iClazzService.listClazzManagersByClazz(clazzId);
     }
 
     @Operation(summary = "添加班级管理人员")

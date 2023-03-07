@@ -1,14 +1,9 @@
 package com.osmium.schoolconnect.backend.misc;
 
 
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,7 +12,7 @@ import java.io.Serializable;
 @Data
 @ToString
 //public class Result<T> extends ResponseEntity<T> implements Serializable  {
-    public class Result<T> implements Serializable  {
+public class Result<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4418416282894231647L;
@@ -29,11 +24,10 @@ import java.io.Serializable;
     private T data;
 
 
-
-
     /**
      * 成功,默认状态码,无返回消息,无返回数据
-     * @param <T>  返回类泛型,不能为String
+     *
+     * @param <T> 返回类泛型,不能为String
      * @return 通用返回Result
      */
     public static <T> Result<T> success() {
@@ -74,7 +68,7 @@ import java.io.Serializable;
         return new Result<>(msg, data);
     }
 
- ///// ------ FAIL 丅
+    ///// ------ FAIL 丅
 
     /**
      * 失败,默认状态码,返回消息,无返回数据
@@ -116,8 +110,8 @@ import java.io.Serializable;
      * @param <T>  返回类泛型
      * @return 通用返回Result
      */
-    public static <T> Result<T> error(String code, String msg,T data) {
-        return new Result<>(code, msg,data);
+    public static <T> Result<T> error(String code, String msg, T data) {
+        return new Result<>(code, msg, data);
     }
 
     /**
@@ -145,8 +139,8 @@ import java.io.Serializable;
      * @param <T>        返回类泛型
      * @return 通用返回Result
      */
-    public static <T> Result<T> error(ResultCode resultCode,T data) {
-        return new Result<>(resultCode,data);
+    public static <T> Result<T> error(ResultCode resultCode, T data) {
+        return new Result<>(resultCode, data);
     }
 
 // ------------------ 私有构造
@@ -158,7 +152,6 @@ import java.io.Serializable;
     private Result() {
         this(ResultCode.SUCCESS);
     }
-
 
 
     /**
@@ -239,8 +232,6 @@ import java.io.Serializable;
         this(resultCode);
         this.data = data;
     }
-
-
 
 
 }

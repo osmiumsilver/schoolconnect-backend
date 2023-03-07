@@ -22,28 +22,27 @@
     <!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
     <artifactId>backend-main</artifactId>
 
-<dependencies>
-    <dependency>
-        <groupId>com.osmium.schoolconnect</groupId>
-        <artifactId>backend-common</artifactId>
-        <version>${project.parent.version}</version>
-    </dependency>
-</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.osmium.schoolconnect</groupId>
+            <artifactId>backend-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 
     <!--    <repositories>在也用不上了 因为给3。0用的稳定版的mbp已经出来了-->
-<!--        <repository>-->
-<!--            <id>ossrh</id>-->
-<!--            <name>OSS Snapshot repository</name>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--            <releases>-->
-<!--                <enabled>false</enabled>-->
-<!--            </releases>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--    </repositories>-->
-
+    <!--        <repository>-->
+    <!--            <id>ossrh</id>-->
+    <!--            <name>OSS Snapshot repository</name>-->
+    <!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+    <!--            <releases>-->
+    <!--                <enabled>false</enabled>-->
+    <!--            </releases>-->
+    <!--            <snapshots>-->
+    <!--                <enabled>true</enabled>-->
+    <!--            </snapshots>-->
+    <!--        </repository>-->
+    <!--    </repositories>-->
 
 
 </project>
