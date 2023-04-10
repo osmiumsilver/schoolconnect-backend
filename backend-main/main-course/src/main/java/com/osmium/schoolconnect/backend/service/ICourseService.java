@@ -18,4 +18,5 @@ public interface ICourseService extends IService<Course> {
     List<Course> listCoursesTaughtByTeacher(String userId);
 
 
+    List<String> listClazzesTaughtByTeacher(String name);
 }

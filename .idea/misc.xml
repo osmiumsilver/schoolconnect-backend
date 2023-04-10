@@ -13,6 +13,11 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/backend-admin/admin-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/admin-common/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/admin-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/admin-system/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/pom.xml" />
         <option value="$PROJECT_DIR$/bootstrap/pom.xml" />
         <option value="$PROJECT_DIR$/oauth2-resource-server/pom.xml" />
       </set>

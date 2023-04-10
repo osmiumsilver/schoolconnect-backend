@@ -1,6 +1,6 @@
 package com.osmium.schoolconnect.backend.config;
 
-import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
 import jakarta.annotation.Resource;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
+    @Resource
     private final ILoginService iLoginService;
 
     public CustomAuthenticationProvider(ILoginService iLoginService) {
@@ -51,17 +52,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             return token;
         } else {
             token.setAuthenticated(false);
-            throw new APIException(ResultCode.AUTH_LOGIN_USER_PWD_ERR);
+            throw new BadCredentialsException(ResultCode.AUTH_LOGIN_USER_PWD_ERR.getMsg());
 
         }
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication.equals( //复写Provider为UsernamePasswordAuthentication
-                UsernamePasswordAuthenticationToken.class);
+        return  UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
-    //放在下面看看 这是不太对的代码
+    //放在下面参考 现在用不到
     //private Authentication tryAuthWithDatabase(final String username,final String password){
     // UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken();
     //    return UsernamePasswordAuthenticationToken.unauthenticated(username, password);

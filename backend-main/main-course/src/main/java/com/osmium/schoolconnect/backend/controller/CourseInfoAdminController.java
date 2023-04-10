@@ -5,6 +5,7 @@ import com.osmium.schoolconnect.backend.service.ICourseService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/course")
+@Tag(name = "课程信息管理员")
 public class CourseInfoAdminController {
     private final ICourseService iCourseService;
 

@@ -3,7 +3,8 @@ package com.osmium.schoolconnect.backend.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Login;
 import com.osmium.schoolconnect.backend.mapper.LoginMapper;
-import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.misc.AuthException;
+import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author
@@ -33,11 +34,11 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
     @Override //实现Security的load用户名功能
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Login loginUser = baseMapper.getUserById(username);
-        if (loginUser == null) {
-            throw new APIException(ResultCode.AUTH_NO_SUCH_USER);
-        }
-        Optional<List<GrantedAuthority>> authorities = Optional.of(AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.getAuthorities().toString()));
-        return new User(loginUser.getUsername(), loginUser.getPassword(), authorities.get());
+        if (loginUser == null)
+        {throw new AuthException(ResultCode.AUTH_NO_SUCH_USER);}
+        else{
+        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(loginUser.getAuthorities().toString());
+        return new User(loginUser.getUsername(), loginUser.getPassword(), authorities);}
     }
 }
 

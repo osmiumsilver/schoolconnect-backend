@@ -3,6 +3,7 @@ package com.osmium.schoolconnect.backend.controller;
 import com.osmium.schoolconnect.backend.entity.Course;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/course")
+@Tag(name = "课程信息")
 public class CourseInfoController {
     private final ICourseService iCourseService;
 

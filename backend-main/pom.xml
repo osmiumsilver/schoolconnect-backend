@@ -18,6 +18,7 @@
         <module>main-course</module>
         <module>main-user</module>
         <module>main-messageboard</module>
+        <module>main-campusrepair</module>
     </modules>
     <!--    <groupId>com.osmium.schoolconnect.backend</groupId>-->
     <artifactId>backend-main</artifactId>

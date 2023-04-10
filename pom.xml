@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.5</version>
         <relativePath/> <!--		lookup parent from repository -->
     </parent>
     <groupId>com.osmium.schoolconnect</groupId>
@@ -27,7 +27,6 @@
         <module>backend-main</module>
         <module>backend-oauth2-resource-server</module>
         <module>backend-common</module>
-        <module>backend-admin</module>
 
     </modules>
     <dependencies>
@@ -36,7 +35,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+<!--        超级新式的GraphQL 我要尝试用一用这个看看能不能简化api开发-->
+        <dependency>
+            <groupId>com.netflix.graphql.dgs</groupId>
+            <artifactId>graphql-dgs-spring-boot-starter</artifactId>
+        </dependency>
 
         <!--也许我以后会用上kotlin-->
         <!--	<dependency>-->
@@ -48,7 +51,7 @@
         <!--		<artifactId>kotlin-stdlib-jdk8</artifactId>-->
         <!--	</dependency>-->
 
-        <!--	SpringFox is ded 已经死了 :)-->
+        <!--	SpringFox is ded 已经mei了 :)-->
         <!--	<dependency>-->
         <!--		<groupId>io.springfox</groupId>-->
         <!--		<artifactId>springfox-boot-starter</artifactId>-->
@@ -57,12 +60,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.taobao.arthas</groupId>
-            <artifactId>arthas-spring-boot-starter</artifactId>
-            <version>3.4.8</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
@@ -151,6 +148,19 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.netflix.graphql.dgs</groupId>
+                <artifactId>graphql-dgs-platform-dependencies</artifactId>
+                <!-- The DGS BOM/platform dependency. This is the only place you set version of DGS -->
+                <version>4.9.16</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <!--			<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>-->
         <!--			<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>-->

@@ -17,11 +17,13 @@ import java.util.List;
 @Service
 public class ClazzScheduleImpl extends ServiceImpl<ClazzScheduleMapper, ClazzSchedule> implements IClazzScheduleService {
     public List<ClazzSchedule> listClazzScheduleByClazz(String classNo, String year, String semester) {
-        QueryWrapper<ClazzSchedule> clazzScheduleQueryWrapper = new QueryWrapper<>();
-        clazzScheduleQueryWrapper.eq("class_no", classNo);
-        clazzScheduleQueryWrapper.like("year", year);
-        clazzScheduleQueryWrapper.like("semester", semester);
-        return baseMapper.selectList(clazzScheduleQueryWrapper);
+        //QueryWrapper<ClazzSchedule> c = new QueryWrapper<>();
+        //c.eq("class_no", classNo);
+        //c.like("year", year);
+        //c.like("semester", semester);
+        //
+        //return baseMapper.selectList(c);
+        return baseMapper.selectScheduleDetailsByClazz(classNo,semester,year);
     }
 
     @Override

@@ -16,6 +16,8 @@ import java.io.Serializable;
 public class GradeVO extends Grade implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+    @TableField("name")
+    private String name;
 
     @TableField("course_name")
     private String courseName; //课程名称

@@ -1,9 +1,9 @@
 package com.osmium.schoolconnect.backend.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.osmium.schoolconnect.backend.entity.ClazzSchedule;
 import com.osmium.schoolconnect.backend.service.IClazzScheduleService;
 import com.osmium.schoolconnect.backend.utils.annotations.AdministrativeAccess;
-import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,13 @@ public class ClazzScheduleController {
     @Operation(summary = "根据班级ID查询课表")
     @GetMapping
     public List<ClazzSchedule> getClazzScheduleByClazz(@RequestParam String classNo, @RequestParam String year, @RequestParam String semester) {
-        return iClazzScheduleService.listClazzScheduleByClazz(classNo, year, semester);
+        var clazzSchedules = iClazzScheduleService.listClazzScheduleByClazz(classNo, year, semester);
+        for (ClazzSchedule clazzSchedule : clazzSchedules) {
+
+            clazzSchedule.setWeeks(JSONUtil.parseArray(clazzSchedule.getWeeks()));
+
+        }
+        return clazzSchedules;
     }
 
     @Operation(summary = "添加课表安排")

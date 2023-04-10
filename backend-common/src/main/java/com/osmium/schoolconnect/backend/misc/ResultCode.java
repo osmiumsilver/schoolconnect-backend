@@ -7,6 +7,7 @@ public enum ResultCode implements StatusCode {
 
     //GLOBAL
     SUCCESS("200", "请求成功"),
+    NOT_FOUND("404","不存在"),
     UNKNOWN("500", "未知错误"),
     RETURN("999", "返回信息"),
 
@@ -87,9 +88,6 @@ public enum ResultCode implements StatusCode {
     DB_INTEGRITY_CONSTRAINT("1503", "违反数据库约束(唯一,非空等)"),
     DB_LOST_CONNECTION("1505", "数据库连接失败"),
 
-    GRADE_ADD_ERROR("1601", "成绩添加失败"),
-    GRADE_MODIFY_ERROR("1602", "成绩修改失败"),
-    GRADE_DELETE_ERROR("1602", "成绩删除失败"),
 
     MYBATIS_ERROR("1701", "MyBatis 出错");
 

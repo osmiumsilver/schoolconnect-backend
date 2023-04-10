@@ -11,13 +11,13 @@ import lombok.Data;
  * @Description
  */
 @Data
-@TableName("t_campaign_attendees")
+@TableName("t_campaign_attendee")
 public class CampaignAttendee {
     @TableId(value = "id", type = IdType.NONE)
     private String id;
     private String campaignId;
-    private String userId;
-
+    private String attendeeId;
     private byte checkInStatus;
+    private String contactPhone;
 }
 

@@ -21,7 +21,7 @@ logging:
     file: "%d %-5level [%thread] %logger{0} : %msg%n"
   level:
     root: WARN
-    org.springframework.web: DEBUG
+    org.springframework.web: WARN
     org.springframework.security: DEBUG
 
 

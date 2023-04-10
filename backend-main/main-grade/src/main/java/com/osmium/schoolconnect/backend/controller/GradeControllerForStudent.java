@@ -5,6 +5,7 @@ import com.osmium.schoolconnect.backend.service.IGradeService;
 import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/grade")
+@Tag(name = "学生查询成绩")
 public class GradeControllerForStudent {
     private final IGradeService iGradeService;
 
@@ -28,8 +30,7 @@ public class GradeControllerForStudent {
     }
 
     @Operation(summary = "学生根据学号查询自己成绩")
-    @GetMapping("/getmygrade")
-    @AccessIsolation
+    @GetMapping("/get_my_grade")
     public List<GradeVO> getGradeById(Authentication authentication, @RequestParam(required = false) String year, @RequestParam(required = false) String semester) {
         return iGradeService.listGradeByUserId(authentication.getName(), year, semester);
     }

@@ -1,13 +1,17 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.User;
-import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.entity.pojo.UserPassVO;
+import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
+import com.osmium.schoolconnect.backend.service.ILoginService;
 import com.osmium.schoolconnect.backend.service.IUserService;
 import com.osmium.schoolconnect.backend.utils.SecurityUtils;
-import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,11 +21,16 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/user/info")
+@Tag(name = "用户信息用户"
+)
 public class UserInfoControllerForUsers {
     private final IUserService iUserService;
-
-    public UserInfoControllerForUsers(IUserService iUserService) {
+private final ILoginService iLoginService;
+final PasswordEncoder passwordEncoder;
+    public UserInfoControllerForUsers(IUserService iUserService, ILoginService iLoginService, PasswordEncoder passwordEncoder) {
         this.iUserService = iUserService;
+        this.iLoginService = iLoginService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Operation(summary = "用户端获取自身信息")
@@ -35,10 +44,18 @@ public class UserInfoControllerForUsers {
     @PutMapping
     public Boolean updateInfo(@RequestBody User newUser) {
         if(!newUser.getEmployeeId().equals(SecurityUtils.getUserId()))
-            throw new APIException(ResultCode.AUTH_NO_PERMISSION);
+            throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
+
         return iUserService.updateById(newUser);
     }
 
-
-
+@Operation(summary = "修改个人密码")
+    @PostMapping("/change")
+public Boolean changePassword(@RequestBody UserPassVO newUserPass) {
+    if(!newUserPass.getEmployeeId().equals(SecurityUtils.getUserId()))
+        throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
+    if(!passwordEncoder.matches(newUserPass.getOldPass(),iLoginService.getById(newUserPass.getEmployeeId()).getPassword()))
+        throw new RequestException(ResultCode.AUTH_PWD_ERR);
+    return iLoginService.updatePassword(newUserPass.getEmployeeId(),passwordEncoder.encode(newUserPass.getNewPass()));
+}
 }

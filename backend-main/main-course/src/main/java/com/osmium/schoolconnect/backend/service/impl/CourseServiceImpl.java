@@ -20,6 +20,10 @@ import java.util.List;
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements ICourseService {
 
+    @Override
+    public List<String> listClazzesTaughtByTeacher(String name) {
+        return baseMapper.selectClazzesTaughtByTeacher(name);
+    }
 
     @Override
     public List<Course> listCoursesTaughtByTeacher(String userId) {

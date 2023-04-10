@@ -1,0 +1,11 @@
+type Query {
+    actorList: [Actor]
+    findOneActor(id : Int!): Actor
+}
+
+type Actor {
+    actorId: Int!
+    firstName: String!
+    lastName: String!
+    lastUpdate: String
+}

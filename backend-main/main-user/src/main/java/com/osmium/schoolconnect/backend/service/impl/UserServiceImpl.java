@@ -1,5 +1,6 @@
 package com.osmium.schoolconnect.backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.User;
 import com.osmium.schoolconnect.backend.mapper.UserMapper;
@@ -18,7 +19,6 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
-
 
     @Override
     public List<User> getEmployeesWaitingToBeReviewedByManagerID(String employeeId) {

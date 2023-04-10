@@ -6,30 +6,41 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import com.osmium.schoolconnect.backend.misc.FilterChainExceptionHandler;
-import jakarta.annotation.Resource;
+import com.osmium.schoolconnect.backend.misc.GlobalAuthenticationHandler;
+import com.osmium.schoolconnect.backend.misc.GlobalResponseExceptionHandler;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.io.IOException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.List;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
  * @Author Abel www.osmium.com
@@ -50,8 +61,7 @@ public class AuthSecurityConfiguration {
     @Value("${jwt.cert.key}")
     RSAPrivateKey key;
 
-    @Resource
-    private FilterChainExceptionHandler filterChainExceptionHandler;
+
    /*
     Completely bypass the filter and we dont use that here.
     */
@@ -62,17 +72,11 @@ public class AuthSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authz -> authz
-                        .anyRequest().permitAll()
-                )
-                //.addFilterBefore(filterChainExceptionHandler, LogoutFilter.class)
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**")) //CSRF Demo Disable
-                .httpBasic(Customizer.withDefaults()) //Basic方式授权
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(exceptions -> exceptions //Exception 处理
-                        .authenticationEntryPoint(new GlobalAuthenticationHandler.CustomizedAuthenticationEntryPoint())
-                        .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler())
-                );
+        http.authorizeHttpRequests(authz -> authz.requestMatchers("/auth/**").permitAll().requestMatchers("/auth/token").permitAll().requestMatchers("/auth/wxlogin").permitAll().anyRequest().permitAll()).csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**")) //CSRF Demo Disable
+                .httpBasic(withDefaults()) //Basic方式授权
+                .formLogin().disable().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).exceptionHandling(exceptions -> exceptions //Exception 处理
+                        .authenticationEntryPoint(new BasicAuthenticationEntryPoint())
+                        .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler()));
         return http.build();
     }
 
@@ -83,11 +87,7 @@ public class AuthSecurityConfiguration {
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, UserDetailsService userDetailsService, CustomAuthenticationProvider customAuthenticationProvider) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
-                .and()
-                .authenticationProvider(customAuthenticationProvider)
-                .build();
+        return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()).and().authenticationProvider(customAuthenticationProvider).build();
     }
 
 

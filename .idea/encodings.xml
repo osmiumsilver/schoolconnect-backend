@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/backend-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend-main/main-bootstrapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend-main/main-campaign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-main/main-campusrepair/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend-main/main-course/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend-main/main-grade/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend-main/main-infrastructure/src/main/java" charset="UTF-8" />

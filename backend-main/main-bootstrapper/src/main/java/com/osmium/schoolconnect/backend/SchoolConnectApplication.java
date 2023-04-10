@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan("com.osmium.schoolconnect.backend.mapper")
 @ComponentScan("com.osmium.schoolconnect")
+@ComponentScan("com.osmium.schoolconnect.backend.config")
+
 public class SchoolConnectApplication {
 
     public static void main(String[] args) {

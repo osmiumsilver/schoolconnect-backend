@@ -1,11 +1,10 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.MessageBoard;
-import com.osmium.schoolconnect.backend.misc.APIException;
+import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.IMessageBoardService;
 import com.osmium.schoolconnect.backend.utils.SecurityUtils;
-import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
 import com.osmium.schoolconnect.backend.utils.annotations.AdministrativeAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.security.core.Authentication;
@@ -42,10 +41,11 @@ public class MessageBoardController {
     @Operation(summary = "管理员添加公告")
     @AdministrativeAccess
     @PostMapping
-    public Boolean addMessage(@RequestBody MessageBoard m) {
-        if (!(m.getSender().equals(SecurityUtils.getUserId())))
-            throw new APIException(ResultCode.AUTH_NO_PERMISSION);
-        return iMessageBoardService.save(m);
+    public Boolean addMessage(@RequestBody MessageBoard message) {
+        if (!(message.getSender().equals(SecurityUtils.getUserId())))
+            throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
+
+        return iMessageBoardService.save(message);
     }
 
     @Operation(summary = "管理员修改公告")
@@ -53,7 +53,8 @@ public class MessageBoardController {
     @PutMapping
     public Boolean modifyMessage(@RequestBody MessageBoard m) {
         if (!(m.getSender().equals(SecurityUtils.getUserId())))
-            throw new APIException(ResultCode.AUTH_NO_PERMISSION);
+            throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
+
         return iMessageBoardService.updateById(m);
     }
     @Operation(summary = "管理员删除公告")
@@ -61,7 +62,8 @@ public class MessageBoardController {
     @DeleteMapping
     public Boolean deleteMessage(@RequestBody MessageBoard m) {
         if (!(m.getSender().equals(SecurityUtils.getUserId())))
-            throw new APIException(ResultCode.AUTH_NO_PERMISSION);
+            throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
+
         return iMessageBoardService.removeById(m);
     }
 }

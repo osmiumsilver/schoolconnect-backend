@@ -4,6 +4,7 @@ import com.osmium.schoolconnect.backend.entity.Grade;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.service.IGradeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 
 @RequestMapping("/grade/review")
+@Tag(name="成绩审核")
 public class GradeRevisionController {
     private final IGradeService iGradeService;
 

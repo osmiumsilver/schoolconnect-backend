@@ -40,7 +40,7 @@ public class TokenController {
     @PostMapping("/token")
     public Result<String> token(Authentication authentication, @RequestBody String access) { //我要签发JWT了
         Instant now = Instant.now();
-        long expiry = 36000L;
+        long expiry = 259200L;
         String scope = authentication.getAuthorities().stream()//使用Stream API来作一些提取
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
