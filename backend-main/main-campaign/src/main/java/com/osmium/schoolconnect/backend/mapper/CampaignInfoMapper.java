@@ -14,4 +14,7 @@ import java.util.List;
 public interface CampaignInfoMapper extends BaseMapper<CampaignInfo> {
     @Select("select * from t_campaign_info JOIN t_campaign_attendee ON t_campaign_attendee.campaign_id = t_campaign_info.id  WHERE t_campaign_attendee.attendee_id = #{user} AND t_campaign_info.campaign_status = #{status}")
     List<CampaignInfo> listCampaignsUserSignedUpFor(String user,Integer status);
+
+    @Select("select campaign_status from t_campaign_info WHERE id=#{campaignId}")
+    Byte selectByteForCampaignStatus(String campaignId);
 }

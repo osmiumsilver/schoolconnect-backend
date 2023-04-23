@@ -11,6 +11,7 @@ import com.osmium.schoolconnect.backend.mapper.ClazzVOMapper;
 import com.osmium.schoolconnect.backend.service.IClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @Description
  */
 @Service
+@Validated
 public class ClazzServiceImpl extends ServiceImpl<ClazzMapper, Clazz> implements IClazzService {
     private final ClazzVOMapper clazzVOMapper;
     private final ClazzManagerInfoMapper clazzManagerInfoMapper;

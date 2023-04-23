@@ -5,7 +5,6 @@ import com.osmium.schoolconnect.backend.entity.pojo.UserInfoRevisionVO;
 import com.osmium.schoolconnect.backend.service.IUserService;
 import com.osmium.schoolconnect.backend.service.UserInfoRevision;
 import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
-import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +18,7 @@ import java.util.List;
  * @Description 教务员审核信息
  */
 @RestController
-@RequestMapping("/user/info/review")
+@RequestMapping("/admin/user/info/review")
 @PreAuthorize("hasAnyAuthority('[SUPER]','[ADMINISTRATIVE]')")
 @Tag(name = "用户信息审核")
 public class UserInfoRevisionController {

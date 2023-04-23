@@ -14,6 +14,6 @@ import lombok.Data;
 public class GradeRevisionDTO {
     @TableId
     private String id;
-    private byte awaitingRevision;
+    private Byte awaitingRevision;
 
 }

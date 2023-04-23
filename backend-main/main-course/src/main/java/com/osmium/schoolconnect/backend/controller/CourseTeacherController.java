@@ -1,6 +1,5 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.security.core.Authentication;

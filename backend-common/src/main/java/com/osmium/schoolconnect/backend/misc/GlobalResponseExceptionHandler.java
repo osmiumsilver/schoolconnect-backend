@@ -16,9 +16,11 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -45,6 +47,12 @@ public class GlobalResponseExceptionHandler extends ResponseEntityExceptionHandl
     }
 
     @Override
+    protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        log.debug(ex.getMessage());
+        return new ResponseEntity<>(Result.error(ResultCode.PARAM_REQUIRED, ex.getLocalizedMessage()),HttpStatusCode.valueOf(405));
+    }
+
+    @Override
     @NotControllerResponseAdvice
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         log.error(ex.getMessage());
@@ -60,6 +68,11 @@ public class GlobalResponseExceptionHandler extends ResponseEntityExceptionHandl
     }
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<Result<String>> accessDeniedException(AccessDeniedException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>(Result.error(ResultCode.AUTH_NO_PERMISSION), HttpStatusCode.valueOf(403));
+    }
+    @ExceptionHandler(LockedException.class)
+    public ResponseEntity<Result<String>> lockedException(LockedException e) {
         log.error(e.getMessage());
         return new ResponseEntity<>(Result.error(ResultCode.AUTH_NO_PERMISSION), HttpStatusCode.valueOf(403));
     }

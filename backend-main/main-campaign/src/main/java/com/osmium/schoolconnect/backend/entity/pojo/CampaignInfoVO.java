@@ -1,6 +1,5 @@
 package com.osmium.schoolconnect.backend.entity.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.osmium.schoolconnect.backend.entity.CampaignInfo;
 import lombok.Data;

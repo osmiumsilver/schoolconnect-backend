@@ -1,9 +1,7 @@
 package com.osmium.schoolconnect.backend.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.osmium.schoolconnect.backend.entity.Clazz;
-import com.osmium.schoolconnect.backend.entity.pojo.ClazzDetailsVO;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

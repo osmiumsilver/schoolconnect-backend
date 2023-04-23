@@ -10,7 +10,6 @@ import com.osmium.schoolconnect.backend.utils.SecurityUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,4 +57,5 @@ public Boolean changePassword(@RequestBody UserPassVO newUserPass) {
         throw new RequestException(ResultCode.AUTH_PWD_ERR);
     return iLoginService.updatePassword(newUserPass.getEmployeeId(),passwordEncoder.encode(newUserPass.getNewPass()));
 }
+
 }

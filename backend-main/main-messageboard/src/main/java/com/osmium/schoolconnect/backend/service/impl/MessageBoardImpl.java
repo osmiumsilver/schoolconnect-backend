@@ -6,6 +6,7 @@ import com.osmium.schoolconnect.backend.entity.MessageBoard;
 import com.osmium.schoolconnect.backend.mapper.MessageBoardMapper;
 import com.osmium.schoolconnect.backend.service.IMessageBoardService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @Description
  */
 @Service
+@Validated
 public class MessageBoardImpl extends ServiceImpl<MessageBoardMapper, MessageBoard> implements IMessageBoardService {
     @Override
     public List<MessageBoard> listMessagesSendByMe(String name) {

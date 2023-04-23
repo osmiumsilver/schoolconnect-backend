@@ -6,12 +6,17 @@ Java 17 + Spring Boot 3.0.5 + Spring Security 6.0.2 w/ OAuth2 Resource Server + 
 
 Undertow Servlet + MyBatis-Plus + HikariCP + Ruoyi-Vue
 
+WebSocket + GraphQL (学习中)
+
+
 数据持久化 MariaDB + Redis
 
-做这个项目的主要目的是尝试使用最新的技术与最新的语法，写最少的代码的同时能完成更多工作。
+开发本项目的过程中尝试使用最新的技术与最新的语法，写最少的代码的同时能完成更多工作。
 
-The main purpose of doing this project is to try to adopt the latest technology and the syntax brought by Java 17 and
-Spring Boot 3.x, reduce boilerplate code and the complexity as much as possible.
+This project is to try to adopt the latest technology and the syntax brought by Java 17 and
+Spring Boot 3.x by learning along during the development, reduce boilerplate code and complexity as much as possible.
+
+**Write less, do more.**
 
 本系统的主要模块包括：
 

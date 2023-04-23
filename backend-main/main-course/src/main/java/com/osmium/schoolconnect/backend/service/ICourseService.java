@@ -2,6 +2,7 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.Course;
+import com.osmium.schoolconnect.backend.entity.CourseVO;
 
 import java.util.List;
 

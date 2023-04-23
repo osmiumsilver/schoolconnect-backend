@@ -6,6 +6,7 @@ import com.osmium.schoolconnect.backend.entity.ClazzManagerInfo;
 import com.osmium.schoolconnect.backend.mapper.ClazzManagerInfoMapper;
 import com.osmium.schoolconnect.backend.service.IClazzManagerInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class ClazzManagerInfoServiceImpl extends ServiceImpl<ClazzManagerInfoMapper, ClazzManagerInfo> implements IClazzManagerInfoService {
 
     @Override

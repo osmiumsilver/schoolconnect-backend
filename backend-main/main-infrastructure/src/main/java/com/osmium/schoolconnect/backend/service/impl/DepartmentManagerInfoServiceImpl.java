@@ -6,6 +6,7 @@ import com.osmium.schoolconnect.backend.entity.DepartmentManagerInfo;
 import com.osmium.schoolconnect.backend.mapper.DepartmentManagerInfoMapper;
 import com.osmium.schoolconnect.backend.service.IDepartmentManagerInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class DepartmentManagerInfoServiceImpl extends ServiceImpl<DepartmentManagerInfoMapper, DepartmentManagerInfo> implements IDepartmentManagerInfoService {
 
     public List<DepartmentManagerInfo> getManagersByDepartment(List<DepartmentManagerInfo> managerId) {

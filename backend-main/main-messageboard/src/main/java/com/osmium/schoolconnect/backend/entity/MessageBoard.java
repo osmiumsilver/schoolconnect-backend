@@ -21,7 +21,7 @@ public class MessageBoard {
 
     private String assignedDepartment;
     private String sender;
-    private byte type;
+    private Byte type;
 
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -17,7 +17,7 @@ import java.io.Serializable;
 @TableName("v_class_detail")
 public class ClazzDetailsVO extends Clazz implements Serializable {
     private String employeeId; //管理人员编号
-    private byte role; //0 班主任 1 辅导员
+    private Byte role; //0 班主任 1 辅导员
 }
 
 

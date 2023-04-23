@@ -2,6 +2,7 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.CampaignInfo;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignInfoVO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,10 +13,14 @@ import java.util.List;
  * @Description
  */
 public interface ICampaignInfoService extends IService<CampaignInfo> {
-    List<CampaignInfo> listCampaignsByLauncher(String campaignLauncher);
-List<CampaignInfo> searchByName(String name);
-    List<CampaignInfo> getOngoingCampaigns(String status);
+    List<CampaignInfoVO> listCampaignsByLauncher(String campaignLauncher);
+Byte getCampaignStatus(String campaignId);
+    List<CampaignInfo> getCampaignByStatus(String status);
 
-    List<CampaignInfo> listCampaignsUserSignedUpFor(String user,String campaignStatus);
 
+    CampaignInfoVO getById(Serializable id);
+
+    List<CampaignInfo> listCampaignsUserSignedUpFor(String user, String campaignStatus);
+
+    List<String> listPictures(String campaignId);
 }

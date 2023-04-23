@@ -3,11 +3,12 @@ package com.osmium.schoolconnect.backend.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignAttendeeVO;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusVO;
 import com.osmium.schoolconnect.backend.mapper.CampaignAttendeeMapper;
+import com.osmium.schoolconnect.backend.mapper.CampaignAttendeeVOMapper;
 import com.osmium.schoolconnect.backend.service.ICampaignAttendeeService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Repository;
+import com.osmium.schoolconnect.backend.service.ICampaignInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -18,40 +19,63 @@ import java.util.List;
  * @Date 2023/2/28
  * @Description
  */
+
+@Service
 @Validated
-@Repository
-@RequiredArgsConstructor
+
 public class CampaignAttendeeImpl extends ServiceImpl<CampaignAttendeeMapper, CampaignAttendee> implements ICampaignAttendeeService {
-    @Override
-    public List<String> listCampaignsIAttended(String userId,String status) {
-        return baseMapper.listCampaignsById(userId,status);
+    private final CampaignAttendeeVOMapper campaignAttendeeVOMapper;
+    private final ICampaignInfoService iCampaignInfoService;
+
+    public CampaignAttendeeImpl(CampaignAttendeeVOMapper campaignAttendeeVOMapper, ICampaignInfoService iCampaignInfoService) {
+        this.campaignAttendeeVOMapper = campaignAttendeeVOMapper;
+        this.iCampaignInfoService = iCampaignInfoService;
     }
 
     @Override
-    public String getAttendantId(Authentication authentication, String campaignId, String attendantId) {
-        return null;
+    public List<String> listCampaignsIAttended(String userId, String status) {
+        return baseMapper.listCampaignsById(userId, status);
     }
 
+
     @Override
-    public Boolean amIAttended(Authentication authentication, String campaignId) {
+    public CampaignStatusVO getUserStatusOfCampaign(String userId, String campaignId) {
         QueryWrapper q = new QueryWrapper();
-        q.eq("campaign_id",campaignId);
-        q.eq("attendee_id",authentication.getName());
-       return baseMapper.exists(q);
+        q.eq("campaign_id", campaignId);
+        q.eq("attendee_id", userId);
+        var sus = baseMapper.selectOne(q);
+        CampaignStatusVO c = new CampaignStatusVO(null, false, false, false);
+        if (sus == null)
+            return c;
+        if (iCampaignInfoService.getCampaignStatus(campaignId).equals(1)) {
+            c.setIsStarted(true);
+        } else {
+            c.setIsStarted(false);
+        }
+        c.setAttendantId(sus.getId());
+        c.setAmISignedUp(true);
+        if (sus.getCheckInStatus() == 1) {
+            c.setAmICheckedIn(true);
+        }
+
+
+        return c;
+
     }
 
     @Override
-    public Boolean amICheckedIn(Authentication authentication, String campaignId) {
-        QueryWrapper q = new QueryWrapper();
-        q.eq("campaign_id",campaignId);
-        q.eq("attendee_id",authentication.getName());
-        q.eq("check_in_status",1);
-        return baseMapper.exists(q);
+    public Boolean updateOne(String attendantsId, int i) {
+
+        return baseMapper.updateCheckInStatus(attendantsId,i);
     }
 
 
     @Override
-    public List<CampaignAttendee> listAttendees(String campaignId) {
-     return baseMapper.listAttendees(campaignId);
+    public List<CampaignAttendeeVO> listAttendees(String campaignId) {
+        QueryWrapper query = new QueryWrapper();
+        query.eq("campaign_id", campaignId);
+        return campaignAttendeeVOMapper.selectList(query);
     }
+
+
 }

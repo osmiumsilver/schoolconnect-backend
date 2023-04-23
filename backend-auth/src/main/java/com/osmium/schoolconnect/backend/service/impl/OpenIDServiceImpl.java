@@ -5,6 +5,7 @@ import com.osmium.schoolconnect.backend.entity.OpenID;
 import com.osmium.schoolconnect.backend.mapper.OpenIDMapper;
 import com.osmium.schoolconnect.backend.service.IOpenIDService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * <p>
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class OpenIDServiceImpl extends ServiceImpl<OpenIDMapper, OpenID> implements IOpenIDService {
 
 }

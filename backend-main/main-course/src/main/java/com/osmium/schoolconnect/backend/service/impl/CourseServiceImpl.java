@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Course;
 import com.osmium.schoolconnect.backend.mapper.CourseMapper;
+import com.osmium.schoolconnect.backend.mapper.CourseVOMapper;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -18,7 +20,11 @@ import java.util.List;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements ICourseService {
+
+
+
 
     @Override
     public List<String> listClazzesTaughtByTeacher(String name) {

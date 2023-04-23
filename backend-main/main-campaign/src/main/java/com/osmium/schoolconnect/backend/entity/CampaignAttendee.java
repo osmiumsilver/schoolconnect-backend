@@ -17,7 +17,7 @@ public class CampaignAttendee {
     private String id;
     private String campaignId;
     private String attendeeId;
-    private byte checkInStatus;
+    private Byte checkInStatus;
     private String contactPhone;
 }
 

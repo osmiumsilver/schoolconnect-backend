@@ -1,6 +1,7 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.CampaignInfo;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignInfoVO;
 import com.osmium.schoolconnect.backend.service.ICampaignInfoService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,7 +9,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Name;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class CampaignInfoAdminController {
     @PreAuthorize(value = "authentication.name.equals(#campaignLauncher)")
     @Operation(summary = "根据工号查询发起者发起过的所有Campaign")
     @GetMapping
-    public List<CampaignInfo> listCampaignsByLauncher(@RequestParam String campaignLauncher) {
+    public List<CampaignInfoVO> listCampaignsByLauncher(@RequestParam String campaignLauncher) {
         return iCampaignInfoService.listCampaignsByLauncher(campaignLauncher);
     }
 

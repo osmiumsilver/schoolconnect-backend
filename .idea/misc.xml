@@ -9,6 +9,7 @@
       <list>
         <option value="$PROJECT_DIR$/oauth2resourceserver/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -17,7 +18,8 @@
         <option value="$PROJECT_DIR$/backend-admin/admin-common/pom.xml" />
         <option value="$PROJECT_DIR$/backend-admin/admin-framework/pom.xml" />
         <option value="$PROJECT_DIR$/backend-admin/admin-system/pom.xml" />
-        <option value="$PROJECT_DIR$/backend-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-admin/ruoyi-common/pom.xml" />
+        <option value="$PROJECT_DIR$/backend-wxcloud/wxcloud-notification/pom.xml" />
         <option value="$PROJECT_DIR$/bootstrap/pom.xml" />
         <option value="$PROJECT_DIR$/oauth2-resource-server/pom.xml" />
       </set>

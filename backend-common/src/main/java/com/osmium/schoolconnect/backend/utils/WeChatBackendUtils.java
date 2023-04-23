@@ -1,9 +1,15 @@
 package com.osmium.schoolconnect.backend.utils;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.osmium.schoolconnect.backend.entity.NotificationData;
+import com.osmium.schoolconnect.backend.entity.WechatResult;
+import com.osmium.schoolconnect.backend.misc.RequestException;
+import com.osmium.schoolconnect.backend.misc.ResultCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -13,6 +19,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.AlgorithmParameters;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -22,6 +29,7 @@ import java.util.LinkedHashMap;
  */
 
 @Component
+@Slf4j
 public class WeChatBackendUtils {
 
     /**
@@ -37,6 +45,14 @@ public class WeChatBackendUtils {
     public void setMyShit(@Value("${wechat-mini-program.appid}") String appId, @Value("${wechat-mini-program.secret}") String appSecret) {
         WeChatBackendUtils.appId = appId;
         WeChatBackendUtils.appSecret = appSecret;
+    }
+
+    public static JSONObject test() {
+        String requestUrl = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=";
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("template_id", "666");
+        return JSONUtil.parseObj(HttpUtil.post(requestUrl, paramMap));
+
     }
 
     public static JSONObject getSessionKeyOrOpenId(String code) {
@@ -89,5 +105,32 @@ public class WeChatBackendUtils {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public static WechatResult sendNotification(String accessToken, String templateId, String toUser, NotificationData data, String miniprogramState) {
+        String requestUrl = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + accessToken;
+        JSONObject obj =new JSONObject();
+       obj.put("template_id", templateId);
+        obj.put("touser", toUser);
+        obj.put("data", JSONUtil.parse(data));
+        obj.put("miniprogram_state", miniprogramState);
+        obj.put("lang", "zh_CN");
+        log.warn(String.valueOf(obj));
+        WechatResult status = JSONUtil.toBean(HttpRequest.post(requestUrl).body(String.valueOf(obj)).execute().body(), WechatResult.class);
+        //发送post请求读取调用微信接口获取openid用户唯一标识
+        return status;
+    }
+
+    public static JSONObject getAccessToken() {
+        String requestUrl = "https://api.weixin.qq.com/cgi-bin/token";
+        LinkedHashMap<String, Object> requestUrlParam = new LinkedHashMap<>();
+        //小程序appId
+        requestUrlParam.put("appid", appId);
+        //小程序secret
+        requestUrlParam.put("secret", appSecret);
+        //默认参数
+        requestUrlParam.put("grant_type", "client_credential");
+        //发送post请求读取调用微信接口获取openid用户唯一标识
+        return JSONUtil.parseObj(HttpUtil.get(requestUrl, requestUrlParam));
     }
 }

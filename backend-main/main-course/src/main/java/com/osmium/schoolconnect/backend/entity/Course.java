@@ -25,5 +25,5 @@ public class Course implements Serializable {
     private Double courseCredits; //课程学分
     private String courseTextbook; // 课程书本
     private String courseOutline;// 课程大纲
-    private String courseTeacher;//课程老师
+    private String courseTeacher;//课程教师
 }

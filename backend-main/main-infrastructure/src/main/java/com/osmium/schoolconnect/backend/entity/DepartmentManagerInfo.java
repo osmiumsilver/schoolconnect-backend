@@ -22,5 +22,5 @@ public class DepartmentManagerInfo implements Serializable {
     private String id;
     private String departmentNo;
     private String managerNo; //部门负责人编号
-    private byte status; //状态
+    private Byte status; //状态
 }

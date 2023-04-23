@@ -15,6 +15,6 @@ import lombok.Data;
 public class UserInfoRevisionVO {
     @TableId(value = "id", type = IdType.NONE)
     private String id;
-    private byte requiredChanging;
+    private Byte requiredChanging;
 
 }

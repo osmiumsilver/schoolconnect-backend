@@ -8,6 +8,7 @@ import com.osmium.schoolconnect.backend.mapper.GradeMapper;
 import com.osmium.schoolconnect.backend.mapper.GradeVOMapper;
 import com.osmium.schoolconnect.backend.service.IGradeService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements IGradeService {
     private final GradeVOMapper gradeVOMapper;
 

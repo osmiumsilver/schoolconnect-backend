@@ -4,5 +4,16 @@ spring:
   #      include: common
   config: # 新写法 跨模块用include会报错 用import
     import: classpath:application-common.yml
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  devtools:
+    restart:
+      enabled: false
 server:
   port: 8081
+file:
+  upload:
+#    末尾一定要加斜杠
+    path: /Users/abel/log/api/images/

@@ -27,9 +27,16 @@
         <module>backend-main</module>
         <module>backend-oauth2-resource-server</module>
         <module>backend-common</module>
+        <module>backend-wxcloud-notification</module>
+
 
     </modules>
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -41,6 +48,16 @@
             <artifactId>graphql-dgs-spring-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.bovane</groupId>
+            <artifactId>ruoyi-common</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
         <!--也许我以后会用上kotlin-->
         <!--	<dependency>-->
         <!--		<groupId>org.jetbrains.kotlin</groupId>-->

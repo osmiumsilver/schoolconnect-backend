@@ -16,4 +16,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @PreAuthorize(value = "authentication.name.equals(#userId)")
 public @interface AccessIsolation {
+
 }

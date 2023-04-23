@@ -1,9 +1,11 @@
 package com.osmium.schoolconnect.backend.controller;
 
+import com.osmium.schoolconnect.backend.entity.OpenID;
 import com.osmium.schoolconnect.backend.misc.Result;
+import com.osmium.schoolconnect.backend.misc.ResultCode;
+import com.osmium.schoolconnect.backend.service.IOpenIDService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -27,14 +29,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/auth")
 public class TokenController {
 
-
-    private JwtEncoder encoder;
-
-    @Autowired //Setter 注入哦
-    public TokenController setEncoder(JwtEncoder encoder) {
+    private final JwtEncoder encoder;
+    public TokenController(JwtEncoder encoder) {
         this.encoder = encoder;
-        return this;
     }
+
 
     @Operation(summary = "签发JWT")
     @PostMapping("/token")
@@ -56,6 +55,10 @@ public class TokenController {
         // @formatter:on
         return Result.success("Token 成功生成", encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue());
 
+    }
+    @PostMapping("/logout")
+    public String logout(){
+        return "ok";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.osmium.schoolconnect.backend.entity.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -8,7 +9,9 @@ import lombok.Data;
  * @Description
  */
 @Data
+@AllArgsConstructor
 public class CampaignStatusVO {
+    private String attendantId;
     private Boolean isStarted;
     private Boolean amISignedUp;
     private Boolean amICheckedIn;

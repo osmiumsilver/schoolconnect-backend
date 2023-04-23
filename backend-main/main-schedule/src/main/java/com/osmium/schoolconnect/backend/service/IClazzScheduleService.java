@@ -2,6 +2,7 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.ClazzSchedule;
+import com.osmium.schoolconnect.backend.entity.pojo.ClazzScheduleVO;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @Description
  */
 public interface IClazzScheduleService extends IService<ClazzSchedule> {
-    List<ClazzSchedule> listClazzScheduleByClazz(String classNo, String year, String semester);
+    List<ClazzScheduleVO> listClazzScheduleByClazz(String classNo, String year, String semester);
 
-    List<ClazzSchedule> listScheduleByTeacher(String userId, String year, String semester);
+    List<ClazzScheduleVO> listScheduleByTeacher(String userId, String year, String semester);
 }

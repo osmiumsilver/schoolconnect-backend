@@ -43,7 +43,7 @@ public class GlobalResult implements ResponseBodyAdvice<Object> {
         if (Arrays.asList(exclude).contains(methodParameter.getDeclaringClass().getSimpleName())) {
             return o;
         }
-        if (o instanceof Result) { //我写这一段是因为适配GREH里面 特殊异常处理直接ResponseBody抛出Result为内容的时候 不会再抛个code 200出来 他妈的花了我2个小时才搞明白其中的原理
+        if (o instanceof Result) { //我写这一段是因为适配GREH里面 特殊异常处理直接ResponseBody抛出Result为内容的时候 不会再抛个code 200出来 tmd花了我好几个小时才搞明白其中的原理
             return o;
         }
         if (o instanceof String) {

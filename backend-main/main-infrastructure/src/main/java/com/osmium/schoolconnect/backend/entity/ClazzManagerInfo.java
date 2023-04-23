@@ -21,6 +21,6 @@ public class ClazzManagerInfo implements Serializable {
     private String id; //生成id
     private String classNo; //班级编号
     private String employeeId; //管理人员编号
-    private byte role; //0 班主任 1 辅导员
-    private byte status; //0 正常 1 离开
+    private Byte role; //0 班主任 1 辅导员
+    private Byte status; //0 正常 1 离开
 }

@@ -3,9 +3,8 @@ package com.osmium.schoolconnect.backend.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.sql.Blob;
 
 /**
  * @Author
@@ -13,6 +12,7 @@ import java.sql.Blob;
  * @Description
  */
 @Data
+@AllArgsConstructor
 @TableName("t_campaign_info_pics")
 public class CampaignInfoPics {
     @TableId(type = IdType.NONE)

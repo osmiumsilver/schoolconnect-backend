@@ -6,6 +6,7 @@ import com.osmium.schoolconnect.backend.entity.RepairData;
 import com.osmium.schoolconnect.backend.mapper.RepairDataMapper;
 import com.osmium.schoolconnect.backend.service.IRepairDataService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @Description
  */
 @Service
+@Validated
 public class RepairDataServiceImpl extends ServiceImpl<RepairDataMapper, RepairData> implements IRepairDataService {
     @Override
     public List<RepairData> listRepairData(String status, String userId) {

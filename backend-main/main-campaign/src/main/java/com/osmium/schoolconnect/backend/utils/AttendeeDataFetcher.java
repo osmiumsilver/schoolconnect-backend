@@ -2,7 +2,6 @@ package com.osmium.schoolconnect.backend.utils;
 
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
 import com.osmium.schoolconnect.backend.service.ICampaignAttendeeService;
 import lombok.RequiredArgsConstructor;

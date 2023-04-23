@@ -11,13 +11,13 @@
         <module name="main-campaign" />
         <module name="main-grade" />
         <module name="main-infrastructure" />
+        <module name="main-schedule" />
+        <module name="main-course" />
         <module name="main-user" />
         <module name="main-messageboard" />
-        <module name="main-schedule" />
         <module name="backend-auth" />
         <module name="main-bootstrapper" />
         <module name="backend-oauth2-resource-server" />
-        <module name="main-course" />
         <module name="main-campusrepair" />
       </profile>
     </annotationProcessing>
@@ -27,10 +27,18 @@
       <module name="admin-framework" target="1.8" />
       <module name="admin-parent" target="1.8" />
       <module name="admin-system" target="1.8" />
+      <module name="backend-admin" target="1.8" />
+      <module name="backend-wxcloud-notification" target="1.8" />
+      <module name="ruoyi-common" target="1.8" />
+      <module name="wxcloud-notification" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-admin" options="" />
+      <module name="admin-framework" options="" />
+      <module name="admin-system" options="" />
+      <module name="backend-admin" options="" />
       <module name="backend-auth" options="-parameters" />
       <module name="backend-common" options="-parameters" />
       <module name="backend-main" options="" />
@@ -44,6 +52,7 @@
       <module name="main-messageboard" options="-parameters" />
       <module name="main-schedule" options="-parameters" />
       <module name="main-user" options="-parameters" />
+      <module name="wxcloud-notification" options="-parameters" />
     </option>
   </component>
 </project>

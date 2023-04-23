@@ -8,9 +8,6 @@ spring:
 #      resourceserver:
 #        jwt:
 #          issuer-uri: https://auth.prod.schoolconnect.wdksl.com/issuer
-wechat-mini-program:
-  appid: wx47e3ac2e4d1e6488
-  secret: 453f0f9d1cacb46f5bde7d23ad88b7fa
 
 
 

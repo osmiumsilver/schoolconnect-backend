@@ -1,7 +1,6 @@
 package com.osmium.schoolconnect.backend.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @TableName("t_campaign_info")
 public class CampaignInfo {
-    @TableId(value = "t_campaign_info.id", type = IdType.NONE)
+    @TableId(value = "id", type = IdType.NONE)
     private String id;
     private String campaignName;
     private String campaignDescription;
@@ -26,6 +25,6 @@ public class CampaignInfo {
     private LocalDateTime campaignTime;
     private String campaignLauncher;
     private String contactPhone;
-    private byte campaignStatus;
+    private Byte campaignStatus;
     private String campaignUrl;
 }

@@ -7,38 +7,28 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import com.osmium.schoolconnect.backend.misc.GlobalAuthenticationHandler;
-import com.osmium.schoolconnect.backend.misc.GlobalResponseExceptionHandler;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import com.osmium.schoolconnect.backend.service.impl.LogoutSuccessHandlerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
-import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.io.IOException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -49,9 +39,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
  */
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class AuthSecurityConfiguration {
-
+    private LogoutSuccessHandlerImpl logoutSuccessHandlerImpl;
 
     //@Autowired 直接Bean注入 不需要AutoWired
     //private CustomAuthenticationProvider customAuthenticationProvider;
@@ -61,6 +51,10 @@ public class AuthSecurityConfiguration {
     @Value("${jwt.cert.key}")
     RSAPrivateKey key;
 
+    @Autowired
+    public AuthSecurityConfiguration(LogoutSuccessHandlerImpl logoutSuccessHandlerImpl) {
+        this.logoutSuccessHandlerImpl = logoutSuccessHandlerImpl;
+    }
 
    /*
     Completely bypass the filter and we dont use that here.
@@ -72,15 +66,26 @@ public class AuthSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authz -> authz.requestMatchers("/auth/**").permitAll().requestMatchers("/auth/token").permitAll().requestMatchers("/auth/wxlogin").permitAll().anyRequest().permitAll()).csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**")) //CSRF Demo Disable
+        http.
+                cors(Customizer.withDefaults())
+                .authorizeHttpRequests(authz -> authz.requestMatchers("/auth/wxlogin").permitAll()
+                        .requestMatchers("/logout").permitAll()
+                        .requestMatchers("/favicon.ico").permitAll()
+                        .anyRequest().authenticated())
+                .csrf(AbstractHttpConfigurer::disable) //CSRF Demo Disable
                 .httpBasic(withDefaults()) //Basic方式授权
-                .formLogin().disable().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).exceptionHandling(exceptions -> exceptions //Exception 处理
-                        .authenticationEntryPoint(new BasicAuthenticationEntryPoint())
-                        .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler()));
+                .formLogin().disable()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptions -> exceptions //Exception 处理
+                        .authenticationEntryPoint(new GlobalAuthenticationHandler.CustomizedAuthenticationEntryPoint())
+                        .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler())
+                )
+        //.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandlerImpl)
+        ;
         return http.build();
     }
 
-    @Bean
+    @Bean //passwordEncoder装进容器
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -129,30 +134,6 @@ public class AuthSecurityConfiguration {
         return new NimbusJwtEncoder(jwks);
     }
 
-    @Value("#{'${cors.allowed-origins}'.split(',')}")
-    private List<String> allowedOrigins;
-
-    @Value("#{'${cors.allowed-methods}'.split(',')}")
-    private List<String> allowedMethods;
-
-    @Value("#{'${cors.allowed-headers}'.split(',')}")
-    private List<String> allowedHeaders;
-
-    @Value("#{'${cors.exposed-headers}'.split(',')}")
-    private List<String> expectedHeaders;
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(allowedOrigins);
-        config.setAllowedMethods(allowedMethods);
-        config.setAllowedHeaders(allowedHeaders);
-        config.setExposedHeaders(expectedHeaders);        // 暴露 header 中的其他属性给客户端应用程序
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration(config));
-        return source;
-    }
 
 }
 

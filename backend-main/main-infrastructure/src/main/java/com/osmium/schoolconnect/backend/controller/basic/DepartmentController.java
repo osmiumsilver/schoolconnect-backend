@@ -1,7 +1,6 @@
 package com.osmium.schoolconnect.backend.controller.basic;
 
 import com.osmium.schoolconnect.backend.entity.DepartmentInfo;
-import com.osmium.schoolconnect.backend.misc.Result;
 import com.osmium.schoolconnect.backend.service.IDepartmentInfoService;
 import com.osmium.schoolconnect.backend.service.IDepartmentManagerInfoService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;

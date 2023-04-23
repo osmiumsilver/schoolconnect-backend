@@ -5,6 +5,7 @@ import com.osmium.schoolconnect.backend.entity.DepartmentInfo;
 import com.osmium.schoolconnect.backend.mapper.DepartmentInfoMapper;
 import com.osmium.schoolconnect.backend.service.IDepartmentInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * <p>
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2023-01-12
  */
 @Service
+@Validated
 public class DepartmentInfoServiceImpl extends ServiceImpl<DepartmentInfoMapper, DepartmentInfo> implements IDepartmentInfoService {
 
 }

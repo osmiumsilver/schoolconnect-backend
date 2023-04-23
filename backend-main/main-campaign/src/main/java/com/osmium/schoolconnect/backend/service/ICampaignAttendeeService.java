@@ -2,7 +2,8 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
-import org.springframework.security.core.Authentication;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignAttendeeVO;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusVO;
 
 import java.util.List;
 
@@ -12,13 +13,11 @@ import java.util.List;
  * @Description
  */
 public interface ICampaignAttendeeService extends IService<CampaignAttendee> {
-    List<String> listCampaignsIAttended(String userId,String status);
+    List<String> listCampaignsIAttended(String userId, String status);
 
-    Object amIAttended(Authentication authentication, String campaignId);
+    List<CampaignAttendeeVO> listAttendees(String campaignId);
 
-    List<CampaignAttendee> listAttendees(String campaignId);
+    CampaignStatusVO getUserStatusOfCampaign(String userId, String campaignId);
 
-    Boolean amICheckedIn(Authentication authentication, String campaignId);
-
-    String getAttendantId(Authentication authentication, String campaignId, String attendantId);
+    Boolean updateOne(String attendantsId, int i);
 }

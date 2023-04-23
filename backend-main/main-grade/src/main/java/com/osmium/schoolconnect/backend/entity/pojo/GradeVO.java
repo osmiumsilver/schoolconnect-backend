@@ -22,7 +22,7 @@ public class GradeVO extends Grade implements Serializable {
     @TableField("course_name")
     private String courseName; //课程名称
     @TableField("course_credits")
-    private byte credits; //学分
+    private Byte credits; //学分
 
 
 }

@@ -1,9 +1,6 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import cn.hutool.json.JSONObject;
 import com.osmium.schoolconnect.backend.entity.DepartmentManagerInfo;
-import com.osmium.schoolconnect.backend.misc.Result;
-import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.IDepartmentManagerInfoService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import lombok.extern.slf4j.Slf4j;

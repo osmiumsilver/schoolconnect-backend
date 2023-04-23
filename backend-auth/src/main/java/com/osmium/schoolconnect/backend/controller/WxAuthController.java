@@ -50,7 +50,7 @@ public class WxAuthController {
         JSONObject wxLoginResponse = WeChatBackendUtils.getSessionKeyOrOpenId(wxLogin.get("code", String.class));
         String openId = wxLoginResponse.get("openid", String.class);
         if (iOpenIDService.getById(openId) == null) {
-            saveOpenID(openId);
+            //saveOpenID(openId);
         }
         //if (redisUtils.getCacheObject(openId)!=null) {
         wxLoginResponse.set("user_id", iOpenIDService.getById(openId).getUserId());
@@ -59,15 +59,7 @@ public class WxAuthController {
 
     }
 
-    @PostMapping("/wxlogout")
-    public Result<JSONObject> logoutWxLogin(@RequestBody String openId) {
 
-        //if (redisUtils.deleteObject(openId)) {
-        //    return Result.success();
-        //} else return Result.error(ResultCode.AUTH_LOGOUT_ERR);
-        //TODO DELETE FROM DB
-        return null;
-    }
 
     //    @PostMapping("/wxlogout")
 //public Result<JSONObject> wxLogout(@RequestBody String wxLogout)
@@ -75,8 +67,8 @@ public class WxAuthController {
 //
 //        return Result.success(basicInfoMapper.updateById(wxLogout));
 //    }
-    public void saveOpenID(String openId) {
-        log.info(String.valueOf(iOpenIDService.save(new OpenID(openId, null))));
+    public void saveOpenID(String openId,String userId) {
+        log.info(String.valueOf(iOpenIDService.saveOrUpdate(new OpenID(openId, userId))));
     }
 }
 

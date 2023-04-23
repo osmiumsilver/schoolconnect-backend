@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.pojo.UserInfoRevisionVO;
 import com.osmium.schoolconnect.backend.mapper.UserInfoRevisionVOMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * @Author
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  * @Description
  */
 @Service
+@Validated
 public class UserInfoRevision extends ServiceImpl<UserInfoRevisionVOMapper, UserInfoRevisionVO> {
 
 }

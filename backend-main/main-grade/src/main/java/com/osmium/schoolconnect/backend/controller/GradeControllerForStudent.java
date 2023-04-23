@@ -2,8 +2,6 @@ package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.service.IGradeService;
-import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
-import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.Authentication;
