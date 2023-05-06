@@ -10,7 +10,6 @@ import com.osmium.schoolconnect.backend.misc.GlobalAuthenticationHandler;
 import com.osmium.schoolconnect.backend.service.impl.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,8 +39,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity(debug = true)
-public class AuthSecurityConfiguration {
-    private LogoutSuccessHandlerImpl logoutSuccessHandlerImpl;
+public class AuthenticatorSecurityConfiguration {
+    private final LogoutSuccessHandlerImpl logoutSuccessHandlerImpl;
 
     //@Autowired 直接Bean注入 不需要AutoWired
     //private CustomAuthenticationProvider customAuthenticationProvider;
@@ -50,14 +49,13 @@ public class AuthSecurityConfiguration {
 
     @Value("${jwt.cert.key}")
     RSAPrivateKey key;
-
     @Autowired
-    public AuthSecurityConfiguration(LogoutSuccessHandlerImpl logoutSuccessHandlerImpl) {
+    public AuthenticatorSecurityConfiguration(LogoutSuccessHandlerImpl logoutSuccessHandlerImpl) {
         this.logoutSuccessHandlerImpl = logoutSuccessHandlerImpl;
     }
 
    /*
-    Completely bypass the filter and we dont use that here.
+    Completely bypass the filter and we don't use that here.
     */
     //@Bean
     //public WebSecurityCustomizer webSecurityCustomizer() { //
@@ -80,7 +78,7 @@ public class AuthSecurityConfiguration {
                         .authenticationEntryPoint(new GlobalAuthenticationHandler.CustomizedAuthenticationEntryPoint())
                         .accessDeniedHandler(new GlobalAuthenticationHandler.CustomizedAccessDeniedHandler())
                 )
-        //.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandlerImpl)
+        .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandlerImpl)
         ;
         return http.build();
     }

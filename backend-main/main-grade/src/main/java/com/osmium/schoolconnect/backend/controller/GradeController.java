@@ -1,6 +1,7 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.Grade;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.service.IGradeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +19,7 @@ import java.util.List;
 @RestController
 @PreAuthorize("hasAnyAuthority('[SUPER]','[ADMINISTRATIVE]','[TEACHER]')")
 @RequestMapping("/grade")
-@Tag(name  = "成绩专区")
+@Tag(name  = "成绩控制器")
 public class GradeController {
 
     private final IGradeService iGradeService;
@@ -36,8 +37,8 @@ public class GradeController {
 
     @Operation(summary = "查询班级分数")
     @GetMapping("/by_class")
-    public List<GradeVO> getGradeByClazz(@RequestParam String clazzId, @RequestParam String year, @RequestParam String semester) {
-        return iGradeService.listGradeByClazz(clazzId, year, semester);
+    public List<GradeVO> getGradeByClazz(@RequestParam String courseId,@RequestParam String clazzId, @RequestParam String year, @RequestParam String semester) {
+        return iGradeService.listGradeByClazz(courseId,clazzId, year, semester);
     }
     @Operation(summary = "导入成绩")
     @PostMapping
@@ -45,11 +46,12 @@ public class GradeController {
         return iGradeService.saveBatch(newGrades);
     }
 
-    @Operation(summary = "修改成绩")
 
-    @PutMapping
-    public Boolean updateGrade(@RequestBody List<Grade> grades) {
-        return iGradeService.updateBatchById(grades);
+
+    @Operation(summary = "修改成绩并等待审核")
+    @PatchMapping
+    public Boolean updateGradeAndRevision(@RequestBody GradeDTO grade) {
+        return iGradeService.updateGradeAndRevision(grade);
     }
     @Operation(summary = "删除成绩")
 

@@ -5,7 +5,7 @@
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://100.91.129.62:13306</jdbc-url>
+      <jdbc-url>jdbc:mariadb://172.30.65.128:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="SchoolConnect Development Redis (Direct Connection)" uuid="35cd5b15-fc82-449b-b5b1-d79105a246a0">

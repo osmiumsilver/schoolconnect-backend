@@ -21,8 +21,8 @@ logging:
     file: "%d %-5level [%thread] %logger{0} : %msg%n"
   level:
     root: WARN
-    org.springframework.web: WARN
-    org.springframework.security: DEBUG
+    org.springframework.web: info
+    org.springframework.security: info
 
 
     # springdoc-openapi项目配置
@@ -47,7 +47,7 @@ knife4j:
 # Spring 配置
 spring:
   profiles:
-    include: dev
+    include: env
   main:
     allow-bean-definition-overriding: true
   #    lazy-initialization: true

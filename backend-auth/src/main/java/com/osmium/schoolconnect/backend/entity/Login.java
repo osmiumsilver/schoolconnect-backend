@@ -43,7 +43,7 @@ public class Login implements Serializable, UserDetails {
     @Schema(description = "账户是否锁定")
     private Integer status;
 
-//这里实现地不够好因为我一开始没有完全掌握Security中role和authority的区别 我把AUTHORITY当成role来用了 不过没关系 在这个校园场景不妨碍
+//这里实现地不够好因为我一开始没有完全掌握Security中role和authority的区别 我把AUTHORITY当成role来用了 不过没关系 在这个场景不妨碍
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(AuthorityCode.get(getRole()));

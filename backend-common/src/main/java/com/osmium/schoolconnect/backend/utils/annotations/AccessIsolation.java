@@ -12,9 +12,8 @@ import java.lang.annotation.Target;
  * @Date 2023/3/5
  * @Description 限制访问注解（传入参数必须为自己工号，传入他人工号则为空）
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @PreAuthorize(value = "authentication.name.equals(#userId)")
 public @interface AccessIsolation {
-
 }

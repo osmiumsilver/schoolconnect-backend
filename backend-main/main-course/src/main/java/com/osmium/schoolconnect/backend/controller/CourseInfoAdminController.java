@@ -2,8 +2,8 @@ package com.osmium.schoolconnect.backend.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.osmium.schoolconnect.backend.entity.Course;
-import com.osmium.schoolconnect.backend.entity.CourseVO;
-import com.osmium.schoolconnect.backend.mapper.CourseVOMapper;
+import com.osmium.schoolconnect.backend.entity.pojo.CourseInfoVO;
+import com.osmium.schoolconnect.backend.mapper.CourseInfoVOMapper;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Wrapper;
 import java.util.List;
 
 /**
@@ -24,18 +23,18 @@ import java.util.List;
 @Tag(name = "课程信息管理员")
 public class CourseInfoAdminController {
     private final ICourseService iCourseService;
-    private final CourseVOMapper courseVOMapper;
+    private final CourseInfoVOMapper courseInfoVOMapper;
 
 
-    public CourseInfoAdminController(ICourseService iCourseService, CourseVOMapper courseVOMapper) {
+    public CourseInfoAdminController(ICourseService iCourseService, CourseInfoVOMapper courseInfoVOMapper) {
         this.iCourseService = iCourseService;
-        this.courseVOMapper = courseVOMapper;
+        this.courseInfoVOMapper = courseInfoVOMapper;
     }
 
     @Operation(summary = "获取所有课程信息")
     @GetMapping("/")
-    public List<CourseVO> getAllCourses() {
-        return courseVOMapper.selectList(Wrappers.emptyWrapper());
+    public List<CourseInfoVO> getAllCourses() {
+        return courseInfoVOMapper.selectList(Wrappers.emptyWrapper());
     }
 
     @Operation(summary = "根据课程号批量获取课程信息")

@@ -8,5 +8,5 @@ import com.osmium.schoolconnect.backend.entity.pojo.UninitializedUsers;
  * @Date 2023/4/15
  * @Description
  */
-public interface IUnUsers extends IService<UninitializedUsers> {
+public interface IUninitializedUsers extends IService<UninitializedUsers> {
 }

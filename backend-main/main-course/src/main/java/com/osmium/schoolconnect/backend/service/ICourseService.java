@@ -2,7 +2,6 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.Course;
-import com.osmium.schoolconnect.backend.entity.CourseVO;
 
 import java.util.List;
 
@@ -16,8 +15,10 @@ import java.util.List;
  */
 public interface ICourseService extends IService<Course> {
 
-    List<Course> listCoursesTaughtByTeacher(String userId);
+    List<String> listCoursesTaughtByTeacher(String userId);
 
 
     List<String> listClazzesTaughtByTeacher(String name);
+
+    String getName(String courseId);
 }

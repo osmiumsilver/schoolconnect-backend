@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class CampaignStatusVO {
+public class CampaignStatusDTO {
     private String attendantId;
     private Boolean isStarted;
     private Boolean amISignedUp;

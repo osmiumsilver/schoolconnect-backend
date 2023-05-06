@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
 import com.osmium.schoolconnect.backend.entity.pojo.CampaignAttendeeVO;
-import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusVO;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusDTO;
 import com.osmium.schoolconnect.backend.mapper.CampaignAttendeeMapper;
 import com.osmium.schoolconnect.backend.mapper.CampaignAttendeeVOMapper;
 import com.osmium.schoolconnect.backend.service.ICampaignAttendeeService;
@@ -20,6 +20,7 @@ import java.util.List;
  * @Description
  */
 
+@SuppressWarnings("ALL")
 @Service
 @Validated
 
@@ -39,12 +40,12 @@ public class CampaignAttendeeImpl extends ServiceImpl<CampaignAttendeeMapper, Ca
 
 
     @Override
-    public CampaignStatusVO getUserStatusOfCampaign(String userId, String campaignId) {
+    public CampaignStatusDTO getUserStatusOfCampaign(String userId, String campaignId) {
         QueryWrapper q = new QueryWrapper();
         q.eq("campaign_id", campaignId);
         q.eq("attendee_id", userId);
         var sus = baseMapper.selectOne(q);
-        CampaignStatusVO c = new CampaignStatusVO(null, false, false, false);
+        CampaignStatusDTO c = new CampaignStatusDTO(null, false, false, false);
         if (sus == null)
             return c;
         if (iCampaignInfoService.getCampaignStatus(campaignId).equals(1)) {

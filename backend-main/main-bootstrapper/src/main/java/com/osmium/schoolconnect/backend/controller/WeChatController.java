@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/wechat")
-public class WechatController {
+public class WeChatController {
 @Operation(summary = "获取微信另一个Token")
 @GetMapping("/token")
     public JSONObject getWechatAccessToken(){
-return     WeChatBackendUtils.getAccessToken();
+return WeChatBackendUtils.getAccessToken();
 }
 
 }

@@ -1,7 +1,6 @@
 package com.osmium.schoolconnect.backend.misc;
 
 import cn.hutool.json.JSONUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +11,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Collections;
 
 /**
  * @Author
@@ -29,7 +27,7 @@ public class GlobalAuthenticationHandler {
     public static class CustomizedAccessDeniedHandler implements AccessDeniedHandler {
 
         @Override
-        public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
             response.setContentType("application/json;charset=UTF-8");
             response.setHeader("WWW-Authenticate", "NO-AUTH"); //这条非常重要 可以防治
             response.setStatus(401);

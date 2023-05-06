@@ -1,10 +1,10 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.Course;
-import com.osmium.schoolconnect.backend.entity.CourseVO;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,11 +28,16 @@ public class CourseInfoController {
     }
 
     @Operation(summary = "查询该教师所教课程")
-    @GetMapping
-            ("/by_teacher")
-    public List<Course> listCoursesTaughtByTeacher(@RequestParam String userId) {
-        return iCourseService.listCoursesTaughtByTeacher(userId);
+    @GetMapping("/by_teacher")
+    public List<String> listCoursesTaughtByTeacher(Authentication authentication) {
+        return iCourseService.listCoursesTaughtByTeacher(authentication.getName());
     }
+
+    @GetMapping("/get-name")
+    public String getCourseName(String courseId){
+        return iCourseService.getName(courseId);
+    }
+
 
     @Operation(summary = "根据课程号获取课程信息")
 

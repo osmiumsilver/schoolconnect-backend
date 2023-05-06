@@ -1,6 +1,8 @@
 package com.osmium.schoolconnect.backend.controller.basic;
 
+import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.entity.DepartmentInfo;
+import com.osmium.schoolconnect.backend.service.IClazzService;
 import com.osmium.schoolconnect.backend.service.IDepartmentInfoService;
 import com.osmium.schoolconnect.backend.service.IDepartmentManagerInfoService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
@@ -21,16 +23,23 @@ public class DepartmentController {
     private final IDepartmentInfoService iDepartmentInfoService;
     private final IDepartmentManagerInfoService iDepartmentManagerInfoService;
 
-
-    public DepartmentController(IDepartmentInfoService iDepartmentInfoService, IDepartmentManagerInfoService iDepartmentManagerInfoService) {
+private final IClazzService iClazzService;
+    public DepartmentController(IDepartmentInfoService iDepartmentInfoService, IDepartmentManagerInfoService iDepartmentManagerInfoService, IClazzService iClazzService) {
         this.iDepartmentInfoService = iDepartmentInfoService;
         this.iDepartmentManagerInfoService = iDepartmentManagerInfoService;
+        this.iClazzService = iClazzService;
     }
     @Operation(summary = "获取部门信息")
 
     @GetMapping
     public List<DepartmentInfo> getAllDepartments() {
         return iDepartmentInfoService.list();
+    }
+
+    @Operation(summary = "获取部门下属班级")
+    @GetMapping("/by_class")
+    public List<Clazz> getClazzByDepartment(@RequestParam String departmentId) {
+        return iDepartmentInfoService.listClazzesByDepartment(departmentId);
     }
 
     @Operation(summary = "添加部门")

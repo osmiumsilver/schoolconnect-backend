@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/repair")
 @Tag(name = "报修区域")
 public class RepairDataController {
-    private IRepairDataService iRepairDataService;
+    private final IRepairDataService iRepairDataService;
 
     public RepairDataController(IRepairDataService iRepairDataService) {
         this.iRepairDataService = iRepairDataService;

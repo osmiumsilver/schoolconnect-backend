@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 @Validated
 public class ClazzScheduleImpl extends ServiceImpl<ClazzScheduleMapper, ClazzSchedule> implements IClazzScheduleService {
-    private ClazzScheduleVOMapper clazzScheduleVOMapper;
+    private final ClazzScheduleVOMapper clazzScheduleVOMapper;
 
     public ClazzScheduleImpl(ClazzScheduleVOMapper clazzScheduleVOMapper) {
         this.clazzScheduleVOMapper = clazzScheduleVOMapper;

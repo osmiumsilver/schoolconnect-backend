@@ -181,6 +181,7 @@ public class GlobalResponseExceptionHandler extends ResponseEntityExceptionHandl
         return new ResponseEntity<>(Result.error(e.getCode(), e.getMsg(), e.getMessage()), HttpStatusCode.valueOf(406));
     }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Result<String>> defaultErrorHandler(HttpServletRequest request, Object exception) {
         log.error(exception.toString());

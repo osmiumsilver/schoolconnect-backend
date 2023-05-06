@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="backend-common" />
+        <module name="backend-wxcloud-notification" />
         <module name="main-campaign" />
         <module name="main-grade" />
         <module name="main-infrastructure" />
@@ -28,7 +29,6 @@
       <module name="admin-parent" target="1.8" />
       <module name="admin-system" target="1.8" />
       <module name="backend-admin" target="1.8" />
-      <module name="backend-wxcloud-notification" target="1.8" />
       <module name="ruoyi-common" target="1.8" />
       <module name="wxcloud-notification" target="1.8" />
     </bytecodeTargetLevel>
@@ -43,6 +43,7 @@
       <module name="backend-common" options="-parameters" />
       <module name="backend-main" options="" />
       <module name="backend-oauth2-resource-server" options="-parameters" />
+      <module name="backend-wxcloud-notification" options="-parameters" />
       <module name="main-bootstrapper" options="-parameters" />
       <module name="main-campaign" options="-parameters" />
       <module name="main-campusrepair" options="-parameters" />

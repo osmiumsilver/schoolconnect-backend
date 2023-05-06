@@ -2,9 +2,9 @@
 
 ## 用现代的技术栈 编写一个学校信息管理系统
 
-Java 17 + Spring Boot 3.0.5 + Spring Security 6.0.2 w/ OAuth2 Resource Server + Jwt EasyAuth™️ (by Nimbus JOSE + JWT)
+Java 17 + Spring Boot 3.0.6 + Spring Security 6.0.3 w/ OAuth2 Resource Server + Jwt EasyAuth™️ (by Nimbus JOSE + JWT)
 
-Undertow Servlet + MyBatis-Plus + HikariCP + Ruoyi-Vue
+Undertow Servlet + MyBatis-Plus 3.5.3.1 + HikariCP 5.0.1 + Hutool+Ruoyi-common包
 
 WebSocket + GraphQL (学习中)
 

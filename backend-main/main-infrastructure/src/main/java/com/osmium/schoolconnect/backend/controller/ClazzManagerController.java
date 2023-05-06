@@ -28,7 +28,7 @@ public class ClazzManagerController {
         this.iClazzService = iClazzService;
     }
 
-    @Operation(summary = "获取班级下的负责人")
+    @Operation(summary = "获取班级下的教务员")
     @GetMapping
     public List<ClazzManagerInfo> getClazzManagersByClazz(@RequestParam List<String> clazzId) {
         return iClazzService.listClazzManagersByClazz(clazzId);

@@ -32,6 +32,11 @@ public class MessageBoardController {
         return iMessageBoardService.list();
     }
 
+@Operation(summary = "公告详情")
+@GetMapping("/detail")
+public MessageBoard getMessage(@RequestParam String id){
+return iMessageBoardService.getById(id);
+}
 
     @Operation(summary = "查询我发出的公告")
     @GetMapping("/my")

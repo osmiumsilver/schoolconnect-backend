@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 @TableName("t_login")
 public class Login {
-@TableId
+    @TableId
     private String username;
 
-private String password;
+    private String password;
 }

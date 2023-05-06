@@ -1,7 +1,10 @@
 package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.entity.DepartmentInfo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.osmium.schoolconnect.backend.entity.DepartmentInfo;
  * @since 2023-01-12
  */
 public interface IDepartmentInfoService extends IService<DepartmentInfo> {
-
+    List<Clazz> listClazzesByDepartment(String departmentId);
 }

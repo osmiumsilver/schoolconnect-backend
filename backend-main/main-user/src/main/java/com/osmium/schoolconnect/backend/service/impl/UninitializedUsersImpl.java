@@ -3,7 +3,7 @@ package com.osmium.schoolconnect.backend.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.pojo.UninitializedUsers;
 import com.osmium.schoolconnect.backend.mapper.UninitializedUsersMapper;
-import com.osmium.schoolconnect.backend.service.IUnUsers;
+import com.osmium.schoolconnect.backend.service.IUninitializedUsers;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 
@@ -14,5 +14,5 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @Repository
-public class UnUsersImpl extends ServiceImpl<UninitializedUsersMapper, UninitializedUsers> implements IUnUsers {
+public class UninitializedUsersImpl extends ServiceImpl<UninitializedUsersMapper, UninitializedUsers> implements IUninitializedUsers {
 }

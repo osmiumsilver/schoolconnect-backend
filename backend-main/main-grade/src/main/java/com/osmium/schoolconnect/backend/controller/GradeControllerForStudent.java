@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/grade")
-@Tag(name = "学生查询成绩")
+@Tag(name = "学生成绩控制器")
 public class GradeControllerForStudent {
     private final IGradeService iGradeService;
 

@@ -1,13 +1,12 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.osmium.schoolconnect.backend.entity.Grade;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
+import com.osmium.schoolconnect.backend.service.IGradeRevisionService;
 import com.osmium.schoolconnect.backend.service.IGradeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,18 +18,23 @@ import java.util.List;
 @RestController
 
 @RequestMapping("/grade/review")
-@Tag(name="成绩审核")
+@Tag(name="成绩审核控制器")
 public class GradeRevisionController {
     private final IGradeService iGradeService;
-
-    public GradeRevisionController(IGradeService iGradeService) {
+private final IGradeRevisionService iGradeRevisionService;
+    public GradeRevisionController(IGradeService iGradeService, IGradeRevisionService iGradeRevisionService) {
         this.iGradeService = iGradeService;
+        this.iGradeRevisionService = iGradeRevisionService;
     }
 
     @Operation(summary = "查询需要审核的成绩")
     @GetMapping
-    public List<Grade> listGradeWaitingForRevision(@RequestParam String userId) {
+    public List<GradeVO> listGradeWaitingForRevision(@RequestParam String userId) {
         return iGradeService.listGradeWaitingForRevision(userId);
     }
-
+    @Operation(summary = "审核成绩")
+@PatchMapping
+    public Boolean reviewGrade(@RequestBody List<GradeDTO> gradeDTO) {
+        return iGradeRevisionService.updateBatchById(gradeDTO);
+    }
 }

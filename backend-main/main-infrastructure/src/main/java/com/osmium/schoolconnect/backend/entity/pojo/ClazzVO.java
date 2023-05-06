@@ -12,10 +12,11 @@ import java.io.Serializable;
  * @Date 2023/2/25
  * @Description
  */
+
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("v_class_detail")
-public class ClazzDetailsVO extends Clazz implements Serializable {
+@TableName("v_class")
+public class ClazzVO extends Clazz implements Serializable {
     private String employeeId; //管理人员编号
     private Byte role; //0 班主任 1 辅导员
 }

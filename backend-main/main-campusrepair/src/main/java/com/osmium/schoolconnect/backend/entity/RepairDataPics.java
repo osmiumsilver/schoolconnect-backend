@@ -5,11 +5,13 @@ import lombok.Data;
 
 /**
  * @Author
- * @Date 2023/4/19
+ * @Date 2023/5/4
  * @Description
  */
 @Data
-@TableName("v_course_info")
-public class CourseVO extends Course{
-    private String courseTeacherName;
+@TableName("t_repair_data")
+public class RepairDataPics {
+    private String id;
+    private String repairId;
+    private String pictureUrl;
 }

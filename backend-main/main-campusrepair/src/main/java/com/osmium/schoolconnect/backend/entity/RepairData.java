@@ -22,9 +22,10 @@ public class RepairData {
 
     private String phone;
     private String location;
-    private Byte level;
 
     private Byte status;
+    private Byte level;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
     private String initiator; //发起人

@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.0.6</version>
         <relativePath/> <!--		lookup parent from repository -->
     </parent>
     <groupId>com.osmium.schoolconnect</groupId>
@@ -32,17 +32,25 @@
 
     </modules>
     <dependencies>
-
+<!--        我说过了我要尝试用一用WebFlux-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        超级新式的GraphQL 我要尝试用一用这个看看能不能简化api开发-->
+<!--        超级新式的GraphQL 我要尝试用一用这个看看能不能开发-->
         <dependency>
             <groupId>com.netflix.graphql.dgs</groupId>
             <artifactId>graphql-dgs-spring-boot-starter</artifactId>
@@ -58,17 +66,7 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.4.0</version>
         </dependency>
-        <!--也许我以后会用上kotlin-->
-        <!--	<dependency>-->
-        <!--		<groupId>org.jetbrains.kotlin</groupId>-->
-        <!--		<artifactId>kotlin-reflect</artifactId>-->
-        <!--	</dependency>-->
-        <!--	<dependency>-->
-        <!--		<groupId>org.jetbrains.kotlin</groupId>-->
-        <!--		<artifactId>kotlin-stdlib-jdk8</artifactId>-->
-        <!--	</dependency>-->
-
-        <!--	SpringFox is ded 已经mei了 :)-->
+        <!--	SpringFox is ded 已经🈚️了 :)-->
         <!--	<dependency>-->
         <!--		<groupId>io.springfox</groupId>-->
         <!--		<artifactId>springfox-boot-starter</artifactId>-->
@@ -108,7 +106,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--我不想用Tomcat 我用Undertow-->
+        <!--用Undertow 不想用Tomcat-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
@@ -207,21 +205,18 @@
 
 
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip><!-- POM根不需要这个啊-->
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <skip>true</skip>&lt;!&ndash; POM根不需要这个啊&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+<!--            </plugin>-->
 
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/ui")
 public class MiniAppUIController {
-    private RedisUtils redisUtils;
+    private final RedisUtils redisUtils;
 
     public MiniAppUIController(RedisUtils redisUtils) {
         this.redisUtils = redisUtils;
@@ -26,6 +26,6 @@ public class MiniAppUIController {
     @Operation(summary = "获取轮播图片URL")
     @GetMapping("/carousel")
     public List<Object> getCarousel() {
-        return redisUtils.getCacheSet("carousel_urls").stream().collect(Collectors.toList());
+        return new ArrayList<>(redisUtils.getCacheSet("carousel_urls"));
     }
 }

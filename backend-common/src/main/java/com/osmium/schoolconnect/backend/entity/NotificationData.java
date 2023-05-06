@@ -3,10 +3,6 @@ package com.osmium.schoolconnect.backend.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.formula.functions.T;
-import org.springframework.web.bind.annotation.InitBinder;
-
-import java.time.LocalDateTime;
 
 /**
  * @Author
@@ -39,20 +35,20 @@ public class NotificationData {
 
     @Data
     @AllArgsConstructor
-    class Thing1 {
+   static class Thing1 {
         private String value;
 
     }
 
     @Data
     @AllArgsConstructor
-    class Time2 {
+  static   class Time2 {
         private String value;
     }
 
     @Data
     @AllArgsConstructor
-    class Thing3 {
+   static class Thing3 {
         private String value;
 
 
@@ -60,14 +56,14 @@ public class NotificationData {
 
     @Data
     @AllArgsConstructor
-    class Time4 {
+   static class Time4 {
         private String value;
 
     }
 
     @Data
     @AllArgsConstructor
-    class Thing5 {
+   static class Thing5 {
         private String value;
     }
 }

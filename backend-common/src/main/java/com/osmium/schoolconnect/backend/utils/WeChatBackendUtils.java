@@ -7,8 +7,6 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.osmium.schoolconnect.backend.entity.NotificationData;
 import com.osmium.schoolconnect.backend.entity.WechatResult;
-import com.osmium.schoolconnect.backend.misc.RequestException;
-import com.osmium.schoolconnect.backend.misc.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -116,9 +114,8 @@ public class WeChatBackendUtils {
         obj.put("miniprogram_state", miniprogramState);
         obj.put("lang", "zh_CN");
         log.warn(String.valueOf(obj));
-        WechatResult status = JSONUtil.toBean(HttpRequest.post(requestUrl).body(String.valueOf(obj)).execute().body(), WechatResult.class);
         //发送post请求读取调用微信接口获取openid用户唯一标识
-        return status;
+        return JSONUtil.toBean(HttpRequest.post(requestUrl).body(String.valueOf(obj)).execute().body(), WechatResult.class);
     }
 
     public static JSONObject getAccessToken() {

@@ -7,6 +7,7 @@ import com.osmium.schoolconnect.backend.misc.Result;
 import com.osmium.schoolconnect.backend.service.IOpenIDService;
 import com.osmium.schoolconnect.backend.utils.RedisUtils;
 import com.osmium.schoolconnect.backend.utils.WeChatBackendUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,12 +46,13 @@ public class WxAuthController {
      * @return 通用返回Result
      */
 
+    @Operation(summary = "微信登录")
     @PostMapping("/wxlogin")
     public Result<JSONObject> getWxLogin(@RequestBody JSONObject wxLogin) { //wxLogin接受code
         JSONObject wxLoginResponse = WeChatBackendUtils.getSessionKeyOrOpenId(wxLogin.get("code", String.class));
         String openId = wxLoginResponse.get("openid", String.class);
         if (iOpenIDService.getById(openId) == null) {
-            //saveOpenID(openId);
+                saveOpenID(openId,null);
         }
         //if (redisUtils.getCacheObject(openId)!=null) {
         wxLoginResponse.set("user_id", iOpenIDService.getById(openId).getUserId());
@@ -68,7 +70,7 @@ public class WxAuthController {
 //        return Result.success(basicInfoMapper.updateById(wxLogout));
 //    }
     public void saveOpenID(String openId,String userId) {
-        log.info(String.valueOf(iOpenIDService.saveOrUpdate(new OpenID(openId, userId))));
+        log.info(String.valueOf(iOpenIDService.save(new OpenID(openId, userId))));
     }
 }
 

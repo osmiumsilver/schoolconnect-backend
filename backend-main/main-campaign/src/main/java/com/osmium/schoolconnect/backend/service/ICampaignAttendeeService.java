@@ -3,7 +3,7 @@ package com.osmium.schoolconnect.backend.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
 import com.osmium.schoolconnect.backend.entity.pojo.CampaignAttendeeVO;
-import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusVO;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusDTO;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface ICampaignAttendeeService extends IService<CampaignAttendee> {
 
     List<CampaignAttendeeVO> listAttendees(String campaignId);
 
-    CampaignStatusVO getUserStatusOfCampaign(String userId, String campaignId);
+    CampaignStatusDTO getUserStatusOfCampaign(String userId, String campaignId);
 
     Boolean updateOne(String attendantsId, int i);
 }

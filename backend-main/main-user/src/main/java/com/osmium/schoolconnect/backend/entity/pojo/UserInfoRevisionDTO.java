@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @TableName("t_user")
-public class UserInfoRevisionVO {
+public class UserInfoRevisionDTO {
     @TableId(value = "id", type = IdType.NONE)
     private String id;
     private Byte requiredChanging;

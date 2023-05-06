@@ -1,19 +1,17 @@
 package com.osmium.schoolconnect.backend.entity.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * @Author
- * @Date 2023/3/6
+ * @Date 2023/5/6
  * @Description
  */
-
 @Data
-
-public class GradeRevisionDTO {
-    @TableId
+@TableName("t_grade")
+public class GradeDTO {
     private String id;
+    private Double grade;
     private Byte awaitingRevision;
-
 }

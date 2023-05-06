@@ -2,7 +2,7 @@ package com.osmium.schoolconnect.backend.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.osmium.schoolconnect.backend.entity.pojo.ClazzDetailsVO;
+import com.osmium.schoolconnect.backend.entity.pojo.ClazzVO;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
  * @Date 2023/3/7
  * @Description
  */
-public interface ClazzVOMapper extends BaseMapper<ClazzDetailsVO> {
-    List<ClazzDetailsVO> selectList(QueryWrapper<ClazzDetailsVO> gradeQueryWrapper);
+public interface ClazzVOMapper extends BaseMapper<ClazzVO> {
+    List<ClazzVO> selectList(QueryWrapper<ClazzVO> gradeQueryWrapper);
 }

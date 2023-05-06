@@ -1,16 +1,12 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.date.LocalDateTimeUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.osmium.schoolconnect.backend.entity.CampaignAttendee;
 import com.osmium.schoolconnect.backend.entity.CampaignSubscription;
 import com.osmium.schoolconnect.backend.entity.NotificationData;
 import com.osmium.schoolconnect.backend.entity.pojo.CampaignAttendeeVO;
-import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusVO;
+import com.osmium.schoolconnect.backend.entity.pojo.CampaignStatusDTO;
 import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ICampaignAttendeeService;
@@ -21,12 +17,9 @@ import com.osmium.schoolconnect.backend.utils.annotations.AccessIsolation;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -61,7 +54,7 @@ public class CampaignAttendeeController {
 
     @Operation(summary = "我在当前活动的状态，是否签到，是否报名，是否开始了")
     @GetMapping("/campaign_status")
-    public CampaignStatusVO getUserStatusOfCampaign(Authentication authentication, @RequestParam String campaignId) {
+    public CampaignStatusDTO getUserStatusOfCampaign(Authentication authentication, @RequestParam String campaignId) {
         return iCampaignAttendeeService.getUserStatusOfCampaign(authentication.getName(), campaignId);
     }
 

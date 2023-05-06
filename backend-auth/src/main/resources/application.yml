@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 9000
 spring:
   config: # 又是一个新的写法
     import: classpath:application-common.yml
@@ -7,7 +7,7 @@ spring:
 #    oauth2:
 #      resourceserver:
 #        jwt:
-#          issuer-uri: https://auth.prod.schoolconnect.wdksl.com/issuer
+#          issuer-uri: ${JWT_ISSUER_URI}
 
 
 

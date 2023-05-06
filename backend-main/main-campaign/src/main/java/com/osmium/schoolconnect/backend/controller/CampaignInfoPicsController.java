@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/campaign/info/pics")
 public class CampaignInfoPicsController {
-    private ICampaignInfoPicService iCampaignInfoPicService;
+    private final ICampaignInfoPicService iCampaignInfoPicService;
 
     public CampaignInfoPicsController(ICampaignInfoPicService iCampaignInfoPicService) {
         this.iCampaignInfoPicService = iCampaignInfoPicService;

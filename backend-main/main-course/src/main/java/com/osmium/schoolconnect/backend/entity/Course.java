@@ -1,5 +1,6 @@
 package com.osmium.schoolconnect.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -12,7 +13,9 @@ import java.io.Serializable;
 @TableName("t_course")
 public class Course implements Serializable {
     @Serial
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
     @TableId("course_no")
     private @Id String courseNo; //课程ID
     private String courseName; //课程名称

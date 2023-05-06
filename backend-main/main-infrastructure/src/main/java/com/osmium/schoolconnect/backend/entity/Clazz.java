@@ -18,5 +18,7 @@ public class Clazz implements Serializable {
     private String className; //班级名称
     private String departmentNo; //部门编号
     //private String departmentName; //部门名称
+    private String year; //年份
+
     private Byte status; //班级状态 0默认 1毕业
 }

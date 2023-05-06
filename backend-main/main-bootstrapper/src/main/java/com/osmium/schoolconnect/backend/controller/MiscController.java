@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RestController
 public class MiscController {
-    private RedisUtils redisUtils;
+    private final RedisUtils redisUtils;
 
     public MiscController(RedisUtils redisUtils) {
         this.redisUtils = redisUtils;

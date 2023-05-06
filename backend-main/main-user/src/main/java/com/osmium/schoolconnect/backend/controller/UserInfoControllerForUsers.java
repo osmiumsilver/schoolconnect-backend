@@ -1,7 +1,8 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.User;
-import com.osmium.schoolconnect.backend.entity.pojo.UserPassVO;
+import com.osmium.schoolconnect.backend.entity.dto.UserPassDTO;
+import com.osmium.schoolconnect.backend.entity.pojo.StudentInfoVO;
 import com.osmium.schoolconnect.backend.misc.RequestException;
 import com.osmium.schoolconnect.backend.misc.ResultCode;
 import com.osmium.schoolconnect.backend.service.ILoginService;
@@ -26,6 +27,7 @@ public class UserInfoControllerForUsers {
     private final IUserService iUserService;
 private final ILoginService iLoginService;
 final PasswordEncoder passwordEncoder;
+
     public UserInfoControllerForUsers(IUserService iUserService, ILoginService iLoginService, PasswordEncoder passwordEncoder) {
         this.iUserService = iUserService;
         this.iLoginService = iLoginService;
@@ -36,6 +38,12 @@ final PasswordEncoder passwordEncoder;
     @GetMapping
     public User getInfo(Authentication authentication) {
         return iUserService.getById(authentication.getName());
+    }
+
+    @Operation(summary="学生获取自身信息")
+    @GetMapping("/student")
+    public StudentInfoVO getStudentInfo(Authentication authentication){
+        return iUserService.selectStudentById(authentication.getName());
     }
 
     @Operation(summary = "学生修改学籍信息")
@@ -50,7 +58,7 @@ final PasswordEncoder passwordEncoder;
 
 @Operation(summary = "修改个人密码")
     @PostMapping("/change")
-public Boolean changePassword(@RequestBody UserPassVO newUserPass) {
+public Boolean changePassword(@RequestBody UserPassDTO newUserPass) {
     if(!newUserPass.getEmployeeId().equals(SecurityUtils.getUserId()))
         throw new RequestException(ResultCode.AUTH_NO_PERMISSION);
     if(!passwordEncoder.matches(newUserPass.getOldPass(),iLoginService.getById(newUserPass.getEmployeeId()).getPassword()))

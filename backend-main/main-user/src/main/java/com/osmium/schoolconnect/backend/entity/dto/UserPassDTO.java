@@ -1,4 +1,4 @@
-package com.osmium.schoolconnect.backend.entity.pojo;
+package com.osmium.schoolconnect.backend.entity.dto;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import lombok.Data;
  * @Description
  */
 @Data
-public class UserPassVO {
+public class UserPassDTO {
     private String employeeId; //工号
     private String oldPass;
     private String newPass;

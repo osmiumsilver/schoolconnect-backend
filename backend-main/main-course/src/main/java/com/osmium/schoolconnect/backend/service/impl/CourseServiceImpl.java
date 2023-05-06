@@ -1,10 +1,8 @@
 package com.osmium.schoolconnect.backend.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Course;
 import com.osmium.schoolconnect.backend.mapper.CourseMapper;
-import com.osmium.schoolconnect.backend.mapper.CourseVOMapper;
 import com.osmium.schoolconnect.backend.service.ICourseService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -23,8 +21,10 @@ import java.util.List;
 @Validated
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements ICourseService {
 
-
-
+    @Override
+    public String getName(String courseId) {
+        return baseMapper.getName(courseId);
+    }
 
     @Override
     public List<String> listClazzesTaughtByTeacher(String name) {
@@ -32,11 +32,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     }
 
     @Override
-    public List<Course> listCoursesTaughtByTeacher(String userId) {
-        QueryWrapper q = new QueryWrapper<>();
-        q.eq("course_teacher", userId);
-
-        return baseMapper.selectList(q);
+    public List<String> listCoursesTaughtByTeacher(String userId) {
+        return baseMapper.selectList(userId);
     }
 
 

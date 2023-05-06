@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.entity.ClazzManagerInfo;
-import com.osmium.schoolconnect.backend.entity.pojo.ClazzDetailsVO;
+import com.osmium.schoolconnect.backend.entity.pojo.ClazzVO;
 import com.osmium.schoolconnect.backend.mapper.ClazzManagerInfoMapper;
 import com.osmium.schoolconnect.backend.mapper.ClazzMapper;
 import com.osmium.schoolconnect.backend.mapper.ClazzVOMapper;
@@ -38,8 +38,8 @@ public class ClazzServiceImpl extends ServiceImpl<ClazzMapper, Clazz> implements
     }
 
     @Override
-    public List<ClazzDetailsVO> listClazzDetailsById(List<Clazz> clazzes) {
-        QueryWrapper<ClazzDetailsVO> gradeQueryWrapper = new QueryWrapper<>();
+    public List<ClazzVO> listClazzDetailsById(List<Clazz> clazzes) {
+        QueryWrapper<ClazzVO> gradeQueryWrapper = new QueryWrapper<>();
         gradeQueryWrapper.eq("class_no", clazzes);
         return clazzVOMapper.selectList(gradeQueryWrapper);
     }

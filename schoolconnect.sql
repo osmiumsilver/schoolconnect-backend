@@ -808,7 +808,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`user`@`%` SQL SECURITY DEFINER VIEW `v_login
 --
 DROP TABLE IF EXISTS `v_login_nopass`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`user`@`%` SQL SECURITY DEFINER VIEW `v_login_nopass`  AS SELECT `t_login`.`username` AS `employee_id`, `t_login`.`password` AS `password`, `tu`.`name` AS `name` FROM (`t_login` left join `t_user` `tu` on(`t_login`.`username` = `tu`.`employee_id`)) WHERE `t_login`.`password` is nullnull  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`user`@`%` SQL SECURITY DEFINER VIEW `v_login_nopass`  AS SELECT `t_login`.`username` AS `employee_id`, `t_login`.`password` AS `password`, `tu`.`name` AS `name` FROM (`t_login` left join `t_user` `tu` on(`t_login`.`username` = `tu`.`employee_id`)) WHERE `t_login`.`password` is null  ;
 
 -- --------------------------------------------------------
 

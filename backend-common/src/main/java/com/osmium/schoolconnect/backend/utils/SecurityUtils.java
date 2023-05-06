@@ -1,14 +1,29 @@
 package com.osmium.schoolconnect.backend.utils;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.util.function.Function;
+
+
 
 /**
  * 安全服务工具类
  */
+@Component
 public class SecurityUtils {
+    @Value("${jwt.cert.pub}")
+    RSAPublicKey pub;
 
+    @Value("${jwt.cert.key}")
+    RSAPrivateKey key;
     public static String getUserId() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
@@ -57,4 +72,11 @@ public class SecurityUtils {
         return userId != null && 1L == userId;
     }
 
+    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claimsResolver.apply(claims);
+    }
+    private Claims getAllClaimsFromToken(String token) {
+        return Jwts.parser().setSigningKey(pub).parseClaimsJws(token).getBody();
+    }
 }

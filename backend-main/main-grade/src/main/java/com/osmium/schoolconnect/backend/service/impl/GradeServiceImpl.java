@@ -2,8 +2,11 @@ package com.osmium.schoolconnect.backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.osmium.schoolconnect.backend.entity.Grade;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
+import com.osmium.schoolconnect.backend.mapper.GradeDTOMapper;
 import com.osmium.schoolconnect.backend.mapper.GradeMapper;
 import com.osmium.schoolconnect.backend.mapper.GradeVOMapper;
 import com.osmium.schoolconnect.backend.service.IGradeService;
@@ -24,9 +27,11 @@ import java.util.List;
 @Validated
 public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements IGradeService {
     private final GradeVOMapper gradeVOMapper;
+    private final GradeDTOMapper gradeDTOMapper;
 
-    public GradeServiceImpl(GradeVOMapper gradeVOMapper) {
+    public GradeServiceImpl(GradeVOMapper gradeVOMapper, GradeDTOMapper gradeDTOMapper) {
         this.gradeVOMapper = gradeVOMapper;
+        this.gradeDTOMapper = gradeDTOMapper;
     }
 
 
@@ -40,15 +45,26 @@ public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements
     }
 
     @Override
-    public List<Grade> listGradeWaitingForRevision(String userId) {
+    public List<GradeVO> listGradeWaitingForRevision(String userId) {
 
-        return baseMapper.selectGradeWaitingForRevision(userId);
+        return gradeVOMapper.selectGradeWaitingForRevision(userId);
     }
 
     @Override
-    public List<GradeVO> listGradeByClazz(String clazzId, String year, String semester) {
-        return baseMapper.selectGradeByClazz(clazzId, year, semester);
+    public List<GradeVO> listGradeByClazz(String courseId, String clazzId, String year, String semester) {
+        return gradeVOMapper.selectGradeByClazz(courseId, clazzId, year, semester);
     }
+
+    @Override
+    public Boolean updateGradeAndRevision(GradeDTO gradeDTO) {
+
+        return SqlHelper.retBool(gradeDTOMapper.updateGradeAndRevision(gradeDTO.getId(), gradeDTO.getGrade(), gradeDTO.getAwaitingRevision()));
+    }
+
+    //@Override
+    //public List<GradeVO> listGradeByClazz(String clazzId, String year, String semester) {
+    //    return gradeVOMapper.selectGradeByClazz(clazzId, year, semester);
+    //}
 
 }
 

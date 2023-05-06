@@ -30,7 +30,17 @@
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <!--    <repositories>在也用不上了 因为给3。0用的稳定版的mbp已经出来了-->
     <!--        <repository>-->
     <!--            <id>ossrh</id>-->
@@ -44,6 +54,7 @@
     <!--            </snapshots>-->
     <!--        </repository>-->
     <!--    </repositories>-->
+
 
 
 </project>

@@ -1,7 +1,7 @@
 package com.osmium.schoolconnect.backend.controller;
 
 import com.osmium.schoolconnect.backend.entity.Clazz;
-import com.osmium.schoolconnect.backend.entity.pojo.ClazzDetailsVO;
+import com.osmium.schoolconnect.backend.entity.pojo.ClazzVO;
 import com.osmium.schoolconnect.backend.service.IClazzManagerInfoService;
 import com.osmium.schoolconnect.backend.service.IClazzService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
@@ -32,11 +32,11 @@ public class ClazzInfoController {
 
     @Operation(summary = "获取班级信息详细+负责人")
     @GetMapping
-    public List<ClazzDetailsVO> listClazzDetailsById(@RequestParam List<Clazz> clazzes) {
+    public List<ClazzVO> listClazzDetailsById(@RequestParam List<Clazz> clazzes) {
         return iClazzService.listClazzDetailsById(clazzes);
     }
 
-    @Operation(summary = "获取负责人管理了哪些班级")
+    @Operation(summary = "查询教务员管理了哪些班级")
     @GetMapping("/managed_by_teacher")
     public List<Clazz> getClazzManagedByStaff(@RequestParam String employeeId) {
         return iClazzManagerInfoService.getClazzManagedByStaff(employeeId);

@@ -5,7 +5,6 @@ import com.osmium.schoolconnect.backend.entity.Login;
 import com.osmium.schoolconnect.backend.mapper.LoginMapper;
 import com.osmium.schoolconnect.backend.service.ILoginService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
