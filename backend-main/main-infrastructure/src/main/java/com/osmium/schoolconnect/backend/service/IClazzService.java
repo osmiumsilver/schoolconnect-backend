@@ -5,6 +5,7 @@ import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.entity.ClazzManagerInfo;
 import com.osmium.schoolconnect.backend.entity.pojo.ClazzVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -21,6 +22,7 @@ public interface IClazzService extends IService<Clazz> {
 
     List<ClazzManagerInfo> listClazzManagersByClazz(List<String> clazzId);
 
+    List<HashMap<String, String>> listStudentUnderClass(String clazzId);
 }
 
 

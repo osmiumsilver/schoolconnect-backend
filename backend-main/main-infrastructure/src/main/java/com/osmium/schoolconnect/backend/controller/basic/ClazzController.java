@@ -6,6 +6,7 @@ import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -30,7 +31,14 @@ public class ClazzController {
     @GetMapping
     public List<Clazz> queryAllClazzes() {
         return iClazzService.list();
+
+    }    @Operation(summary = "返回班级下学生学号姓名")
+    @GetMapping("/roster")
+    public List<HashMap<String,String>> queryStudentUnderClass(String clazzId) {
+
+        return iClazzService.listStudentUnderClass(clazzId);
     }
+
 
 
     @Operation(summary = "添加班级")

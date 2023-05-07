@@ -2,7 +2,7 @@ package com.osmium.schoolconnect.backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.osmium.schoolconnect.backend.entity.Grade;
-import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeRevisionDTO;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 
 import java.util.List;
@@ -24,5 +24,5 @@ public interface IGradeService extends IService<Grade> {
     List<GradeVO> listGradeByClazz(String courseId, String clazzId, String year, String semester);
 //List<GradeVO> findGradeByClazz(String clazzId,String year,String semester);
 
-    Boolean updateGradeAndRevision(GradeDTO gradeDTO);
+    Boolean updateGradeAndRevision(GradeRevisionDTO gradeRevisionDTO);
 }

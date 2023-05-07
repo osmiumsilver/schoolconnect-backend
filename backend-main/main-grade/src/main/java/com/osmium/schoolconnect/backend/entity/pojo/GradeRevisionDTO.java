@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @TableName("t_grade")
-public class GradeDTO {
+public class GradeRevisionDTO {
     private String id;
     private Double grade;
     private Byte awaitingRevision;

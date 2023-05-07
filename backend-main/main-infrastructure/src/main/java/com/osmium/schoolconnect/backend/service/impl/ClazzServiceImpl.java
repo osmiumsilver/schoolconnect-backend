@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,5 +48,10 @@ public class ClazzServiceImpl extends ServiceImpl<ClazzMapper, Clazz> implements
     @Override
     public List<ClazzManagerInfo> listClazzManagersByClazz(List<String> clazzId) {
        return null;//TODO
+    }
+
+    @Override
+    public List<HashMap<String, String>> listStudentUnderClass(String clazzId) {
+        return baseMapper.selecyStudentUnderClass(clazzId);
     }
 }

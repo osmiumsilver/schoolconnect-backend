@@ -24,7 +24,7 @@ public class Grade implements Serializable {
     @Excel(name = "学号")
     private String userId; //学号
     @TableField("course_no")
-    @Excel(name = "课程编号")
+    @Excel(name = "课程号")
     private String courseNo; //课程编号
     @Excel(name = "成绩")
     private Double grade; //成绩
@@ -36,7 +36,6 @@ public class Grade implements Serializable {
 
     @TableField("semester")
     private int semester; //学期
-    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime importDate; //导入时间
 
     @TableField("awaiting_revision")

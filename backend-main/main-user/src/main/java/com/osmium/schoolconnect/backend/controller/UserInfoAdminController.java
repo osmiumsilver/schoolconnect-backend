@@ -76,9 +76,9 @@ public class UserInfoAdminController {
     @PostMapping("/import")
     public Boolean importExcel(@RequestPart MultipartFile file) throws IOException {
 
-     var userList = ExcelUtils.importExcel(file,1,1,User.class);
+     List<User> userList = ExcelUtils.importExcel(file,1,1,User.class);
 
-        return iUserService.saveBatch(userList);
+     return iUserService.saveBatch(userList);
     }
 
 
@@ -107,7 +107,7 @@ public class UserInfoAdminController {
     @PatchMapping("/lock")
     public Boolean lockAccount(@RequestBody List<User> newUser) {
         newUser.forEach(user -> {
-            user.setStatus((byte) 3);
+            user.setStatus((int) 3);
         });
         return iUserService.updateBatchById(newUser);
 
@@ -118,7 +118,7 @@ public class UserInfoAdminController {
     @PatchMapping("/unlock")
     public Boolean unlockAccount(@RequestBody List<User> newUser) {
         newUser.forEach(user -> {
-            user.setStatus((byte) 0);
+            user.setStatus((int) 0);
         });
         return iUserService.updateBatchById(newUser);
 

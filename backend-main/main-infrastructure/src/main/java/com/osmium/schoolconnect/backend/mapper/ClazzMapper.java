@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.osmium.schoolconnect.backend.entity.Clazz;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ClazzMapper extends BaseMapper<Clazz> {
@@ -11,4 +12,6 @@ public interface ClazzMapper extends BaseMapper<Clazz> {
     List<Clazz> listClazzesManagedByManager(String employeeId);
 
 
+@Select("select employee_id,name from v_user_student where class_no=#{clazzId}")
+    List<HashMap<String, String>> selecyStudentUnderClass(String clazzId);
 }

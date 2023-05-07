@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.osmium.schoolconnect.backend.entity.Grade;
-import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeRevisionDTO;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.mapper.GradeDTOMapper;
 import com.osmium.schoolconnect.backend.mapper.GradeMapper;
@@ -56,9 +56,9 @@ public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements
     }
 
     @Override
-    public Boolean updateGradeAndRevision(GradeDTO gradeDTO) {
+    public Boolean updateGradeAndRevision(GradeRevisionDTO gradeRevisionDTO) {
 
-        return SqlHelper.retBool(gradeDTOMapper.updateGradeAndRevision(gradeDTO.getId(), gradeDTO.getGrade(), gradeDTO.getAwaitingRevision()));
+        return SqlHelper.retBool(gradeDTOMapper.updateGradeAndRevision(gradeRevisionDTO.getId(), gradeRevisionDTO.getGrade(), gradeRevisionDTO.getAwaitingRevision()));
     }
 
     //@Override

@@ -38,7 +38,7 @@ public class User implements Serializable {
     private String name; //姓名
 
     @Excel(name = "性别", replace = {"男_0", "女_1"})
-    private Byte sex; //表示性别 0:男 1:女
+    private Integer sex; //表示性别 0:男 1:女
 
     @Excel(name = "身份证号码")
     private String residenceId; //身份证号码等证件号
@@ -56,11 +56,11 @@ public class User implements Serializable {
     private String secondContact; //第二联系方式
 
     @Excel(name="角色")
-    private Byte role;  // 0:本校 1:非本校
+    private Integer role;  // 0:本校 1:非本校
 
 
     @Excel(name="状态")
-    private Byte status; //状态
+    private Integer status; //状态
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT_UPDATE)

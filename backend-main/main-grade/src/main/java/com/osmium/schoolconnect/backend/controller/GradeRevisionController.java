@@ -1,6 +1,6 @@
 package com.osmium.schoolconnect.backend.controller;
 
-import com.osmium.schoolconnect.backend.entity.pojo.GradeDTO;
+import com.osmium.schoolconnect.backend.entity.pojo.GradeRevisionDTO;
 import com.osmium.schoolconnect.backend.entity.pojo.GradeVO;
 import com.osmium.schoolconnect.backend.service.IGradeRevisionService;
 import com.osmium.schoolconnect.backend.service.IGradeService;
@@ -34,7 +34,7 @@ private final IGradeRevisionService iGradeRevisionService;
     }
     @Operation(summary = "审核成绩")
 @PatchMapping
-    public Boolean reviewGrade(@RequestBody List<GradeDTO> gradeDTO) {
-        return iGradeRevisionService.updateBatchById(gradeDTO);
+    public Boolean reviewGrade(@RequestBody List<GradeRevisionDTO> gradeRevisionDTO) {
+        return iGradeRevisionService.updateBatchById(gradeRevisionDTO);
     }
 }
