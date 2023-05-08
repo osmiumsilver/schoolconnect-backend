@@ -27,7 +27,7 @@ import java.util.Map;
  * @Description
  */
 @RestController
-@PreAuthorize("hasAnyAuthority('[SUPER]','[ADMINISTRATIVE]','[TEACHER]')")
+@PreAuthorize("hasAnyAuthority('[TEACHER]','[SUPER]','[ADMINISTRATIVE]')")
 @RequestMapping("/grade")
 @Tag(name = "成绩控制器")
 public class GradeController {
@@ -66,7 +66,7 @@ public class GradeController {
     }
 
     @Operation(summary = "Excel导出模版")
-    @PostMapping("/export")
+    @GetMapping("/export")
     public void exportGradeTemplate(@RequestParam String clazzId, String courseId, Integer year, Integer semester, HttpServletResponse response) throws IOException {
         var roster = clazzController.queryStudentUnderClass(clazzId);
         TemplateExportParams params = new TemplateExportParams(

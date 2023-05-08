@@ -20,9 +20,9 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n"
     file: "%d %-5level [%thread] %logger{0} : %msg%n"
   level:
-    root: WARN
-    org.springframework.web: info
-    org.springframework.security: info
+    root: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
 
 
     # springdoc-openapi项目配置

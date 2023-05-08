@@ -1,5 +1,6 @@
 package com.osmium.schoolconnect.backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.osmium.schoolconnect.backend.entity.User;
 import com.osmium.schoolconnect.backend.entity.pojo.StudentInfoVO;
@@ -45,6 +46,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public StudentInfoVO selectStudentById(String userId) {
         return studentInfoVOMapper.selectById(userId);
 
+    }
+
+    @Override
+    public List<User> listUserByStatus(String status) {
+        QueryWrapper<User> q =new QueryWrapper();
+        q.eq("status",status);
+        return baseMapper.selectList(q);
     }
 
     @Override

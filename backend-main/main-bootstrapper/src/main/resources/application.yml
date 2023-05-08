@@ -16,4 +16,4 @@ server:
 file:
   upload:
 #    末尾一定要加斜杠
-    path: /Users/abel/log/api/images/
+    path: /opt/app/images/

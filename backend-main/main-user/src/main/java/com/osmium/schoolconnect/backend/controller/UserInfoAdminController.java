@@ -36,7 +36,7 @@ public class UserInfoAdminController {
     final PasswordEncoder passwordEncoder;
     private final IUninitializedUsers iUninitializedUsers;
 
-    @Value("/Users/abel/log/excel/")
+    @Value("/opt/app/excel")
     private String path;
     public UserInfoAdminController(IUserService iUserService, ILoginService iLoginService, PasswordEncoder passwordEncoder, IUninitializedUsers iUninitializedUsers) {
         this.iUserService = iUserService;
@@ -59,13 +59,12 @@ public class UserInfoAdminController {
 
 
 
-    @PostMapping("/export/blank")
+    @GetMapping("/export/blank")
     public void exportBlank(HttpServletResponse response) throws IOException {
-        List<User> userList = iUserService.list(Wrappers.emptyWrapper());
         //导出操作
-        ExcelUtils.exportExcel(userList, "用户信息", "Sheet1", User.class, "users", response);
+        ExcelUtils.exportExcel(new ArrayList<User>(), "用户信息", "Sheet1", User.class, "users", response);
     }
-    @PostMapping("/export/class")
+    @GetMapping("/export/class")
     public void export(HttpServletResponse response) throws IOException {
         QueryWrapper q=new QueryWrapper();
         List<User> userList = iUserService.list();
@@ -130,6 +129,12 @@ public class UserInfoAdminController {
     public List<UninitializedUsers> getUninitializedUsers() {
         return iUninitializedUsers.list();
 
+    }
+    @Operation(summary = "查询未初始化的账户")
+    @SuperAccess
+    @GetMapping("/by_status")
+    public List<User> getLockedUsers(@RequestParam String status) {
+        return iUserService.listUserByStatus(status);
     }
 
     @Operation(summary = "重置个人密码")

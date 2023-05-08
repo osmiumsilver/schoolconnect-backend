@@ -4,6 +4,7 @@ import com.osmium.schoolconnect.backend.entity.Clazz;
 import com.osmium.schoolconnect.backend.service.IClazzService;
 import com.osmium.schoolconnect.backend.utils.annotations.SuperAccess;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 
 @RestController
-@SuperAccess
+@PreAuthorize("hasAnyAuthority('[TEACHER]','[SUPER]','[ADMINISTRATIVE]')")
 @RequestMapping("/class/class")
 public class ClazzController {
     private final IClazzService iClazzService;

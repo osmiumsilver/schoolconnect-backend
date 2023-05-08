@@ -24,4 +24,6 @@ List<StudentInfoVO> listStudentInfoByIds(Collection<? extends Serializable> idLi
 
 
     StudentInfoVO selectStudentById(String userId);
+
+    List<User> listUserByStatus(String status);
 }
