@@ -8,6 +8,7 @@
         <artifactId>backend-parent</artifactId>
         <version>0.0.2-SNAPSHOT</version>
     </parent>
+
     <packaging>pom</packaging>
     <modules>
         <module>main-bootstrapper</module>
@@ -29,6 +30,7 @@
             <artifactId>backend-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>

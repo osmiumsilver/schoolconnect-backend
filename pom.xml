@@ -28,11 +28,11 @@
         <module>backend-oauth2-resource-server</module>
         <module>backend-common</module>
         <module>backend-wxcloud-notification</module>
-
+        <module>backend-admin</module>
 
     </modules>
     <dependencies>
-<!--        我说过了我要尝试用一用WebFlux-->
+        <!--        我说过了我要尝试用一用WebFlux-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -50,7 +50,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        超级新式的GraphQL 我要尝试用一用这个看看能不能开发-->
+        <!--        超级新式的GraphQL 我要尝试用一用这个看看能不能开发-->
         <dependency>
             <groupId>com.netflix.graphql.dgs</groupId>
             <artifactId>graphql-dgs-spring-boot-starter</artifactId>
@@ -205,13 +205,13 @@
 
 
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <skip>true</skip>&lt;!&ndash; POM根不需要这个啊&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+            <!--&lt;!&ndash;                    <skip>true</skip>&lt;!&ndash; POM根不需要这个啊&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+            <!--            </plugin>-->
 
 
             <plugin>

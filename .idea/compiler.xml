@@ -13,8 +13,8 @@
         <module name="main-grade" />
         <module name="main-infrastructure" />
         <module name="main-schedule" />
-        <module name="main-course" />
         <module name="backend-admin" />
+        <module name="main-course" />
         <module name="main-user" />
         <module name="main-messageboard" />
         <module name="backend-auth" />
